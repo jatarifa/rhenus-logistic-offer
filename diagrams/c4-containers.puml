@@ -41,7 +41,7 @@ System_Boundary(rhenus_tms, "Sistema TMS Rhenus") {
     Container(pubsub, "Message Queue", "Cloud Pub/Sub", "Cola de mensajes para procesamiento asíncrono de emails con PDFs", $sprite="envelope")
 }
 
-Rel(operator, web_app, "Visualiza recomendaciones, acepta/rechaza sugerencias", "HTTPS")
+Rel_L(operator, web_app, "Visualiza recomendaciones, acepta/rechaza sugerencias", "HTTPS")
 Rel(admin, web_app, "Gestiona datos maestros, configura parámetros", "HTTPS")
 Rel(viewer, web_app, "Consulta dashboards y reportes", "HTTPS")
 
