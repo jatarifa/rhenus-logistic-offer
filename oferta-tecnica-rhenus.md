@@ -36,20 +36,16 @@
    - 4.7. [Autenticación, seguridad y secrets](#47-autenticación-seguridad-y-secrets)
    - 4.8. [Observabilidad y monitoring](#48-observabilidad-y-monitoring)
    - 4.9. [CI/CD y DevOps](#49-cicd-y-devops)
-   - 4.10. [Herramientas de desarrollo](#410-herramientas-de-desarrollo)
-   - 4.11. [Testing y calidad](#411-testing-y-calidad)
-   - 4.12. [Gestión de proyecto](#412-gestión-de-proyecto)
-   - 4.13. [Librerías y frameworks adicionales clave](#413-librerías-y-frameworks-adicionales-clave)
-   - 4.14. [Costes estimados de infraestructura cloud (MVP)](#414-costes-estimados-de-infraestructura-cloud-mvp)
+   - 4.10. [Testing y calidad](#410-testing-y-calidad)
+   - 4.11. [Librerías y frameworks adicionales](#411-librerías-y-frameworks-adicionales)
+   - 4.12. [Costes estimados de infraestructura cloud (MVP)](#412-costes-estimados-de-infraestructura-cloud-mvp)
 5. [Riesgos y mitigación](#5-riesgos-y-mitigación)
    - 5.1. [Metodología de gestión de riesgos](#51-metodología-de-gestión-de-riesgos)
-   - 5.2. [Riesgos técnicos](#52-riesgos-técnicos)
-   - 5.3. [Riesgos de proyecto](#53-riesgos-de-proyecto)
-   - 5.4. [Riesgos de negocio](#54-riesgos-de-negocio)
-   - 5.5. [Riesgos de seguridad y cumplimiento](#55-riesgos-de-seguridad-y-cumplimiento)
-   - 5.6. [Matriz de riesgos (probabilidad × impacto)](#56-matriz-de-riesgos-probabilidad--impacto)
-   - 5.7. [Plan de comunicación de riesgos](#57-plan-de-comunicación-de-riesgos)
-   - 5.8. [Lecciones aprendidas y mejora continua](#58-lecciones-aprendidas-y-mejora-continua)
+   - 5.2. [Riesgos de proyecto](#52-riesgos-de-proyecto)
+   - 5.3. [Riesgos de negocio](#53-riesgos-de-negocio)
+   - 5.4. [Riesgos de seguridad y cumplimiento](#54-riesgos-de-seguridad-y-cumplimiento)
+   - 5.5. [Matriz de riesgos (probabilidad × impacto)](#55-matriz-de-riesgos-probabilidad--impacto)
+   - 5.6. [Plan de comunicación de riesgos](#56-plan-de-comunicación-de-riesgos)
 
 ---
 
@@ -1251,7 +1247,7 @@ Este diagrama ilustra la interacción de los operadores con el sistema:
 
 ## 4. Tecnologías y herramientas
 
-Esta sección consolida el stack tecnológico completo del proyecto, incluyendo herramientas de desarrollo, testing y gestión de proyecto.
+Esta sección consolida el stack tecnológico del proyecto, incluyendo plataforma cloud, frameworks de desarrollo, testing y estimación de costes de infraestructura.
 
 ### 4.1. Plataforma cloud y servicios core
 
@@ -1269,30 +1265,30 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Categoría | Tecnología | Justificación |
 |-----------|-----------|---------------|
 | Build Tool | Vite | Builds rápidos, HMR optimizado, ideal para desarrollo ágil |
-| Framework UI | React 18+ | Ecosistema maduro, componentes reutilizables |
+| Framework UI | React (última versión estable) | Ecosistema maduro, componentes reutilizables |
 | Lenguaje | TypeScript | Type safety, mejor mantenibilidad, detección temprana de errores |
-| Librería de Componentes | Material-UI (MUI) o Ant Design | Componentes profesionales, accesibilidad, diseño responsive |
-| Mapas | Google Maps API o Leaflet | Visualización geográfica de contenedores y rutas |
-| Gráficos y Dashboards | Recharts o Chart.js | Visualización de KPIs y métricas |
+| Librería de Componentes | Estándar del ecosistema React | Componentes profesionales, accesibilidad, diseño responsive |
+| Mapas | Google Maps API | Visualización geográfica de contenedores y rutas |
+| Gráficos y Dashboards | Librerías estándar del ecosistema | Visualización de KPIs y métricas |
 | Estado Global | React Context API + Hooks | Gestión de estado ligera para MVP |
-| HTTP Client | Axios o Fetch API | Llamadas a APIs REST |
-| Formularios | React Hook Form | Validación y gestión de formularios eficiente |
+| HTTP Client | Fetch API o librería estándar | Llamadas a APIs REST |
+| Formularios | Librería estándar del ecosistema | Validación y gestión de formularios eficiente |
 
 ### 4.3. Backend y APIs
 
 | Categoría | Tecnología | Propósito |
 |-----------|-----------|-----------|
-| Runtime Backend | Node.js 20 LTS | Cloud Functions runtime |
+| Runtime Backend | Node.js (última versión LTS) | Cloud Functions runtime |
 | Framework API | Express.js (en Cloud Functions) | Routing y middleware para APIs REST |
-| Validación | Zod o Joi | Validación de schemas de datos |
-| Testing Backend | Jest + Supertest | Unit tests y integration tests |
+| Validación | Librería estándar del ecosistema | Validación de schemas de datos |
+| Testing Backend | Framework de testing estándar | Unit tests y integration tests |
 | Linter/Format | ESLint + Prettier | Código consistente y de calidad |
 
 ### 4.4. Motor de optimización
 
 | Categoría | Tecnología | Justificación |
 |-----------|-----------|---------------|
-| Lenguaje | Java 17+ | Ecosistema robusto para optimización |
+| Lenguaje | Java 21 | Ecosistema robusto para optimización |
 | Framework Optimización | Timefold | Constraint programming, algoritmos avanzados de scheduling |
 | Build Tool | Maven o Gradle | Gestión de dependencias y builds |
 | Containerización | Docker | Despliegue en Cloud Run |
@@ -1302,7 +1298,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 
 | Categoría | Tecnología | Uso Principal |
 |-----------|-----------|---------------|
-| BBDD Relacional | PostgreSQL 15+ (Firebase Data Connect) | Datos transaccionales, órdenes, contenedores, maestros |
+| BBDD Relacional | PostgreSQL (Firebase Data Connect) | Datos transaccionales, órdenes, contenedores, maestros |
 | BBDD NoSQL | Cloud Firestore | Datos paramétricos de UI, configuraciones, preferencias |
 | Cache (Futuro) | Cloud Memorystore (Redis) | Cache de resultados de optimización si necesario |
 
@@ -1344,59 +1340,25 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Containerización | Docker | Empaquetado del motor de optimización |
 | Container Registry | Artifact Registry | Almacenamiento de imágenes Docker |
 
-### 4.10. Herramientas de desarrollo
-
-| Categoría | Tecnología | Propósito |
-|-----------|-----------|-----------|
-| IDE Recomendado | VS Code o IntelliJ IDEA | Desarrollo frontend/backend (VS Code) y Java (IntelliJ) |
-| API Testing | Postman o Insomnia | Testing manual de APIs |
-| DB Management | DBeaver o pgAdmin | Gestión de PostgreSQL |
-| Colaboración | Slack o Microsoft Teams | Comunicación del equipo |
-
-### 4.11. Testing y calidad
+### 4.10. Testing y calidad
 
 | Categoría | Frontend | Backend | Motor Optimización |
 |-----------|----------|---------|-------------------|
-| Unit Testing | Vitest o Jest + React Testing Library | Jest + Supertest | JUnit 5 + Mockito |
-| E2E Testing | Playwright o Cypress | - | - |
+| Unit Testing | Framework estándar del ecosistema | Framework estándar del ecosistema | JUnit 5 |
+| E2E Testing | Framework estándar del ecosistema | - | - |
 | Linting | ESLint + TypeScript | ESLint | Checkstyle |
-| Formatting | Prettier | Prettier | Google Java Format |
-| Coverage | Vitest/Jest coverage | Jest coverage | JaCoCo |
+| Formatting | Prettier | Prettier | Estándar Java |
+| Coverage | Framework de coverage estándar | Framework de coverage estándar | JaCoCo |
 
-### 4.12. Gestión de proyecto
+### 4.11. Librerías y frameworks adicionales
 
-| Categoría | Herramienta Propuesta | Uso |
-|-----------|----------------------|-----|
-| Project Management | Jira o Linear | Gestión de tareas, sprints, epics |
-| Documentación | Confluence o Notion | Documentación técnica y de producto |
-| Diagramas | Miro o Lucidchart | Diagramas de arquitectura, flujos |
-| Design (UI/UX) | Figma | Diseño de interfaces y prototipos |
+Se utilizarán las librerías y frameworks estándar del ecosistema para cada tecnología (navegación SPA, gestión de formularios, validación de datos, logging, etc.). Las decisiones específicas se tomarán durante el desarrollo considerando las mejores prácticas actuales y las necesidades concretas del proyecto.
 
-### 4.13. Librerías y frameworks adicionales clave
+**Nota:** Las librerías específicas mencionadas en otras secciones (Timefold, SDKs de Google Cloud, etc.) son un punto de partida que puede ajustarse según las necesidades del MVP.
 
-#### Frontend
-- **react-router-dom:** Navegación SPA
-- **date-fns o dayjs:** Manipulación de fechas
-- **react-query (TanStack Query):** Cache y sincronización de datos server-side
-- **react-hot-toast o notistack:** Notificaciones y alertas
-- **formik o react-hook-form:** Gestión de formularios complejos
+### 4.12. Costes estimados de infraestructura cloud (MVP)
 
-#### Backend (Node.js)
-- **@google-cloud/storage:** SDK de Cloud Storage
-- **@google-cloud/vertexai:** SDK de Vertex AI para Gemini
-- **pdf-parse o pdf-lib:** Procesamiento de PDFs (si necesario)
-- **zod:** Validación de schemas TypeScript-first
-- **winston o pino:** Logging estructurado
-
-#### Java (motor optimización)
-- **Timefold Solver:** Core de optimización constraint-based
-- **Jackson:** Serialización/deserialización JSON
-- **Lombok:** Reducción de boilerplate
-- **SLF4J + Logback:** Logging
-
-### 4.14. Costes estimados de infraestructura cloud (MVP)
-
-**Nota:** Los costes exactos dependerán del volumen de uso real. A continuación, estimaciones conservadoras para un MVP con carga moderada:
+**Nota importante:** Los costes presentados son aproximaciones basadas en tarifas actuales y estimaciones de uso. Deberán ajustarse a los **costes reales de Google Cloud Platform y demás sistemas en el momento de la implantación del sistema**, ya que las tarifas pueden variar. Los costes exactos dependerán del volumen de uso real y de los precios vigentes en la fecha de despliegue.
 
 | Servicio | Estimación Mensual | Notas |
 |----------|-------------------|-------|
@@ -1410,12 +1372,11 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Cloud Monitoring/Logging | €20-40 | Logs y métricas |
 | **TOTAL ESTIMADO** | **€170-480/mes** | Fase MVP con tráfico moderado |
 
-**Consideraciones:**
-- Costes escalables según uso real (modelo pay-per-use)
-- Firebase tiene generous free tiers para MVP
-- Vertex AI Gemini es coste-efectivo comparado con alternativas
-- Costes pueden optimizarse tras identificar patrones de uso
-- No incluye costes de personal de desarrollo
+**Consideraciones adicionales:**
+- Modelo pay-per-use: costes escalables según uso real
+- Firebase ofrece free tiers generosos para MVP
+- Las estimaciones no incluyen costes de personal de desarrollo
+- Los costes pueden optimizarse tras identificar patrones de uso reales
 
 ---
 
@@ -1433,20 +1394,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 5.2. Riesgos técnicos
-
-| # | Riesgo | Probabilidad | Impacto | Mitigación | Plan de Contingencia |
-|---|--------|--------------|---------|------------|----------------------|
-| **T1** | **Precisión insuficiente del LLM (Gemini) en extracción de PDFs**<br>El modelo no alcanza >90% precisión en extracción de datos de PDFs variados | Media | Alto | - Testing temprano con PDFs reales en Fase 0<br>- Prompts engineering iterativo<br>- Validación anti-alucinaciones robusta<br>- Ajuste de confidence thresholds | - Implementar human-in-the-loop para casos de baja confianza<br>- Considerar fine-tuning del modelo<br>- Fallback a procesamiento manual asistido |
-| **T2** | **Variabilidad de formatos de PDFs**<br>PDFs de diferentes fuentes con formatos muy heterogéneos dificultan extracción consistente | Alta | Medio | - Recopilar ejemplos de TODAS las fuentes en Discovery<br>- Diseñar prompts genéricos y robustos<br>- Implementar normalización de datos post-extracción | - Crear templates de extracción por tipo de fuente<br>- Validación manual obligatoria para nuevas fuentes<br>- OCR adicional si PDFs son scaneados |
-| **T3** | **Performance del motor de optimización (Timefold)**<br>Tiempos de cálculo excesivos (>30 seg) para generar recomendaciones | Media | Medio | - Benchmarking temprano con datasets realistas<br>- Optimización de constraints<br>- Limitar alcance temporal de optimización (ej: próximas 48h)<br>- Tuning de solver parameters | - Implementar límites de tiempo de ejecución<br>- Generar recomendaciones en batch asíncrono<br>- Cachear resultados de optimización<br>- Simplificar función objetivo si necesario |
-| **T4** | **Escalabilidad de PostgreSQL con Firebase Data Connect**<br>Limitaciones de rendimiento con grandes volúmenes de datos | Baja | Medio | - Diseño de schema optimizado desde inicio<br>- Índices apropiados en queries frecuentes<br>- Particionamiento de tablas históricas<br>- Monitoring de performance desde día 1 | - Migrar a PostgreSQL estándar en Cloud SQL<br>- Implementar caching con Memorystore<br>- Optimizar queries más lentas<br>- Archivado de datos históricos |
-| **T5** | **Integraciones con inbox de email de Rhenus**<br>Complejidad técnica para conectar Pub/Sub con inbox corporativo | Media | Alto | - Discovery temprana de infraestructura email de Rhenus<br>- Involucrar IT de Rhenus desde Fase 0<br>- Validar permisos y posibilidades técnicas<br>- Considerar alternativas (email forwarding, API si disponible) | - Implementar polling de email vía IMAP/POP3 como alternativa<br>- Upload manual de PDFs vía UI como fallback temporal<br>- Integración via FTP/SFTP si email no viable |
-| **T6** | **Complejidad de despliegue y configuración en GCP**<br>Problemas en setup de infraestructura serverless | Baja | Medio | - Equipo DevOps experto en GCP y Firebase<br>- Uso de Firebase CLI para provisión automática<br>- gcloud CLI para recursos adicionales de GCP<br>- Entornos de staging réplica de producción<br>- Documentación exhaustiva de despliegues | - Soporte de Google Cloud Professional Services<br>- Revisión de arquitectura con GCP Solutions Architect<br>- Rollback plans para cada despliegue |
-
----
-
-### 5.3. Riesgos de proyecto
+### 5.2. Riesgos de proyecto
 
 | # | Riesgo | Probabilidad | Impacto | Mitigación | Plan de Contingencia |
 |---|--------|--------------|---------|------------|----------------------|
@@ -1459,7 +1407,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 5.4. Riesgos de negocio
+### 5.3. Riesgos de negocio
 
 | # | Riesgo | Probabilidad | Impacto | Mitigación | Plan de Contingencia |
 |---|--------|--------------|---------|------------|----------------------|
@@ -1470,7 +1418,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 5.5. Riesgos de seguridad y cumplimiento
+### 5.4. Riesgos de seguridad y cumplimiento
 
 | # | Riesgo | Probabilidad | Impacto | Mitigación | Plan de Contingencia |
 |---|--------|--------------|---------|------------|----------------------|
@@ -1480,11 +1428,9 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 5.6. Matriz de riesgos (probabilidad × impacto)
+### 5.5. Matriz de riesgos (probabilidad × impacto)
 
 **Riesgos críticos (alta prioridad de atención):**
-- **T1:** Precisión LLM insuficiente
-- **T5:** Integración inbox email
 - **P1:** Disponibilidad stakeholders
 - **P3:** Acceso a datos
 - **N1:** Baja adopción de usuarios
@@ -1492,18 +1438,16 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 - **S1:** Breach de datos
 
 **Riesgos altos (monitoreo continuo):**
-- **T2:** Variabilidad formatos PDFs
-- **T3:** Performance Timefold
 - **P2:** Scope creep
 - **P4:** Rotación personal
 - **N2:** ROI no cumplido
 
 **Riesgos medios (seguimiento periódico):**
-- **T4, T6, P5, P6, N4, S2, S3**
+- **P5, P6, N4, S2, S3**
 
 ---
 
-### 5.7. Plan de comunicación de riesgos
+### 5.6. Plan de comunicación de riesgos
 
 **Frecuencia de revisión:**
 - **Semanal:** Revisión rápida de riesgos críticos en reunión con Rhenus
@@ -1517,26 +1461,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 **Responsabilidades:**
 - **Product Owner:** Comunicación a stakeholders de Rhenus
-- **Arquitecto/Tech Lead:** Riesgos técnicos y decisiones de arquitectura
+- **Arquitecto/Tech Lead:** Decisiones de arquitectura y evaluación de riesgos
 - **Todo el equipo:** Identificación proactiva de nuevos riesgos
 
----
-
-### 5.8. Lecciones aprendidas y mejora continua
-
-Al final de cada fase y del proyecto completo:
-
-1. **Retrospectiva de riesgos:**
-   - ¿Qué riesgos se materializaron?
-   - ¿Fueron efectivas las mitigaciones?
-   - ¿Qué riesgos no identificamos?
-
-2. **Documentación:**
-   - Actualizar registro de riesgos
-   - Compartir aprendizajes con Rhenus
-   - Mejorar estimaciones para futuras fases/proyectos
-
-3. **Ajustes:**
-   - Incorporar aprendizajes en planificación de siguientes sprints
-   - Actualizar estrategias de mitigación según eficacia
 
