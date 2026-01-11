@@ -112,7 +112,7 @@ Barcelona → TREN → Terminal Ferroviaria (Noain/Agoncillo/Miranda)
 2. Contenedores se envían mediante `TREN` desde Barcelona a terminales ferroviarias (Noain, Agoncillo, Miranda)
 3. Se recibe PDF con información de contenedores que llegan a terminales ferroviarias
 4. **Actualización de stock según estado:**
-   - ✅ **Contenedores VACÍOS:** Disponibles para nuevas órdenes de export
+   - **Contenedores VACÍOS:** Disponibles para nuevas órdenes de export
    - **Contenedores LLENOS:** Pendientes de entrega a clientes en la zona (import)
 
 #### El problema de ineficiencia actual y el valor del reposicionamiento inteligente
@@ -136,7 +136,7 @@ Barcelona → TREN → Terminal Ferroviaria (Noain/Agoncillo/Miranda)
 ```
 
 **Total: 6 viajes**
-- ✅ 2 viajes útiles con carga (1 lleno import, 1 lleno export)
+- 2 viajes útiles con carga (1 lleno import, 1 lleno export)
 - 4 viajes con contenedores vacíos o retornos
 - **2 viajes completamente EVITABLES** (devolución vacío + recogida vacío)
 
@@ -156,7 +156,7 @@ Barcelona → TREN → Terminal Ferroviaria (Noain/Agoncillo/Miranda)
 ```
 
 **Total: 5 viajes**
-- ✅ 2 viajes útiles con carga (1 lleno import, 1 lleno export)
+- 2 viajes útiles con carga (1 lleno import, 1 lleno export)
 - **3 viajes necesarios** (solo 1 vacío entre clientes cercanos)
 
 ---
@@ -425,7 +425,7 @@ El sistema estará compuesto por los siguientes módulos:
   - Procesamiento de órdenes de import/export
   - Procesamiento de llegadas de contenedores (vacíos o llenos) vía tren a terminales ferroviarias
 - Procesamiento en tiempo real o near-real-time
-- ✅ Sistema de validación para detección de inconsistencias y alucinaciones del modelo
+- Sistema de validación para detección de inconsistencias y alucinaciones del modelo
 - Alertas en caso de errores o baja confianza en la extracción
 - Actualización automática de stock en depots (diferenciando contenedores vacíos y llenos)
 
@@ -446,7 +446,7 @@ El sistema estará compuesto por los siguientes módulos:
 
 **Características:**
 - Accesible desde navegadores en desktop y tablets
-- ✅ Gestión de recomendaciones (revisión, aceptación/rechazo)
+- Gestión de recomendaciones (revisión, aceptación/rechazo)
 - Visualización de órdenes activas y planificadas
 - Gestión de datos maestros
 
@@ -587,7 +587,7 @@ Usar contenedor vacío de import cercano → TRUCK → Cliente → TRUCK → Bar
 
 **Salida común del procesamiento:**
 
-- ✅ Datos estructurados en formato `JSON`
+- Datos estructurados en formato `JSON`
 - **Validación:** Detección de inconsistencias y alucinaciones del modelo
 - **Notificaciones:** Alertas a usuarios cuando se requiere intervención manual o validación humana
 
@@ -601,8 +601,8 @@ Estos PDFs contienen información sobre contenedores (tanto **VACÍOS** como **L
 
 | Tipo | Flujo del ciclo |
 |------|-----------------|
-| **Contenedores VACÍOS** | 1. Contenedores export enviados por mar desde Barcelona<br>2. Contenedores vacíos regresan a Barcelona (gestionados por navieras)<br>3. Se envían con `TREN` desde Barcelona a terminales ferroviarias<br>4. PDF informa de la llegada de contenedores vacíos<br>5. ✅ Quedan **disponibles para nuevas órdenes de export** |
-| **Contenedores LLENOS** | 1. Contenedores llenos llegan a Barcelona vía marítima (importación)<br>2. Se envían con `TREN` desde Barcelona a terminales ferroviarias<br>3. PDF informa de la llegada de contenedores llenos<br>4. ✅ **Disponibles para entrega a clientes en la zona** |
+| **Contenedores VACÍOS** | 1. Contenedores export enviados por mar desde Barcelona<br>2. Contenedores vacíos regresan a Barcelona (gestionados por navieras)<br>3. Se envían con `TREN` desde Barcelona a terminales ferroviarias<br>4. PDF informa de la llegada de contenedores vacíos<br>5. Quedan **disponibles para nuevas órdenes de export** |
+| **Contenedores LLENOS** | 1. Contenedores llenos llegan a Barcelona vía marítima (importación)<br>2. Se envían con `TREN` desde Barcelona a terminales ferroviarias<br>3. PDF informa de la llegada de contenedores llenos<br>4. **Disponibles para entrega a clientes en la zona** |
 
 ---
 
@@ -622,7 +622,7 @@ Estos PDFs contienen información sobre contenedores (tanto **VACÍOS** como **L
 
 **Procesamiento y actualización:**
 
-- ✅ **Salida:** Datos estructurados en formato `JSON`
+- **Salida:** Datos estructurados en formato `JSON`
 - **Validación:** Verificación de consistencia de datos extraídos
 - **Actualización de stock:** Actualización automática del inventario en el depot correspondiente según estado:
   - **Contenedores VACÍOS:** Disponibles para órdenes de export
@@ -1063,7 +1063,7 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
 
 **Uso:**
 - Almacenamiento de PDFs originales
-- ✅ Archivos procesados
+- Archivos procesados
 - Logs de procesamiento
 - Backups
 
