@@ -2,158 +2,60 @@
 
 ## Tabla de Contenidos
 
-1. [Información del Cliente](#1-información-del-cliente)
-2. [Resumen Ejecutivo](#2-resumen-ejecutivo)
-3. [Objetivos del Proyecto](#3-objetivos-del-proyecto)
-   - 3.1. [Contexto del Problema](#31-contexto-del-problema)
-   - 3.2. [Objetivos Principales](#32-objetivos-principales)
-   - 3.3. [Capacidades Clave del Sistema](#33-capacidades-clave-del-sistema)
-   - 3.4. [Alcance del MVP](#34-alcance-del-mvp)
-   - 3.5. [Modelo de Operación del MVP](#35-modelo-de-operación-del-mvp)
-   - 3.6. [Capacidades de Análisis y Visualización](#36-capacidades-de-análisis-y-visualización)
-   - 3.7. [Supuestos e Incógnitas del Proyecto](#37-supuestos-e-incógnitas-del-proyecto)
-4. [Alcance de la Solución](#4-alcance-de-la-solución)
-   - 4.1. [Visión General del Sistema](#41-visión-general-del-sistema)
-   - 4.2. [Componentes Principales](#42-componentes-principales)
-   - 4.3. [Perfiles de Usuario](#43-perfiles-de-usuario)
-   - 4.4. [Funcionalidades Core](#44-funcionalidades-core)
-   - 4.5. [Gestión de Datos Maestros](#45-gestión-de-datos-maestros)
-   - 4.6. [Aspectos Técnicos Clave](#46-aspectos-técnicos-clave)
-   - 4.7. [Funcionalidades Fuera de Alcance del MVP](#47-funcionalidades-fuera-de-alcance-del-mvp)
-5. [Arquitectura Técnica Propuesta](#5-arquitectura-técnica-propuesta)
-   - 5.1. [Visión General de la Arquitectura](#51-visión-general-de-la-arquitectura)
-   - 5.2. [Stack Tecnológico](#52-stack-tecnológico)
-   - 5.3. [Flujos de Datos Principales](#53-flujos-de-datos-principales)
-   - 5.4. [Escalabilidad y Rendimiento](#54-escalabilidad-y-rendimiento)
-   - 5.5. [Seguridad](#55-seguridad)
-   - 5.6. [Consideraciones de Implementación](#56-consideraciones-de-implementación)
-   - 5.7. [Diagramas de Arquitectura](#57-diagramas-de-arquitectura)
-6. [Tecnologías y Herramientas](#6-tecnologías-y-herramientas)
-   - 6.1. [Plataforma Cloud y Servicios Core](#61-plataforma-cloud-y-servicios-core)
-   - 6.2. [Frontend](#62-frontend)
-   - 6.3. [Backend y APIs](#63-backend-y-apis)
-   - 6.4. [Motor de Optimización](#64-motor-de-optimización)
-   - 6.5. [Bases de Datos](#65-bases-de-datos)
-   - 6.6. [Almacenamiento y Mensajería](#66-almacenamiento-y-mensajería)
-   - 6.7. [Autenticación, Seguridad y Secrets](#67-autenticación-seguridad-y-secrets)
-   - 6.8. [Observabilidad y Monitoring](#68-observabilidad-y-monitoring)
-   - 6.9. [CI/CD y DevOps](#69-cicd-y-devops)
-   - 6.10. [Herramientas de Desarrollo](#610-herramientas-de-desarrollo)
-   - 6.11. [Testing y Calidad](#611-testing-y-calidad)
-   - 6.12. [Gestión de Proyecto](#612-gestión-de-proyecto)
-   - 6.13. [Librerías y Frameworks Adicionales Clave](#613-librerías-y-frameworks-adicionales-clave)
-   - 6.14. [Costes Estimados de Infraestructura Cloud (MVP)](#614-costes-estimados-de-infraestructura-cloud-mvp)
-7. [Riesgos y Mitigación](#7-riesgos-y-mitigación)
-   - 7.1. [Metodología de Gestión de Riesgos](#71-metodología-de-gestión-de-riesgos)
-   - 7.2. [Riesgos Técnicos](#72-riesgos-técnicos)
-   - 7.3. [Riesgos de Proyecto](#73-riesgos-de-proyecto)
-   - 7.4. [Riesgos de Negocio](#74-riesgos-de-negocio)
-   - 7.5. [Riesgos de Seguridad y Cumplimiento](#75-riesgos-de-seguridad-y-cumplimiento)
-   - 7.6. [Matriz de Riesgos (Probabilidad × Impacto)](#76-matriz-de-riesgos-probabilidad--impacto)
-   - 7.7. [Plan de Comunicación de Riesgos](#77-plan-de-comunicación-de-riesgos)
-   - 7.8. [Lecciones Aprendidas y Mejora Continua](#78-lecciones-aprendidas-y-mejora-continua)
+1. [Objetivos del Proyecto](#1-objetivos-del-proyecto)
+   - 1.1. [Contexto del Problema](#11-contexto-del-problema)
+   - 1.2. [Objetivos Principales](#12-objetivos-principales)
+   - 1.3. [Capacidades Clave del Sistema](#13-capacidades-clave-del-sistema)
+   - 1.4. [Alcance del MVP](#14-alcance-del-mvp)
+   - 1.5. [Modelo de Operación del MVP](#15-modelo-de-operación-del-mvp)
+   - 1.6. [Capacidades de Análisis y Visualización](#16-capacidades-de-análisis-y-visualización)
+   - 1.7. [Supuestos e Incógnitas del Proyecto](#17-supuestos-e-incógnitas-del-proyecto)
+2. [Alcance de la Solución](#2-alcance-de-la-solución)
+   - 2.1. [Visión General del Sistema](#21-visión-general-del-sistema)
+   - 2.2. [Componentes Principales](#22-componentes-principales)
+   - 2.3. [Perfiles de Usuario](#23-perfiles-de-usuario)
+   - 2.4. [Funcionalidades Core](#24-funcionalidades-core)
+   - 2.5. [Gestión de Datos Maestros](#25-gestión-de-datos-maestros)
+   - 2.6. [Aspectos Técnicos Clave](#26-aspectos-técnicos-clave)
+   - 2.7. [Funcionalidades Fuera de Alcance del MVP](#27-funcionalidades-fuera-de-alcance-del-mvp)
+3. [Arquitectura Técnica Propuesta](#3-arquitectura-técnica-propuesta)
+   - 3.1. [Visión General de la Arquitectura](#31-visión-general-de-la-arquitectura)
+   - 3.2. [Stack Tecnológico](#32-stack-tecnológico)
+   - 3.3. [Flujos de Datos Principales](#33-flujos-de-datos-principales)
+   - 3.4. [Escalabilidad y Rendimiento](#34-escalabilidad-y-rendimiento)
+   - 3.5. [Seguridad](#35-seguridad)
+   - 3.6. [Consideraciones de Implementación](#36-consideraciones-de-implementación)
+   - 3.7. [Diagramas de Arquitectura](#37-diagramas-de-arquitectura)
+4. [Tecnologías y Herramientas](#4-tecnologías-y-herramientas)
+   - 4.1. [Plataforma Cloud y Servicios Core](#41-plataforma-cloud-y-servicios-core)
+   - 4.2. [Frontend](#42-frontend)
+   - 4.3. [Backend y APIs](#43-backend-y-apis)
+   - 4.4. [Motor de Optimización](#44-motor-de-optimización)
+   - 4.5. [Bases de Datos](#45-bases-de-datos)
+   - 4.6. [Almacenamiento y Mensajería](#46-almacenamiento-y-mensajería)
+   - 4.7. [Autenticación, Seguridad y Secrets](#47-autenticación-seguridad-y-secrets)
+   - 4.8. [Observabilidad y Monitoring](#48-observabilidad-y-monitoring)
+   - 4.9. [CI/CD y DevOps](#49-cicd-y-devops)
+   - 4.10. [Herramientas de Desarrollo](#410-herramientas-de-desarrollo)
+   - 4.11. [Testing y Calidad](#411-testing-y-calidad)
+   - 4.12. [Gestión de Proyecto](#412-gestión-de-proyecto)
+   - 4.13. [Librerías y Frameworks Adicionales Clave](#413-librerías-y-frameworks-adicionales-clave)
+   - 4.14. [Costes Estimados de Infraestructura Cloud (MVP)](#414-costes-estimados-de-infraestructura-cloud-mvp)
+5. [Riesgos y Mitigación](#5-riesgos-y-mitigación)
+   - 5.1. [Metodología de Gestión de Riesgos](#51-metodología-de-gestión-de-riesgos)
+   - 5.2. [Riesgos Técnicos](#52-riesgos-técnicos)
+   - 5.3. [Riesgos de Proyecto](#53-riesgos-de-proyecto)
+   - 5.4. [Riesgos de Negocio](#54-riesgos-de-negocio)
+   - 5.5. [Riesgos de Seguridad y Cumplimiento](#55-riesgos-de-seguridad-y-cumplimiento)
+   - 5.6. [Matriz de Riesgos (Probabilidad × Impacto)](#56-matriz-de-riesgos-probabilidad--impacto)
+   - 5.7. [Plan de Comunicación de Riesgos](#57-plan-de-comunicación-de-riesgos)
+   - 5.8. [Lecciones Aprendidas y Mejora Continua](#58-lecciones-aprendidas-y-mejora-continua)
 
 ---
 
-## 1. Información del Cliente
+## 1. Objetivos del Proyecto
 
-Rhenus Logistics es una empresa de logística global con:
-- Presencia en España desde 1964
-- 37 delegaciones en Península, Canarias y Baleares
-- Parte del Rhenus Group (8.6 billones € facturación anual, 39.000 empleados, 1.120 ubicaciones)
-- Servicios: Transporte (aéreo, marítimo, carretera, ferroviario), almacenamiento, logística portuaria, soluciones digitales
-
----
-
-## 2. Resumen Ejecutivo
-
-### El Desafío
-
-Rhenus Logistics enfrenta uno de los mayores retos de la industria del transporte de contenedores: el **reposicionamiento de contenedores vacíos**, un problema que genera aproximadamente **$20 billones en costes anuales a nivel global**. El 33% de los contenedores en circulación están vacíos y los contenedores pasan casi el 50% de su vida útil inactivos, generando costes innecesarios de transporte, almacenamiento y emisiones de CO2.
-
-En las operaciones de Rhenus en la zona norte de España, los contenedores de **importación** que quedan vacíos en ubicaciones de clientes son devueltos a terminales (Barcelona o terminales ferroviarias), mientras que las órdenes de **exportación** requieren recoger contenedores vacíos de esas mismas terminales. **Este doble viaje (devolución + recogida) es completamente evitable** si se conecta un contenedor vacío de import con una orden cercana de export.
-
-### La Solución Propuesta
-
-Proponemos desarrollar un **MVP (Minimum Viable Product)** de un sistema TMS avanzado con inteligencia artificial que optimice el uso de contenedores vacíos mediante **matching inteligente import-export**. El sistema funcionará como una **plataforma de apoyo a la decisión** que proporcionará recomendaciones inteligentes a los operadores de Rhenus, manteniendo el control humano en la toma de decisiones finales.
-
-**Alcance del MVP:**
-- **Geográfico:** Zona norte de España (Bilbao como centro de operaciones, Barcelona como terminal marítima, Noain/Agoncillo/Miranda como terminales ferroviarias)
-- **Modos de transporte:** TRAIN (ferroviario) y TRUCK (carretera)
-- **Tipos de contenedores:** 22G1 (20'DV), 42G1 (40'DV), 45G1 (40'HC)
-- **Propietarios:** Todos los contenedores son propiedad de navieras (Maersk, Hapag-Lloyd, MSC, CMA CGM, ONE)
-
-### Capacidades Clave del Sistema
-
-1. **Procesamiento Automático de PDFs con LLM Multimodal (Google Gemini)**
-   - Extracción automática de datos de órdenes de import/export
-   - Procesamiento de PDFs de llegadas ferroviarias (contenedores vacíos y llenos)
-   - Validación anti-alucinaciones para garantizar precisión
-   - Actualización automática de stock en terminales
-
-2. **Motor de Optimización con Timefold**
-   - Matching inteligente entre contenedores vacíos de import y órdenes de export cercanas
-   - Cálculo de rutas óptimas multiobjetivo (coste + tiempo + CO2)
-   - Generación de recomendaciones con nivel de confianza
-   - **Valor tangible:** Eliminación de hasta 2 viajes por cada matching exitoso (33% reducción en el ejemplo de la sección 3.1)
-
-3. **Visualización y Analytics**
-   - Dashboard con KPIs de optimización, adopción e impacto
-   - Mapa geográfico interactivo mostrando stock, oportunidades de matching y rutas
-   - Visualización completa del ciclo de vida de contenedores
-   - Reportes de ahorro económico y reducción de emisiones CO2
-
-4. **Sistema de Feedback y Aprendizaje**
-   - Captura de aceptación/rechazo de recomendaciones con motivos
-   - Métricas de adopción del sistema por operadores
-   - Base para mejora continua del algoritmo
-
-### Stack Tecnológico
-
-**Cloud-native en Google Cloud Platform:**
-- **Frontend:** Vite + React + TypeScript (Firebase Hosting)
-- **Backend:** Node.js Cloud Functions + Cloud Firestore (UI parametric data)
-- **Motor de Optimización:** Java + Timefold en Cloud Run
-- **LLM:** Google Gemini (Vertex AI) para procesamiento de PDFs
-- **Base de Datos:** PostgreSQL (Firebase Data Connect) para datos transaccionales
-- **Ingesta:** Cloud Pub/Sub + Cloud Functions (sujeto a configuración de inbox de Rhenus)
-- **Arquitectura serverless-first** para minimizar overhead operativo y costes
-
-### Riesgos Principales y Mitigaciones
-
-**Riesgos críticos identificados:**
-1. **Precisión del LLM en PDFs:** Mitigación mediante testing temprano, validación anti-alucinaciones, human-in-the-loop para casos de baja confianza
-2. **Integración con inbox de email:** Coordinación temprana con IT de Rhenus, alternativas (IMAP, upload manual) si necesario
-3. **Adopción por operadores:** Involucrar usuarios desde Discovery, UX intuitivo, demostrar valor en beta privada
-4. **Complejidad operativa real:** Discovery exhaustivo en Fase 0, enfoque iterativo, priorizar casos comunes (80/20)
-
-Enfoque proactivo de gestión de riesgos con revisión semanal, escalación clara y planes de contingencia para todos los riesgos identificados.
-
-### Valor Diferencial de Esta Propuesta
-
-1. **Enfoque de apoyo a la decisión:** El MVP proporciona recomendaciones inteligentes pero mantiene control humano, minimizando riesgos operativos y generando confianza
-2. **Stack moderno y coste-efectivo:** Arquitectura serverless en GCP minimiza overhead operativo y costes de infraestructura
-3. **IA aplicada con validación:** Uso de LLM multimodal (Gemini) para automatización de ingesta con robustas validaciones anti-alucinaciones
-4. **Optimización algorítmica avanzada:** Motor Timefold (evolución de OptaPlanner) para constraint-based optimization de clase mundial
-5. **Visibilidad y analytics:** No solo optimización, sino también comprensión profunda del negocio mediante dashboards y métricas
-6. **Escalable post-MVP:** Arquitectura preparada para expansión a otras zonas geográficas y modos de transporte
-7. **Impacto demostrable:** Eliminación de viajes innecesarios (hasta 33% de reducción en casos de matching exitoso), reducción de emisiones CO2 y mejor utilización de contenedores
-
-### Próximos Pasos
-
-1. **Revisión y validación** de esta oferta técnica con stakeholders de Rhenus
-2. **Kick-off del proyecto** y arranque de la fase de descubrimiento
-3. **Discovery workshops** con operadores y áreas de negocio de Rhenus
-4. **Validación de supuestos** técnicos y de negocio
-5. **Inicio de desarrollo** tras aprobación de especificación funcional detallada
-
-Estamos preparados para iniciar el proyecto tan pronto como Rhenus esté listo, con un equipo experimentado en proyectos de logística, optimización y cloud-native development.
-
----
-
-## 3. Objetivos del Proyecto
-
-### 3.1. Contexto del Problema
+### 1.1. Contexto del Problema
 
 El reposicionamiento de contenedores vacíos representa uno de los mayores desafíos en la industria logística:
 - **Coste global:** Aproximadamente $20 billones anuales para la industria del transporte de contenedores
@@ -242,33 +144,33 @@ Rhenus Logistics actualmente dispone de un sistema TMS que no cubre adecuadament
 - Falta de visibilidad sobre oportunidades de matching import-export
 - Emisiones evitables de CO2 por transporte de contenedores vacíos
 
-### 3.2. Objetivos Principales
+### 1.2. Objetivos Principales
 
 El proyecto tiene como objetivo desarrollar un **MVP (Minimum Viable Product)** de un sistema TMS avanzado con capacidades de IA que permita:
 
-#### 3.2.1. Reducción de Costes Operativos
+#### 1.2.1. Reducción de Costes Operativos
 - Minimizar transportes de contenedores vacíos mediante matching inteligente
 - Reducir retornos innecesarios a terminal
 - Optimizar el uso de la flota de contenedores disponible
 
-#### 3.2.2. Maximización de Utilización de Contenedores
+#### 1.2.2. Maximización de Utilización de Contenedores
 - Aumentar el tiempo activo de los contenedores (reducir inactividad del 50% actual)
 - Conectar directamente contenedores de importación con necesidades de exportación
 - Mejorar la rotación y disponibilidad del stock de contenedores
 
-#### 3.2.3. Sostenibilidad Ambiental
+#### 1.2.3. Sostenibilidad Ambiental
 - Reducir emisiones de CO2 mediante optimización de rutas
 - Minimizar kilómetros en vacío
 - Contribuir a objetivos de sostenibilidad corporativa
 
-#### 3.2.4. Optimización Multimodal
+#### 1.2.4. Optimización Multimodal
 - Planificación inteligente de rutas considerando dos modos de transporte:
   - **TRAIN (ferroviario):** Para trayectos entre Barcelona y terminales ferroviarias (Noain, Agoncillo, Miranda)
   - **TRUCK (carretera):** Para primeros/últimos tramos y trayectos completos
 - Optimización multiobjetivo: coste, tiempo, emisiones y disponibilidad
 - Coordinación eficiente entre ambos medios de transporte
 
-### 3.3. Capacidades Clave del Sistema
+### 1.3. Capacidades Clave del Sistema
 
 El sistema deberá incorporar las siguientes capacidades de optimización e inteligencia artificial:
 
@@ -295,7 +197,7 @@ El sistema deberá incorporar las siguientes capacidades de optimización e inte
    - Notificaciones automáticas de oportunidades de optimización
    - Sugerencias inteligentes para mejorar eficiencia operativa
 
-### 3.4. Alcance del MVP
+### 1.4. Alcance del MVP
 
 - **Geográfico:** Operaciones de Rhenus Logistics en la zona norte de España:
   - **Bilbao:** Centro de gestión de órdenes
@@ -308,7 +210,7 @@ El sistema deberá incorporar las siguientes capacidades de optimización e inte
 - **Datos:** Stock de contenedores y datos maestros precargados en el sistema para validación inicial
 - **Enfoque:** Desarrollo iterativo para validar el concepto antes de escalar a otras zonas geográficas y modos de transporte
 
-### 3.5. Modelo de Operación del MVP
+### 1.5. Modelo de Operación del MVP
 
 **Sistema de Recomendaciones para Operadores**
 
@@ -325,11 +227,11 @@ Este enfoque permite:
 3. Minimizar riesgos operativos durante la fase de prueba
 4. Generar confianza en el sistema antes de escalar
 
-### 3.6. Capacidades de Análisis y Visualización
+### 1.6. Capacidades de Análisis y Visualización
 
 El MVP incorporará funcionalidades de análisis y visualización que permitan tanto a operadores como a la dirección de negocio evaluar el estado actual y la efectividad del sistema:
 
-#### 3.6.1. Visualización de Stock de Contenedores
+#### 1.6.1. Visualización de Stock de Contenedores
 
 El sistema proporcionará visibilidad completa del ciclo de vida de contenedores:
 
@@ -366,7 +268,7 @@ El sistema proporcionará visibilidad completa del ciclo de vida de contenedores
   - Estado (vacío en terminal, vacío en cliente, lleno en tránsito, etc.)
   - Disponibilidad y restricciones
 
-#### 3.6.2. Métricas de Efectividad del Sistema
+#### 1.6.2. Métricas de Efectividad del Sistema
 El sistema proporcionará indicadores clave (KPIs) para que el negocio pueda evaluar el retorno de la inversión:
 
 - **Métricas de optimización:**
@@ -387,10 +289,10 @@ El sistema proporcionará indicadores clave (KPIs) para que el negocio pueda eva
   - Reducción estimada de emisiones de CO2
   - ROI proyectado del sistema
 
-#### 3.6.3. Dashboard Analítico
+#### 1.6.3. Dashboard Analítico
 Interface visual que consolide toda la información relevante para la toma de decisiones y evaluación del sistema.
 
-### 3.7. Supuestos e Incógnitas del Proyecto
+### 1.7. Supuestos e Incógnitas del Proyecto
 
 Es importante reconocer que existen aspectos del proceso actual de Rhenus que aún deben ser definidos y que se resolverán durante la ejecución del proyecto:
 
@@ -408,13 +310,13 @@ Estas incógnitas se abordarán mediante:
 
 ---
 
-## 4. Alcance de la Solución
+## 2. Alcance de la Solución
 
-### 4.1. Visión General del Sistema
+### 2.1. Visión General del Sistema
 
 El MVP consistirá en una **plataforma web de apoyo a la decisión** que permita a los operadores de Rhenus Logistics optimizar el uso de contenedores mediante recomendaciones inteligentes basadas en IA. El sistema incluirá capacidades de análisis, visualización y gestión de datos maestros.
 
-### 4.2. Componentes Principales
+### 2.2. Componentes Principales
 
 El sistema estará compuesto por los siguientes módulos:
 
@@ -453,7 +355,7 @@ El sistema estará compuesto por los siguientes módulos:
    - Configuración de parámetros de optimización
    - Gestión de usuarios y permisos
 
-### 4.3. Perfiles de Usuario
+### 2.3. Perfiles de Usuario
 
 El sistema contemplará diferentes niveles de acceso y funcionalidades según el rol del usuario:
 
@@ -477,9 +379,9 @@ El sistema contemplará diferentes niveles de acceso y funcionalidades según el
    - Administración de usuarios y permisos
    - Configuración de parámetros del sistema
 
-### 4.4. Funcionalidades Core
+### 2.4. Funcionalidades Core
 
-#### 4.4.1. Procesamiento Automático de Datos
+#### 2.4.1. Procesamiento Automático de Datos
 
 El sistema procesará dos tipos de PDFs recibidos en el inbox utilizando **LLMs multimodales** para la extracción de información:
 
@@ -565,7 +467,7 @@ Estos PDFs contienen información sobre contenedores (tanto **VACÍOS** como **L
   - Contenedores LLENOS: Pendientes de entrega a clientes
 - **Notificaciones:** Alertas sobre nuevas llegadas y disponibilidad de contenedores
 
-#### 4.4.2. Motor de Recomendaciones de Optimización
+#### 2.4.2. Motor de Recomendaciones de Optimización
 
 El sistema generará recomendaciones inteligentes de matching import-export para optimizar el uso de contenedores vacíos.
 
@@ -639,14 +541,14 @@ El sistema podrá operar en tiempo real al recibir nuevas órdenes, generando su
 - ¿Cómo gestionar recomendaciones ya aceptadas pero no ejecutadas cuando llega nueva información?
 - ¿Qué ventana temporal considerar para replanificación?
 
-#### 4.4.3. Gestión de Feedback de Recomendaciones
+#### 2.4.3. Gestión de Feedback de Recomendaciones
 
 - **Aceptación/Rechazo:** Interface para que usuarios indiquen si aceptan o rechazan cada sugerencia
 - **Motivos de rechazo:** Captura de razones para retroalimentar el modelo
 - **Tracking de ejecución:** Registro de qué recomendaciones aceptadas fueron realmente ejecutadas
 - **Aprendizaje continuo:** Uso del feedback para mejorar futuras recomendaciones
 
-#### 4.4.4. Visualización de Stock y Estado de Contenedores
+#### 2.4.4. Visualización de Stock y Estado de Contenedores
 
 El sistema proporcionará múltiples vistas para entender el estado completo del inventario de contenedores:
 
@@ -693,16 +595,16 @@ El sistema proporcionará múltiples vistas para entender el estado completo del
 - Por propietario/naviera
 - Por edad (tiempo desde última operación)
 
-#### 4.4.5. Dashboard y Métricas
+#### 2.4.5. Dashboard y Métricas
 
-Paneles visuales con los KPIs definidos en la sección 3.6.2:
+Paneles visuales con los KPIs definidos en la sección 1.6.2:
 - Métricas de optimización
 - Métricas de adopción del sistema
 - Métricas de impacto económico y ambiental
 - Gráficos de tendencias temporales
 - Comparativas antes/después de usar el sistema
 
-### 4.5. Gestión de Datos Maestros
+### 2.5. Gestión de Datos Maestros
 
 El sistema permitirá administrar la siguiente información:
 
@@ -778,7 +680,7 @@ El sistema permitirá administrar la siguiente información:
    - Umbrales de alertas
    - Configuración del motor de IA
 
-### 4.6. Aspectos Técnicos Clave
+### 2.6. Aspectos Técnicos Clave
 
 - **Arquitectura:** Cloud-native, escalable y modular
 - **Disponibilidad:** Alta disponibilidad durante horario laboral
@@ -786,7 +688,7 @@ El sistema permitirá administrar la siguiente información:
 - **Seguridad:** Autenticación, autorización basada en roles, cifrado de datos sensibles
 - **Trazabilidad:** Auditoría completa de acciones de usuarios y decisiones del sistema
 
-### 4.7. Funcionalidades Fuera de Alcance del MVP
+### 2.7. Funcionalidades Fuera de Alcance del MVP
 
 Para mantener el foco en la validación del concepto, las siguientes funcionalidades quedan **explícitamente fuera del alcance** de este MVP:
 
@@ -801,19 +703,19 @@ Para mantener el foco en la validación del concepto, las siguientes funcionalid
 
 ---
 
-## 5. Arquitectura Técnica Propuesta
+## 3. Arquitectura Técnica Propuesta
 
-### 5.1. Visión General de la Arquitectura
+### 3.1. Visión General de la Arquitectura
 
 El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Cloud Platform (GCP)**, combinando servicios de Firebase para desarrollo rápido con componentes especializados desplegados en GCP. El enfoque es **serverless-first** para minimizar overhead operativo y costes en la fase de MVP.
 
-### 5.2. Stack Tecnológico
+### 3.2. Stack Tecnológico
 
-#### 5.2.1. Cloud Provider
+#### 3.2.1. Cloud Provider
 - **Google Cloud Platform (GCP)** como proveedor principal
 - Aprovechar el ecosistema integrado de servicios de Google
 
-#### 5.2.2. Frontend
+#### 3.2.2. Frontend
 - **Framework:** Vite + React + TypeScript
   - Vite para builds rápidos y desarrollo ágil
   - React para UI componentes
@@ -823,7 +725,7 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
   - SSL automático
   - Despliegue simple y rápido
 
-#### 5.2.3. Backend
+#### 3.2.3. Backend
 - **Node.js Cloud Functions** para lógica de negocio ligera:
   - Procesamiento de webhooks/eventos
   - Orquestación de servicios
@@ -831,7 +733,7 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
   - Integraciones con servicios externos
 - **Serverless:** Escala automáticamente según demanda
 
-#### 5.2.4. Motor de Optimización
+#### 3.2.4. Motor de Optimización
 - **Lenguaje:** Java
 - **Framework:** Timefold (evolución de OptaPlanner)
   - Constraint-based optimization
@@ -844,12 +746,12 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
   - Pago por uso (solo cuando se ejecutan optimizaciones)
   - Aislamiento del motor de optimización
 
-#### 5.2.5. Machine Learning / Predicción (Si Necesario)
+#### 3.2.5. Machine Learning / Predicción (Si Necesario)
 - **Lenguaje:** Python
 - **Despliegue:** Cloud Functions o Cloud Run
 - **Uso:** Predicción de demanda de contenedores si se implementa
 
-#### 5.2.6. LLM Multimodal para Extracción de PDFs
+#### 3.2.6. LLM Multimodal para Extracción de PDFs
 - **Modelo:** Google Gemini
 - **Plataforma:** Vertex AI
 - **Ventajas:**
@@ -859,7 +761,7 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
   - Baja latencia al estar en mismo cloud provider
 - **Uso:** Análisis y extracción de datos de PDFs
 
-#### 5.2.7. Base de Datos Relacional
+#### 3.2.7. Base de Datos Relacional
 - **PostgreSQL con Firebase Data Connect**
 - **Ventajas:**
   - Modelo relacional para datos estructurados
@@ -874,7 +776,7 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
   - Recomendaciones generadas
   - Historial de feedback de usuarios
 
-#### 5.2.8. Base de Datos NoSQL para UI
+#### 3.2.8. Base de Datos NoSQL para UI
 - **Firebase Firestore**
 - **Uso:**
   - Datos paramétricos de UI (configuración de interfaz)
@@ -888,7 +790,7 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
   - Latencia muy baja para consultas de configuración
   - Integración directa con React
 
-#### 5.2.9. Cloud Functions Adicionales para UI
+#### 3.2.9. Cloud Functions Adicionales para UI
 - **Node.js Cloud Functions** adicionales para soporte de interfaz:
   - APIs de configuración de UI
   - Endpoints para gestión de preferencias de usuario
@@ -896,7 +798,7 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
   - Agregación de datos para dashboards
   - Webhooks para notificaciones en tiempo real
 
-#### 5.2.10. Almacenamiento de Archivos
+#### 3.2.10. Almacenamiento de Archivos
 - **Cloud Storage**
 - **Uso:**
   - Almacenamiento de PDFs originales
@@ -904,7 +806,7 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
   - Logs de procesamiento
   - Backups
 
-#### 5.2.11. Autenticación y Autorización
+#### 3.2.11. Autenticación y Autorización
 - **Firebase Authentication**
 - **Soporte:**
   - Email/password
@@ -912,9 +814,9 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
   - Role-based access control (RBAC)
   - Tokens JWT para APIs
 
-### 5.3. Flujos de Datos Principales
+### 3.3. Flujos de Datos Principales
 
-#### 5.3.1. Flujo de Ingesta de PDFs
+#### 3.3.1. Flujo de Ingesta de PDFs
 1. **Email llega al inbox** configurado por Rhenus
 2. **Trigger:** Pub/Sub (preferentemente, sujeto a configuración de inbox de Rhenus)
 3. **Cloud Function (Ingestion Service)** procesa evento:
@@ -932,12 +834,12 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
    - Llegadas ferroviarias
    - Actualización de stock de contenedores
 7. **Trigger automático del motor de optimización**:
-   - Si la validación es exitosa, se dispara automáticamente el Flujo 5.3.2
+   - Si la validación es exitosa, se dispara automáticamente el Flujo 3.3.2
    - Permite generar recomendaciones inmediatamente con los nuevos datos
 
-#### 5.3.2. Flujo de Generación de Recomendaciones
+#### 3.3.2. Flujo de Generación de Recomendaciones
 1. **Triggers posibles:**
-   - **Automático:** Tras procesamiento exitoso de PDFs (Flujo 5.3.1)
+   - **Automático:** Tras procesamiento exitoso de PDFs (Flujo 3.3.1)
    - **Manual:** Solicitud explícita de operador desde UI
    - **Periódico:** Ejecución programada (Cloud Scheduler)
 2. **API Backend (Cloud Function)** recopila contexto:
@@ -952,7 +854,7 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
 4. **Almacenamiento de recomendaciones** en PostgreSQL
 5. **Notificación a frontend** vía API
 
-#### 5.3.3. Flujo de Feedback de Usuario
+#### 3.3.3. Flujo de Feedback de Usuario
 1. Usuario acepta/rechaza recomendación en frontend
 2. API call a Cloud Function
 3. Actualización en PostgreSQL:
@@ -960,7 +862,7 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
    - Motivo de rechazo (si aplica)
 4. (Futuro) Datos de feedback para reentrenamiento del modelo
 
-### 5.4. Escalabilidad y Rendimiento
+### 3.4. Escalabilidad y Rendimiento
 
 - **Serverless-first:** Todos los componentes escalan automáticamente
 - **Cloud Run para Timefold:** Escala de 0 a N instancias según demanda
@@ -969,7 +871,7 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
 - **Cloud Storage:** Escalado ilimitado
 - **CDN (Firebase Hosting):** Baja latencia global
 
-### 5.5. Seguridad
+### 3.5. Seguridad
 
 - **Autenticación:** Firebase Auth con JWT tokens
 - **Autorización:** RBAC implementado en backend
@@ -978,7 +880,7 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
 - **Secrets:** Google Secret Manager para API keys, credentials
 - **Auditoría:** Logging de todas las acciones de usuarios
 
-### 5.6. Consideraciones de Implementación
+### 3.6. Consideraciones de Implementación
 
 - **Desarrollo iterativo:** Priorizar funcionalidades core del MVP
 - **Infraestructura como código:** Terraform o Firebase CLI para despliegues reproducibles
@@ -986,11 +888,11 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
 - **Monitoring:** Cloud Monitoring + Cloud Logging para observabilidad
 - **Costes:** Modelo pay-per-use minimiza costes en fase MVP
 
-### 5.7. Diagramas de Arquitectura
+### 3.7. Diagramas de Arquitectura
 
 Esta sección presenta diagramas técnicos que ilustran la arquitectura del sistema y los flujos de información principales.
 
-#### 5.7.1. Diagrama C4 de Contenedores
+#### 3.7.1. Diagrama C4 de Contenedores
 
 El siguiente diagrama muestra los contenedores (componentes de alto nivel) del sistema, sus responsabilidades y relaciones:
 
@@ -1018,7 +920,7 @@ El siguiente diagrama muestra los contenedores (componentes de alto nivel) del s
 
 **Flujo de datos clave:** El Ingestion Service procesa PDFs y notifica al API Backend, que coordina la invocación del Motor de Optimización. Esto permite activación automática (tras ingesta), manual (desde UI) o periódica (Cloud Scheduler) de la generación de recomendaciones.
 
-#### 5.7.2. Diagramas de Secuencia - Flujos de Información
+#### 3.7.2. Diagramas de Secuencia - Flujos de Información
 
 Los siguientes diagramas ilustran los tres flujos principales del sistema de forma independiente para facilitar su comprensión:
 
@@ -1072,11 +974,11 @@ Este diagrama ilustra la interacción de los operadores con el sistema:
 
 ---
 
-## 6. Tecnologías y Herramientas
+## 4. Tecnologías y Herramientas
 
 Esta sección consolida el stack tecnológico completo del proyecto, incluyendo herramientas de desarrollo, testing y gestión de proyecto.
 
-### 6.1. Plataforma Cloud y Servicios Core
+### 4.1. Plataforma Cloud y Servicios Core
 
 | Categoría | Tecnología | Propósito |
 |-----------|-----------|-----------|
@@ -1087,7 +989,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | ML/Predicción | Cloud Functions/Run (Python) | Predicción de demanda (si necesario) |
 | LLM Multimodal | Vertex AI (Google Gemini) | Extracción de datos de PDFs |
 
-### 6.2. Frontend
+### 4.2. Frontend
 
 | Categoría | Tecnología | Justificación |
 |-----------|-----------|---------------|
@@ -1101,7 +1003,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | HTTP Client | Axios o Fetch API | Llamadas a APIs REST |
 | Formularios | React Hook Form | Validación y gestión de formularios eficiente |
 
-### 6.3. Backend y APIs
+### 4.3. Backend y APIs
 
 | Categoría | Tecnología | Propósito |
 |-----------|-----------|-----------|
@@ -1111,7 +1013,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Testing Backend | Jest + Supertest | Unit tests y integration tests |
 | Linter/Format | ESLint + Prettier | Código consistente y de calidad |
 
-### 6.4. Motor de Optimización
+### 4.4. Motor de Optimización
 
 | Categoría | Tecnología | Justificación |
 |-----------|-----------|---------------|
@@ -1121,7 +1023,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Containerización | Docker | Despliegue en Cloud Run |
 | Testing | JUnit 5 + Mockito | Unit tests para lógica de optimización |
 
-### 6.5. Bases de Datos
+### 4.5. Bases de Datos
 
 | Categoría | Tecnología | Uso Principal |
 |-----------|-----------|---------------|
@@ -1129,7 +1031,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | BBDD NoSQL | Cloud Firestore | Datos paramétricos de UI, configuraciones, preferencias |
 | Cache (Futuro) | Cloud Memorystore (Redis) | Cache de resultados de optimización si necesario |
 
-### 6.6. Almacenamiento y Mensajería
+### 4.6. Almacenamiento y Mensajería
 
 | Categoría | Tecnología | Uso |
 |-----------|-----------|-----|
@@ -1137,7 +1039,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Pub/Sub | Cloud Pub/Sub | Procesamiento asíncrono de emails con PDFs |
 | Email Processing | Pub/Sub + Cloud Functions | Ingesta automática desde inbox de Rhenus |
 
-### 6.7. Autenticación, Seguridad y Secrets
+### 4.7. Autenticación, Seguridad y Secrets
 
 | Categoría | Tecnología | Propósito |
 |-----------|-----------|-----------|
@@ -1147,7 +1049,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | SSL/TLS | Automático (Firebase Hosting + Cloud Run) | Cifrado en tránsito |
 | Cifrado en Reposo | Automático (GCP default encryption) | Protección de datos almacenados |
 
-### 6.8. Observabilidad y Monitoring
+### 4.8. Observabilidad y Monitoring
 
 | Categoría | Tecnología | Uso |
 |-----------|-----------|-----|
@@ -1157,7 +1059,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Error Tracking | Cloud Error Reporting | Detección y alertas de errores |
 | Uptime Monitoring | Cloud Monitoring | Verificación de disponibilidad |
 
-### 6.9. CI/CD y DevOps
+### 4.9. CI/CD y DevOps
 
 | Categoría | Tecnología | Justificación |
 |-----------|-----------|---------------|
@@ -1167,7 +1069,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Containerización | Docker | Empaquetado del motor de optimización |
 | Container Registry | Artifact Registry | Almacenamiento de imágenes Docker |
 
-### 6.10. Herramientas de Desarrollo
+### 4.10. Herramientas de Desarrollo
 
 | Categoría | Tecnología | Propósito |
 |-----------|-----------|-----------|
@@ -1176,7 +1078,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | DB Management | DBeaver o pgAdmin | Gestión de PostgreSQL |
 | Colaboración | Slack o Microsoft Teams | Comunicación del equipo |
 
-### 6.11. Testing y Calidad
+### 4.11. Testing y Calidad
 
 | Categoría | Frontend | Backend | Motor Optimización |
 |-----------|----------|---------|-------------------|
@@ -1186,7 +1088,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Formatting | Prettier | Prettier | Google Java Format |
 | Coverage | Vitest/Jest coverage | Jest coverage | JaCoCo |
 
-### 6.12. Gestión de Proyecto
+### 4.12. Gestión de Proyecto
 
 | Categoría | Herramienta Propuesta | Uso |
 |-----------|----------------------|-----|
@@ -1195,7 +1097,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Diagramas | Miro o Lucidchart | Diagramas de arquitectura, flujos |
 | Design (UI/UX) | Figma | Diseño de interfaces y prototipos |
 
-### 6.13. Librerías y Frameworks Adicionales Clave
+### 4.13. Librerías y Frameworks Adicionales Clave
 
 #### Frontend
 - **react-router-dom:** Navegación SPA
@@ -1217,7 +1119,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 - **Lombok:** Reducción de boilerplate
 - **SLF4J + Logback:** Logging
 
-### 6.14. Costes Estimados de Infraestructura Cloud (MVP)
+### 4.14. Costes Estimados de Infraestructura Cloud (MVP)
 
 **Nota:** Los costes exactos dependerán del volumen de uso real. A continuación, estimaciones conservadoras para un MVP con carga moderada:
 
@@ -1242,9 +1144,9 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 
 ---
 
-## 7. Riesgos y Mitigación
+## 5. Riesgos y Mitigación
 
-### 7.1. Metodología de Gestión de Riesgos
+### 5.1. Metodología de Gestión de Riesgos
 
 Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos:
 
@@ -1256,7 +1158,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 7.2. Riesgos Técnicos
+### 5.2. Riesgos Técnicos
 
 | # | Riesgo | Probabilidad | Impacto | Mitigación | Plan de Contingencia |
 |---|--------|--------------|---------|------------|----------------------|
@@ -1269,7 +1171,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 7.3. Riesgos de Proyecto
+### 5.3. Riesgos de Proyecto
 
 | # | Riesgo | Probabilidad | Impacto | Mitigación | Plan de Contingencia |
 |---|--------|--------------|---------|------------|----------------------|
@@ -1282,7 +1184,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 7.4. Riesgos de Negocio
+### 5.4. Riesgos de Negocio
 
 | # | Riesgo | Probabilidad | Impacto | Mitigación | Plan de Contingencia |
 |---|--------|--------------|---------|------------|----------------------|
@@ -1293,7 +1195,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 7.5. Riesgos de Seguridad y Cumplimiento
+### 5.5. Riesgos de Seguridad y Cumplimiento
 
 | # | Riesgo | Probabilidad | Impacto | Mitigación | Plan de Contingencia |
 |---|--------|--------------|---------|------------|----------------------|
@@ -1303,7 +1205,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 7.6. Matriz de Riesgos (Probabilidad × Impacto)
+### 5.6. Matriz de Riesgos (Probabilidad × Impacto)
 
 **Riesgos Críticos (Alta prioridad de atención):**
 - **T1:** Precisión LLM insuficiente
@@ -1326,7 +1228,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 7.7. Plan de Comunicación de Riesgos
+### 5.7. Plan de Comunicación de Riesgos
 
 **Frecuencia de revisión:**
 - **Semanal:** Revisión rápida de riesgos críticos en reunión con Rhenus
@@ -1345,7 +1247,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 7.8. Lecciones Aprendidas y Mejora Continua
+### 5.8. Lecciones Aprendidas y Mejora Continua
 
 Al final de cada fase y del proyecto completo:
 
