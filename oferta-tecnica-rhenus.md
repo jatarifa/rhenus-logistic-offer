@@ -923,7 +923,7 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
 #### 5.3.1. Flujo de Ingesta de PDFs
 1. **Email llega al inbox** configurado por Rhenus
 2. **Trigger:** Pub/Sub (preferentemente, sujeto a configuración de inbox de Rhenus)
-3. **Cloud Function** procesa evento:
+3. **Cloud Function (Ingestion Service)** procesa evento:
    - Descarga PDF del email
    - Almacena en Cloud Storage
 4. **Cloud Function** invoca **Gemini (Vertex AI)**:
@@ -937,10 +937,16 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
    - Órdenes import/export
    - Llegadas ferroviarias
    - Actualización de stock de contenedores
+7. **Trigger automático del motor de optimización**:
+   - Si la validación es exitosa, se dispara automáticamente el Flujo 5.3.2
+   - Permite generar recomendaciones inmediatamente con los nuevos datos
 
 #### 5.3.2. Flujo de Generación de Recomendaciones
-1. **Trigger:** Nueva orden de export o import procesada
-2. **Cloud Function** recopila contexto:
+1. **Triggers posibles:**
+   - **Automático:** Tras procesamiento exitoso de PDFs (Flujo 5.3.1)
+   - **Manual:** Solicitud explícita de operador desde UI
+   - **Periódico:** Ejecución programada (Cloud Scheduler)
+2. **API Backend (Cloud Function)** recopila contexto:
    - Órdenes pendientes
    - Stock de contenedores vacíos
    - Contenedores post-import disponibles
@@ -1016,11 +1022,22 @@ El siguiente diagrama ilustra los tres flujos de información principales del si
 
 **Flujos representados:**
 
-1. **Flujo de Ingesta de PDFs:** Procesamiento automático de emails con PDFs de órdenes y llegadas ferroviarias, incluyendo extracción con Gemini y validación anti-alucinaciones
+1. **Flujo de Ingesta de PDFs:** Procesamiento automático de emails con PDFs de órdenes y llegadas ferroviarias, incluyendo:
+   - Extracción de datos mediante Gemini (LLM multimodal)
+   - Validación anti-alucinaciones
+   - Almacenamiento en base de datos y actualización de stock
+   - **Trigger automático del motor de optimización** tras procesamiento exitoso
 
-2. **Flujo de Generación de Recomendaciones:** Activación del motor de optimización Timefold para generar recomendaciones de matching import-export basadas en órdenes pendientes y stock de contenedores
+2. **Flujo de Generación de Recomendaciones:** Motor de optimización Timefold que genera recomendaciones de matching import-export. Este flujo puede activarse de tres formas:
+   - **Automáticamente:** Tras ingesta exitosa de PDFs (Flujo 1)
+   - **Manualmente:** Cuando un operador solicita recálculo de recomendaciones
+   - **Periódicamente:** Mediante actualización programada del sistema
 
-3. **Flujo de Operación de Operadores:** Interacción de usuarios con el sistema para visualizar, aceptar o rechazar recomendaciones, capturando feedback para mejora continua
+3. **Flujo de Operación de Operadores:** Interacción de usuarios con el sistema que incluye:
+   - Visualización de recomendaciones en dashboard y mapa geográfico
+   - Solicitud manual de nueva optimización (trigger manual del Flujo 2)
+   - Aceptación o rechazo de recomendaciones con motivos
+   - Captura de feedback para mejora continua del algoritmo
 
 ---
 

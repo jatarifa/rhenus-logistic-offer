@@ -55,10 +55,11 @@ Rel(pubsub, ingestion_functions, "Trigger de procesamiento", "Event")
 Rel(ingestion_functions, cloud_storage, "Almacena PDFs", "SDK")
 Rel(ingestion_functions, gemini_ai, "Solicita extracción de datos", "Vertex AI API")
 Rel(ingestion_functions, postgres_db, "Almacena órdenes y actualiza stock", "SQL")
+Rel(ingestion_functions, optimization_engine, "Dispara optimización automática tras ingesta", "HTTP/JSON")
 
 Rel(api_functions, postgres_db, "Lee/escribe datos transaccionales", "SQL")
 Rel(api_functions, firestore_db, "Lee/escribe configuraciones", "SDK")
-Rel(api_functions, optimization_engine, "Solicita generación de recomendaciones", "HTTP/JSON")
+Rel(api_functions, optimization_engine, "Solicita recomendaciones (manual)", "HTTP/JSON")
 Rel(api_functions, cloud_storage, "Accede a PDFs si necesario", "SDK")
 
 Rel(optimization_engine, postgres_db, "Lee contexto de órdenes y stock", "SQL")

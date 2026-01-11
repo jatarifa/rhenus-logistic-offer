@@ -49,8 +49,8 @@ alt Validación exitosa
     DB --> Ingestion: Stock actualizado
     deactivate DB
 
-    Ingestion -> API: Trigger: Nueva orden procesada
-    note right: Continúa en Flujo 2
+    Ingestion -> Ingestion: Trigger automático:\nActivar optimización
+    note right: Dispara Flujo 2 automáticamente
 
 else Validación fallida o baja confianza
     Ingestion -> DB: INSERT orden con estado\n"PENDING_REVIEW"
@@ -62,12 +62,15 @@ else Validación fallida o baja confianza
     note right: Operador valida\nmanualmente
 end
 
+    Ingestion -> API: Solicitar generación de recomendaciones
+    activate API
+    note right: Transición automática\nal Flujo 2
+
 deactivate Ingestion
 
 == Flujo 2: Generación de Recomendaciones ==
 
-API -> API: Activado por:\n- Nueva orden export\n- Nueva orden import\n- Actualización de stock
-activate API
+note over API: Activado por:\n- Automático: Tras ingesta de PDFs (Flujo 1)\n- Manual: Solicitud de usuario\n- Periódico: Actualización programada
 
 API -> DB: SELECT órdenes export pendientes
 activate DB
@@ -114,34 +117,45 @@ deactivate API
 
 WebApp --> Operator: Visualiza recomendaciones:\n- Matching import-export\n- Mapa geográfico\n- Ahorro estimado\n- Confidence score
 
-Operator -> Operator: Revisa recomendación:\n- Valida viabilidad\n- Considera restricciones\n- Toma decisión
-
-alt Operador ACEPTA recomendación
-    Operator -> WebApp: Acepta recomendación
-    WebApp -> API: PUT /recommendations/{id}\n{\n  status: "ACCEPTED",\n  operator_id,\n  timestamp\n}
+alt Operador solicita NUEVA OPTIMIZACIÓN
+    Operator -> WebApp: Solicita recálculo de recomendaciones
+    WebApp -> API: POST /optimize\n(trigger manual)
     activate API
-    API -> DB: UPDATE recomendación\nstatus = "ACCEPTED"
-    activate DB
-    DB --> API: Actualizado
-    deactivate DB
-    API --> WebApp: Confirmación
+    note right: Se ejecuta Flujo 2\n(Generación de Recomendaciones)\nde forma manual
+    API --> WebApp: Nuevas recomendaciones generadas
     deactivate API
+    WebApp --> Operator: Muestra nuevas recomendaciones
 
-    WebApp --> Operator: Confirmación: Recomendación aceptada\n(Operador genera orden de transporte\nen sistema externo)
+else Operador revisa recomendación existente
+    Operator -> Operator: Revisa recomendación:\n- Valida viabilidad\n- Considera restricciones\n- Toma decisión
 
-else Operador RECHAZA recomendación
-    Operator -> WebApp: Rechaza con motivo:\n- Cliente no disponible\n- Restricción de naviera\n- Timing no compatible\n- Otro
-    WebApp -> API: PUT /recommendations/{id}\n{\n  status: "REJECTED",\n  rejection_reason,\n  operator_id,\n  timestamp\n}
-    activate API
-    API -> DB: UPDATE recomendación\nstatus = "REJECTED"\nGuarda motivo para aprendizaje
-    activate DB
-    DB --> API: Actualizado
-    deactivate DB
-    API --> WebApp: Confirmación
-    deactivate API
+    alt Operador ACEPTA recomendación
+        Operator -> WebApp: Acepta recomendación
+        WebApp -> API: PUT /recommendations/{id}\n{\n  status: "ACCEPTED",\n  operator_id,\n  timestamp\n}
+        activate API
+        API -> DB: UPDATE recomendación\nstatus = "ACCEPTED"
+        activate DB
+        DB --> API: Actualizado
+        deactivate DB
+        API --> WebApp: Confirmación
+        deactivate API
 
-    WebApp --> Operator: Recomendación marcada como rechazada
-    note right: Feedback utilizado para\nmejora continua del algoritmo
+        WebApp --> Operator: Confirmación: Recomendación aceptada\n(Operador genera orden de transporte\nen sistema externo)
+
+    else Operador RECHAZA recomendación
+        Operator -> WebApp: Rechaza con motivo:\n- Cliente no disponible\n- Restricción de naviera\n- Timing no compatible\n- Otro
+        WebApp -> API: PUT /recommendations/{id}\n{\n  status: "REJECTED",\n  rejection_reason,\n  operator_id,\n  timestamp\n}
+        activate API
+        API -> DB: UPDATE recomendación\nstatus = "REJECTED"\nGuarda motivo para aprendizaje
+        activate DB
+        DB --> API: Actualizado
+        deactivate DB
+        API --> WebApp: Confirmación
+        deactivate API
+
+        WebApp --> Operator: Recomendación marcada como rechazada
+        note right: Feedback utilizado para\nmejora continua del algoritmo
+    end
 end
 
 deactivate WebApp
