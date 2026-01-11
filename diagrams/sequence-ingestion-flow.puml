@@ -7,11 +7,11 @@ title Flujo 1: Ingesta de PDFs y Extracción de Datos
 
 actor "Email Inbox\nRhenus" as Inbox
 participant "Cloud\nPub/Sub" as PubSub
-participant "Ingestion\nFunction" as Ingestion
+participant "Ingestion Service\n(Cloud Functions)" as Ingestion
 participant "Cloud\nStorage" as Storage
 participant "Gemini\n(Vertex AI)" as Gemini
-database "PostgreSQL" as DB
-participant "API\nFunction" as API
+database "PostgreSQL\n(Data Connect)" as DB
+participant "API Backend\n(Cloud Functions)" as API
 
 == Recepción y Descarga de PDF ==
 

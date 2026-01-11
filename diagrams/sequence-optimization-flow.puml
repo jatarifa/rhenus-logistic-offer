@@ -6,10 +6,10 @@ skinparam sequenceMessageAlign center
 title Flujo 2: Generación de Recomendaciones de Optimización
 
 participant "Trigger\nSource" as Trigger
-participant "API\nFunction" as API
-database "PostgreSQL" as DB
-participant "Timefold\nEngine\n(Cloud Run)" as Timefold
-participant "Web\nApplication" as WebApp
+participant "API Backend\n(Cloud Functions)" as API
+database "PostgreSQL\n(Data Connect)" as DB
+participant "Motor de Optimización\n(Timefold, Cloud Run)" as Timefold
+participant "Web Application\n(React)" as WebApp
 
 == Activación del Motor de Optimización ==
 

@@ -6,9 +6,9 @@ skinparam sequenceMessageAlign center
 title Flujo 3: Operación de Operadores Rhenus
 
 actor "Operador\nRhenus" as Operator
-participant "Web\nApplication" as WebApp
-participant "API\nFunction" as API
-database "PostgreSQL" as DB
+participant "Web Application\n(React)" as WebApp
+participant "API Backend\n(Cloud Functions)" as API
+database "PostgreSQL\n(Data Connect)" as DB
 
 == Visualización del Dashboard ==
 

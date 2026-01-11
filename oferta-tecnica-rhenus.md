@@ -1004,15 +1004,25 @@ El siguiente diagrama muestra los contenedores (componentes de alto nivel) del s
 
 **Componentes principales:**
 
-- **Web Application (Frontend):** Interface de usuario desarrollada con Vite, React y TypeScript, alojada en Firebase Hosting
-- **API Backend:** Cloud Functions en Node.js que exponen APIs REST para el frontend
-- **Ingestion Service:** Cloud Functions que procesan emails con PDFs y coordinan la extracción de datos
-- **Motor de Optimización:** Servicio en Cloud Run (Java + Timefold) que ejecuta algoritmos de matching y optimización
-- **LLM Extractor:** Google Gemini (Vertex AI) para extracción multimodal de datos de PDFs
-- **PostgreSQL:** Base de datos transaccional para órdenes, contenedores, recomendaciones y datos maestros
-- **Cloud Firestore:** Base de datos NoSQL para datos paramétricos de UI y configuraciones
-- **Cloud Storage:** Almacenamiento de PDFs originales y archivos procesados
-- **Cloud Pub/Sub:** Cola de mensajes para procesamiento asíncrono de emails
+- **Web Application:** Interface de usuario desarrollada con Vite, React y TypeScript, alojada en Firebase Hosting. Proporciona dashboard, visualización de recomendaciones y gestión de datos maestros.
+
+- **API Backend (Cloud Functions):** Servicios en Node.js que exponen APIs REST para el frontend y coordinan la generación de recomendaciones. Actúa como orquestador central del sistema.
+
+- **Ingestion Service (Cloud Functions):** Servicios en Node.js que procesan eventos de email, descargan PDFs, coordinan la extracción con Gemini, validan datos y notifican al API Backend sobre nuevos datos procesados.
+
+- **Motor de Optimización (Timefold, Cloud Run):** Servicio en Java que ejecuta algoritmos constraint-based de matching import-export y optimización de rutas multiobjetivo.
+
+- **Gemini (Vertex AI):** LLM multimodal de Google para extracción de datos estructurados de PDFs mediante análisis visual.
+
+- **PostgreSQL (Data Connect):** Base de datos transaccional que almacena órdenes, contenedores, recomendaciones, feedback y datos maestros.
+
+- **Cloud Firestore:** Base de datos NoSQL para datos paramétricos de UI, configuraciones y preferencias de usuario.
+
+- **Cloud Storage:** Almacenamiento de PDFs originales, archivos procesados, logs y backups.
+
+- **Cloud Pub/Sub:** Cola de mensajes para procesamiento asíncrono de emails con PDFs.
+
+**Flujo de datos clave:** El Ingestion Service procesa PDFs y notifica al API Backend, que coordina la invocación del Motor de Optimización. Esto permite activación automática (tras ingesta), manual (desde UI) o periódica (Cloud Scheduler) de la generación de recomendaciones.
 
 #### 5.7.2. Diagramas de Secuencia - Flujos de Información
 

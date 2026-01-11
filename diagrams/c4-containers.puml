@@ -30,9 +30,9 @@ System_Boundary(rhenus_tms, "Sistema TMS Rhenus") {
 
     Container(optimization_engine, "Motor de Optimización", "Java, Timefold, Cloud Run", "Ejecuta algoritmos de matching import-export y optimización de rutas", $sprite="java")
 
-    Container(gemini_ai, "LLM Extractor", "Google Gemini (Vertex AI)", "Extracción multimodal de datos de PDFs con validación anti-alucinaciones")
+    Container(gemini_ai, "Gemini (Vertex AI)", "Google Gemini LLM", "Extracción multimodal de datos de PDFs con validación anti-alucinaciones")
 
-    ContainerDb(postgres_db, "Base de Datos Transaccional", "PostgreSQL (Firebase Data Connect)", "Almacena órdenes, contenedores, recomendaciones, feedback, datos maestros", $sprite="postgresql")
+    ContainerDb(postgres_db, "PostgreSQL (Data Connect)", "PostgreSQL Database", "Almacena órdenes, contenedores, recomendaciones, feedback, datos maestros", $sprite="postgresql")
 
     ContainerDb(firestore_db, "Base de Datos Paramétrica", "Cloud Firestore", "Almacena datos de UI, configuraciones, preferencias de usuario")
 
@@ -55,12 +55,13 @@ Rel(pubsub, ingestion_functions, "Trigger de procesamiento", "Event")
 Rel(ingestion_functions, cloud_storage, "Almacena PDFs", "SDK")
 Rel(ingestion_functions, gemini_ai, "Solicita extracción de datos", "Vertex AI API")
 Rel(ingestion_functions, postgres_db, "Almacena órdenes y actualiza stock", "SQL")
-Rel(ingestion_functions, optimization_engine, "Dispara optimización automática tras ingesta", "HTTP/JSON")
+Rel(ingestion_functions, api_functions, "Notifica nuevos datos procesados", "HTTP/JSON")
 
 Rel(api_functions, postgres_db, "Lee/escribe datos transaccionales", "SQL")
 Rel(api_functions, firestore_db, "Lee/escribe configuraciones", "SDK")
-Rel(api_functions, optimization_engine, "Solicita recomendaciones (manual)", "HTTP/JSON")
+Rel(api_functions, optimization_engine, "Coordina generación de recomendaciones", "HTTP/JSON")
 Rel(api_functions, cloud_storage, "Accede a PDFs si necesario", "SDK")
+Rel(api_functions, web_app, "Notifica eventos en tiempo real", "WebSocket/SSE")
 
 Rel(optimization_engine, postgres_db, "Lee contexto de órdenes y stock", "SQL")
 Rel(optimization_engine, postgres_db, "Almacena recomendaciones generadas", "SQL")
