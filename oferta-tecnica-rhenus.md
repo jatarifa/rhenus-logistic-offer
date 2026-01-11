@@ -2,236 +2,302 @@
 
 ## Tabla de Contenidos
 
-1. [Objetivos del Proyecto](#1-objetivos-del-proyecto)
-   - 1.1. [Contexto del Problema](#11-contexto-del-problema)
-   - 1.2. [Objetivos Principales](#12-objetivos-principales)
-   - 1.3. [Capacidades Clave del Sistema](#13-capacidades-clave-del-sistema)
+1. [Objetivos del proyecto](#1-objetivos-del-proyecto)
+   - 1.1. [Contexto del problema](#11-contexto-del-problema)
+   - 1.2. [Objetivos principales](#12-objetivos-principales)
+   - 1.3. [Capacidades clave del sistema](#13-capacidades-clave-del-sistema)
    - 1.4. [Alcance del MVP](#14-alcance-del-mvp)
-   - 1.5. [Modelo de Operación del MVP](#15-modelo-de-operación-del-mvp)
-   - 1.6. [Capacidades de Análisis y Visualización](#16-capacidades-de-análisis-y-visualización)
-   - 1.7. [Supuestos e Incógnitas del Proyecto](#17-supuestos-e-incógnitas-del-proyecto)
-2. [Alcance de la Solución](#2-alcance-de-la-solución)
-   - 2.1. [Visión General del Sistema](#21-visión-general-del-sistema)
-   - 2.2. [Componentes Principales](#22-componentes-principales)
-   - 2.3. [Perfiles de Usuario](#23-perfiles-de-usuario)
-   - 2.4. [Funcionalidades Core](#24-funcionalidades-core)
-   - 2.5. [Gestión de Datos Maestros](#25-gestión-de-datos-maestros)
-   - 2.6. [Aspectos Técnicos Clave](#26-aspectos-técnicos-clave)
-   - 2.7. [Funcionalidades Fuera de Alcance del MVP](#27-funcionalidades-fuera-de-alcance-del-mvp)
-3. [Arquitectura Técnica Propuesta](#3-arquitectura-técnica-propuesta)
-   - 3.1. [Visión General de la Arquitectura](#31-visión-general-de-la-arquitectura)
-   - 3.2. [Stack Tecnológico](#32-stack-tecnológico)
-   - 3.3. [Flujos de Datos Principales](#33-flujos-de-datos-principales)
-   - 3.4. [Escalabilidad y Rendimiento](#34-escalabilidad-y-rendimiento)
+   - 1.5. [Modelo de operación del MVP](#15-modelo-de-operación-del-mvp)
+   - 1.6. [Capacidades de análisis y visualización](#16-capacidades-de-análisis-y-visualización)
+   - 1.7. [Supuestos e incógnitas del proyecto](#17-supuestos-e-incógnitas-del-proyecto)
+2. [Alcance de la solución](#2-alcance-de-la-solución)
+   - 2.1. [Visión general del sistema](#21-visión-general-del-sistema)
+   - 2.2. [Componentes principales](#22-componentes-principales)
+   - 2.3. [Perfiles de usuario](#23-perfiles-de-usuario)
+   - 2.4. [Funcionalidades core](#24-funcionalidades-core)
+   - 2.5. [Gestión de datos maestros](#25-gestión-de-datos-maestros)
+   - 2.6. [Aspectos técnicos clave](#26-aspectos-técnicos-clave)
+   - 2.7. [Funcionalidades fuera de alcance del MVP](#27-funcionalidades-fuera-de-alcance-del-mvp)
+3. [Arquitectura técnica propuesta](#3-arquitectura-técnica-propuesta)
+   - 3.1. [Visión general de la arquitectura](#31-visión-general-de-la-arquitectura)
+   - 3.2. [Stack tecnológico](#32-stack-tecnológico)
+   - 3.3. [Flujos de datos principales](#33-flujos-de-datos-principales)
+   - 3.4. [Escalabilidad y rendimiento](#34-escalabilidad-y-rendimiento)
    - 3.5. [Seguridad](#35-seguridad)
-   - 3.6. [Consideraciones de Implementación](#36-consideraciones-de-implementación)
-   - 3.7. [Diagramas de Arquitectura](#37-diagramas-de-arquitectura)
-4. [Tecnologías y Herramientas](#4-tecnologías-y-herramientas)
-   - 4.1. [Plataforma Cloud y Servicios Core](#41-plataforma-cloud-y-servicios-core)
+   - 3.6. [Consideraciones de implementación](#36-consideraciones-de-implementación)
+   - 3.7. [Diagramas de arquitectura](#37-diagramas-de-arquitectura)
+4. [Tecnologías y herramientas](#4-tecnologías-y-herramientas)
+   - 4.1. [Plataforma cloud y servicios core](#41-plataforma-cloud-y-servicios-core)
    - 4.2. [Frontend](#42-frontend)
    - 4.3. [Backend y APIs](#43-backend-y-apis)
-   - 4.4. [Motor de Optimización](#44-motor-de-optimización)
-   - 4.5. [Bases de Datos](#45-bases-de-datos)
-   - 4.6. [Almacenamiento y Mensajería](#46-almacenamiento-y-mensajería)
-   - 4.7. [Autenticación, Seguridad y Secrets](#47-autenticación-seguridad-y-secrets)
-   - 4.8. [Observabilidad y Monitoring](#48-observabilidad-y-monitoring)
+   - 4.4. [Motor de optimización](#44-motor-de-optimización)
+   - 4.5. [Bases de datos](#45-bases-de-datos)
+   - 4.6. [Almacenamiento y mensajería](#46-almacenamiento-y-mensajería)
+   - 4.7. [Autenticación, seguridad y secrets](#47-autenticación-seguridad-y-secrets)
+   - 4.8. [Observabilidad y monitoring](#48-observabilidad-y-monitoring)
    - 4.9. [CI/CD y DevOps](#49-cicd-y-devops)
-   - 4.10. [Herramientas de Desarrollo](#410-herramientas-de-desarrollo)
-   - 4.11. [Testing y Calidad](#411-testing-y-calidad)
-   - 4.12. [Gestión de Proyecto](#412-gestión-de-proyecto)
-   - 4.13. [Librerías y Frameworks Adicionales Clave](#413-librerías-y-frameworks-adicionales-clave)
-   - 4.14. [Costes Estimados de Infraestructura Cloud (MVP)](#414-costes-estimados-de-infraestructura-cloud-mvp)
-5. [Riesgos y Mitigación](#5-riesgos-y-mitigación)
-   - 5.1. [Metodología de Gestión de Riesgos](#51-metodología-de-gestión-de-riesgos)
-   - 5.2. [Riesgos Técnicos](#52-riesgos-técnicos)
-   - 5.3. [Riesgos de Proyecto](#53-riesgos-de-proyecto)
-   - 5.4. [Riesgos de Negocio](#54-riesgos-de-negocio)
-   - 5.5. [Riesgos de Seguridad y Cumplimiento](#55-riesgos-de-seguridad-y-cumplimiento)
-   - 5.6. [Matriz de Riesgos (Probabilidad × Impacto)](#56-matriz-de-riesgos-probabilidad--impacto)
-   - 5.7. [Plan de Comunicación de Riesgos](#57-plan-de-comunicación-de-riesgos)
-   - 5.8. [Lecciones Aprendidas y Mejora Continua](#58-lecciones-aprendidas-y-mejora-continua)
+   - 4.10. [Herramientas de desarrollo](#410-herramientas-de-desarrollo)
+   - 4.11. [Testing y calidad](#411-testing-y-calidad)
+   - 4.12. [Gestión de proyecto](#412-gestión-de-proyecto)
+   - 4.13. [Librerías y frameworks adicionales clave](#413-librerías-y-frameworks-adicionales-clave)
+   - 4.14. [Costes estimados de infraestructura cloud (MVP)](#414-costes-estimados-de-infraestructura-cloud-mvp)
+5. [Riesgos y mitigación](#5-riesgos-y-mitigación)
+   - 5.1. [Metodología de gestión de riesgos](#51-metodología-de-gestión-de-riesgos)
+   - 5.2. [Riesgos técnicos](#52-riesgos-técnicos)
+   - 5.3. [Riesgos de proyecto](#53-riesgos-de-proyecto)
+   - 5.4. [Riesgos de negocio](#54-riesgos-de-negocio)
+   - 5.5. [Riesgos de seguridad y cumplimiento](#55-riesgos-de-seguridad-y-cumplimiento)
+   - 5.6. [Matriz de riesgos (probabilidad × impacto)](#56-matriz-de-riesgos-probabilidad--impacto)
+   - 5.7. [Plan de comunicación de riesgos](#57-plan-de-comunicación-de-riesgos)
+   - 5.8. [Lecciones aprendidas y mejora continua](#58-lecciones-aprendidas-y-mejora-continua)
 
 ---
 
-## 1. Objetivos del Proyecto
+## 1. Objetivos del proyecto
 
-### 1.1. Contexto del Problema
+### 1.1. Contexto del problema
 
 El reposicionamiento de contenedores vacíos representa uno de los mayores desafíos en la industria logística:
-- **Coste global:** Aproximadamente $20 billones anuales para la industria del transporte de contenedores
-- **Ineficiencia:** ~33% de los contenedores en circulación están vacíos
-- **Tiempo inactivo:** El contenedor promedio pasa casi el 50% de su vida útil inactivo
-- **Origen:** Desequilibrio en el comercio exterior (mercados orientados a importación vs exportación)
 
-#### Flujos Operativos de Contenedores en Rhenus
+| Indicador | Magnitud | Descripción |
+|-----------|----------|-------------|
+| **Coste global** | $20 billones anuales | Coste para la industria del transporte de contenedores |
+| **Ineficiencia** | ~33% vacíos | Porcentaje de contenedores en circulación que están vacíos |
+| **Tiempo inactivo** | ~50% vida útil | Tiempo que el contenedor promedio pasa inactivo |
+| **Origen** | Desequilibrio comercial | Mercados orientados a importación vs exportación |
 
-**Nota:** Los flujos descritos a continuación están sujetos a confirmación con el cliente durante la fase de descubrimiento.
+#### Flujos operativos de contenedores en Rhenus
 
-**Flujo IMPORT tradicional (Contenedor lleno → Cliente → Devolución vacío):**
+> **⚠️ Nota:** Los flujos descritos a continuación están sujetos a confirmación con el cliente durante la fase de descubrimiento.
+
+---
+
+**Flujo IMPORT tradicional** (Contenedor lleno → Cliente → Devolución vacío)
+
+```
+Barcelona (LLENO) → TRUCK → Cliente → TRUCK → Terminal (VACÍO)
+```
+
 1. Contenedor **LLENO** llega a terminal marítima de Barcelona
 2. Se recibe orden de import en PDF
-3. TRUCK recoge contenedor lleno en Barcelona
-4. TRUCK transporta contenedor a ubicación del cliente
+3. `TRUCK` recoge contenedor lleno en Barcelona
+4. `TRUCK` transporta contenedor a ubicación del cliente
 5. Cliente descarga mercancía (contenedor queda **VACÍO**)
-6. TRUCK devuelve contenedor vacío a terminal (puede ser Barcelona o terminal ferroviaria: Noain, Agoncillo, Miranda)
+6. `TRUCK` devuelve contenedor vacío a terminal (puede ser Barcelona o terminal ferroviaria: Noain, Agoncillo, Miranda)
 
-**Flujo EXPORT (Contenedor vacío → Cliente → Puerto):**
+---
+
+**Flujo EXPORT** (Contenedor vacío → Cliente → Puerto)
+
+```
+Terminal (VACÍO) → TRUCK → Cliente → TRUCK → Barcelona (LLENO)
+```
+
 1. Se recibe orden de export en PDF
-2. TRUCK recoge contenedor **VACÍO** de una terminal (Barcelona o terminales ferroviarias: Noain, Agoncillo, Miranda)
-3. TRUCK transporta contenedor vacío a ubicación del cliente
+2. `TRUCK` recoge contenedor **VACÍO** de una terminal (Barcelona o terminales ferroviarias: Noain, Agoncillo, Miranda)
+3. `TRUCK` transporta contenedor vacío a ubicación del cliente
 4. Cliente carga mercancía (contenedor queda **LLENO**)
-5. TRUCK transporta contenedor lleno a terminal marítima de Barcelona
+5. `TRUCK` transporta contenedor lleno a terminal marítima de Barcelona
 6. Contenedor se entrega en Barcelona para su envío marítimo
 
-**Ciclo de Distribución de Contenedores vía TREN:**
+---
+
+**Ciclo de distribución de contenedores vía TREN**
+
+```
+Barcelona → TREN → Terminal Ferroviaria (Noain/Agoncillo/Miranda)
+```
+
 1. Contenedores llegan a Barcelona vía marítima (import o contenedores vacíos de retorno)
-2. Contenedores se envían mediante **TREN** desde Barcelona a terminales ferroviarias (Noain, Agoncillo, Miranda)
+2. Contenedores se envían mediante `TREN` desde Barcelona a terminales ferroviarias (Noain, Agoncillo, Miranda)
 3. Se recibe PDF con información de contenedores que llegan a terminales ferroviarias
-4. Actualización de stock según estado:
-   - **Contenedores VACÍOS:** Disponibles para nuevas órdenes de export
+4. **Actualización de stock según estado:**
+   - ✅ **Contenedores VACÍOS:** Disponibles para nuevas órdenes de export
    - **Contenedores LLENOS:** Pendientes de entrega a clientes en la zona (import)
 
-#### El Problema de Ineficiencia Actual y el Valor del Reposicionamiento Inteligente
+#### El problema de ineficiencia actual y el valor del reposicionamiento inteligente
 
-**Situación SIN optimización (flujo tradicional separado):**
+##### Situación SIN optimización (flujo tradicional separado)
 
 *Para una operación IMPORT + EXPORT de clientes cercanos:*
 
 **Import (Cliente A):**
-1. Barcelona → Cliente A con contenedor **lleno** (TRUCK)
+```
+1. Barcelona → Cliente A (LLENO) [TRUCK]
 2. Cliente A descarga
-3. **Cliente A → Terminal con contenedor VACÍO** (TRUCK - viaje de devolución a Barcelona o terminal ferroviaria)
+3. Cliente A → Terminal (VACÍO) [TRUCK - viaje de devolución] ⚠️ EVITABLE
+```
 
 **Export (Cliente B cercano al Cliente A):**
-4. **Terminal → Cliente B con contenedor VACÍO** (TRUCK - viaje de recogida desde Barcelona o terminal ferroviaria)
+```
+4. Terminal → Cliente B (VACÍO) [TRUCK - viaje de recogida] ⚠️ EVITABLE
 5. Cliente B carga
-6. Cliente B → Barcelona con contenedor **lleno** (TRUCK)
+6. Cliente B → Barcelona (LLENO) [TRUCK]
+```
 
-**Total: 6 viajes**, de los cuales:
-- 2 viajes útiles con carga (1 lleno import, 1 lleno export)
-- **4 viajes con contenedores vacíos o retornos**
+**Total: 6 viajes**
+- ✅ 2 viajes útiles con carga (1 lleno import, 1 lleno export)
+- 4 viajes con contenedores vacíos o retornos
 - **2 viajes completamente EVITABLES** (devolución vacío + recogida vacío)
 
 ---
 
-**Situación CON optimización (matching import-export):**
+##### Situación CON optimización (matching import-export)
 
 *Misma operación IMPORT + EXPORT con matching inteligente:*
 
 **Import + Export optimizado:**
-1. Barcelona → Cliente A con contenedor **lleno** (TRUCK)
+```
+1. Barcelona → Cliente A (LLENO) [TRUCK]
 2. Cliente A descarga (contenedor queda vacío)
-3. **Cliente A → Cliente B con contenedor VACÍO** (TRUCK - reposicionamiento directo)
+3. Cliente A → Cliente B (VACÍO) [TRUCK - reposicionamiento directo] ✨ OPTIMIZADO
 4. Cliente B carga
-5. Cliente B → Barcelona con contenedor **lleno** (TRUCK)
+5. Cliente B → Barcelona (LLENO) [TRUCK]
+```
 
-**Total: 5 viajes**, de los cuales:
-- 2 viajes útiles con carga (1 lleno import, 1 lleno export)
+**Total: 5 viajes**
+- ✅ 2 viajes útiles con carga (1 lleno import, 1 lleno export)
 - **3 viajes necesarios** (solo 1 vacío entre clientes cercanos)
 
 ---
 
-**VALOR DEL REPOSICIONAMIENTO INTELIGENTE:**
-- **1 viaje ELIMINADO** (33% menos viajes que con matching vs sin matching para este ejemplo)
-- **Se elimina:** Viaje vacío Cliente A → Terminal + Viaje vacío Terminal → Cliente B
-- **Se añade:** Solo 1 viaje vacío Cliente A → Cliente B (distancia mucho menor)
-- **Ahorro real:** Kilómetros, combustible, tiempo, coste operativo, emisiones CO2
-- **Mejora utilización:** Contenedor pasa menos tiempo inactivo en terminal
+##### Valor del reposicionamiento inteligente
 
-Rhenus Logistics actualmente dispone de un sistema TMS que no cubre adecuadamente esta optimización del uso de contenedores vacíos, generando:
+| Métrica | Beneficio |
+|---------|-----------|
+| **Viajes eliminados** | 1 viaje (33% menos viajes vs. flujo tradicional) |
+| **Se elimina** | Viaje vacío Cliente A → Terminal + Viaje vacío Terminal → Cliente B |
+| **Se añade** | Solo 1 viaje vacío Cliente A → Cliente B (distancia mucho menor) |
+| **Ahorro real** | Kilómetros, combustible, tiempo, coste operativo |
+| **Reducción emisiones** | Menos CO₂ por kilómetros evitados |
+| **Mejora utilización** | Contenedor pasa menos tiempo inactivo en terminal |
+
+---
+
+##### Problemática actual de Rhenus Logistics
+
+Rhenus Logistics actualmente dispone de un sistema TMS que **no cubre adecuadamente** esta optimización del uso de contenedores vacíos, generando:
+
 - Costes innecesarios de reposicionamiento de contenedores vacíos
 - Retornos a terminal de contenedores que podrían reutilizarse directamente
 - Falta de visibilidad sobre oportunidades de matching import-export
-- Emisiones evitables de CO2 por transporte de contenedores vacíos
+- Emisiones evitables de CO₂ por transporte de contenedores vacíos
 
-### 1.2. Objetivos Principales
+### 1.2. Objetivos principales
 
 El proyecto tiene como objetivo desarrollar un **MVP (Minimum Viable Product)** de un sistema TMS avanzado con capacidades de IA que permita:
 
-#### 1.2.1. Reducción de Costes Operativos
+#### 1.2.1. Reducción de costes operativos
+
 - Minimizar transportes de contenedores vacíos mediante matching inteligente
 - Reducir retornos innecesarios a terminal
 - Optimizar el uso de la flota de contenedores disponible
 
-#### 1.2.2. Maximización de Utilización de Contenedores
+#### 1.2.2. Maximización de utilización de contenedores
+
 - Aumentar el tiempo activo de los contenedores (reducir inactividad del 50% actual)
 - Conectar directamente contenedores de importación con necesidades de exportación
 - Mejorar la rotación y disponibilidad del stock de contenedores
 
-#### 1.2.3. Sostenibilidad Ambiental
-- Reducir emisiones de CO2 mediante optimización de rutas
+#### 1.2.3. Sostenibilidad ambiental
+
+- Reducir emisiones de CO₂ mediante optimización de rutas
 - Minimizar kilómetros en vacío
 - Contribuir a objetivos de sostenibilidad corporativa
 
-#### 1.2.4. Optimización Multimodal
-- Planificación inteligente de rutas considerando dos modos de transporte:
-  - **TRAIN (ferroviario):** Para trayectos entre Barcelona y terminales ferroviarias (Noain, Agoncillo, Miranda)
-  - **TRUCK (carretera):** Para primeros/últimos tramos y trayectos completos
+#### 1.2.4. Optimización multimodal
+
+**Planificación inteligente de rutas considerando dos modos de transporte:**
+
+| Modo | Uso |
+|------|-----|
+| `TRAIN` (ferroviario) | Para trayectos entre Barcelona y terminales ferroviarias (Noain, Agoncillo, Miranda) |
+| `TRUCK` (carretera) | Para primeros/últimos tramos y trayectos completos |
+
+**Características:**
 - Optimización multiobjetivo: coste, tiempo, emisiones y disponibilidad
 - Coordinación eficiente entre ambos medios de transporte
 
-### 1.3. Capacidades Clave del Sistema
+### 1.3. Capacidades clave del sistema
 
 El sistema deberá incorporar las siguientes capacidades de optimización e inteligencia artificial:
 
-1. **Matching Inteligente Import-Export**
-   - Identificar automáticamente oportunidades de reutilización directa de contenedores:
-     - Contenedor de **import** que queda vacío en ubicación del cliente
-     - Orden de **export** de un cliente cercano que necesita contenedor vacío
-     - Evitar retorno del contenedor vacío a terminal
-     - Evitar viaje de recogida de contenedor vacío desde terminal
-   - Considerar proximidad geográfica entre clientes
-   - Analizar compatibilidad de tipos de contenedores y requisitos
-   - Evaluar ventanas temporales de disponibilidad
+#### 1. Matching inteligente import-export
 
-2. **Predicción de Demanda**
-   - Anticipar necesidades futuras de contenedores por ruta, cliente y tipo
-   - Facilitar planificación proactiva del stock de contenedores
+Identificar automáticamente oportunidades de reutilización directa de contenedores:
 
-3. **Optimización de Rutas Multiobjetivo**
-   - Algoritmos que consideren simultáneamente: coste, tiempo de tránsito, emisiones de CO2 y disponibilidad de recursos
-   - Soporte para rutas multimodales (combinación de TRAIN y TRUCK)
-   - Consideración de restricciones geográficas (terminales: Barcelona, Noain, Agoncillo, Miranda)
+- ✅ Contenedor de **import** que queda vacío en ubicación del cliente
+- ✅ Orden de **export** de un cliente cercano que necesita contenedor vacío
+- ❌ Evitar retorno del contenedor vacío a terminal
+- ❌ Evitar viaje de recogida de contenedor vacío desde terminal
 
-4. **Alertas y Recomendaciones Proactivas**
-   - Notificaciones automáticas de oportunidades de optimización
-   - Sugerencias inteligentes para mejorar eficiencia operativa
+**Factores de análisis:**
+- Proximidad geográfica entre clientes
+- Compatibilidad de tipos de contenedores y requisitos
+- Ventanas temporales de disponibilidad
+
+#### 2. Predicción de demanda
+
+- Anticipar necesidades futuras de contenedores por ruta, cliente y tipo
+- Facilitar planificación proactiva del stock de contenedores
+
+#### 3. Optimización de rutas multiobjetivo
+
+**Algoritmos que consideren simultáneamente:**
+
+| Objetivo | Descripción |
+|----------|-------------|
+| **Coste** | Minimizar costes de transporte |
+| **Tiempo** | Optimizar tiempo de tránsito |
+| **Emisiones CO₂** | Reducir huella de carbono |
+| **Disponibilidad** | Maximizar uso de recursos disponibles |
+
+**Características:**
+- Soporte para rutas multimodales (combinación de `TRAIN` y `TRUCK`)
+- Consideración de restricciones geográficas (terminales: Barcelona, Noain, Agoncillo, Miranda)
+
+#### 4. Alertas y recomendaciones proactivas
+
+- Notificaciones automáticas de oportunidades de optimización
+- Sugerencias inteligentes para mejorar eficiencia operativa
 
 ### 1.4. Alcance del MVP
 
-- **Geográfico:** Operaciones de Rhenus Logistics en la zona norte de España:
-  - **Bilbao:** Centro de gestión de órdenes
-  - **Barcelona:** Puerto marítimo
-  - **Depots/Estaciones ferroviarias:** Noain, Agoncillo y Miranda
-- **Modos de transporte:** TRAIN (ferroviario) y TRUCK (carretera)
-- **Integración inicial:** Sistema de ingesta vía inbox de correo electrónico para procesar PDFs:
-  - PDFs con órdenes de import/export
-  - PDFs con información de llegadas de contenedores (vacíos o llenos) vía tren a terminales ferroviarias (para gestión de stock en depots)
-- **Datos:** Stock de contenedores y datos maestros precargados en el sistema para validación inicial
-- **Enfoque:** Desarrollo iterativo para validar el concepto antes de escalar a otras zonas geográficas y modos de transporte
+| Dimensión | Alcance |
+|-----------|---------|
+| **Geográfico** | Operaciones de Rhenus Logistics en la zona norte de España:<br>• **Bilbao:** Centro de gestión de órdenes<br>• **Barcelona:** Puerto marítimo<br>• **Depots/Estaciones ferroviarias:** Noain, Agoncillo y Miranda |
+| **Modos de transporte** | `TRAIN` (ferroviario) y `TRUCK` (carretera) |
+| **Integración inicial** | Sistema de ingesta vía inbox de correo electrónico para procesar PDFs:<br>• PDFs con órdenes de import/export<br>• PDFs con información de llegadas de contenedores (vacíos o llenos) vía tren a terminales ferroviarias |
+| **Datos** | Stock de contenedores y datos maestros precargados en el sistema para validación inicial |
+| **Enfoque** | Desarrollo iterativo para validar el concepto antes de escalar a otras zonas geográficas y modos de transporte |
 
-### 1.5. Modelo de Operación del MVP
+### 1.5. Modelo de operación del MVP
 
-**Sistema de Recomendaciones para Operadores**
+#### Sistema de recomendaciones para operadores
 
 El MVP funcionará como un **sistema de apoyo a la decisión** que proporciona sugerencias inteligentes a los operadores de Rhenus, manteniendo el control humano en la toma de decisiones:
 
-- **Sugerencias, no automatización:** El sistema analizará las órdenes de import/export y generará recomendaciones sobre movimientos óptimos de contenedores, pero serán los operadores quienes decidan ejecutarlas o no
-- **Sin integración con sistemas de ejecución:** El MVP **NO se integrará** con ningún sistema externo que genere automáticamente órdenes de transporte
-- **Flujo manual validado:** Los operadores revisarán las sugerencias del sistema y, si las aprueban, procederán a generar las órdenes de transporte a través de sus procesos actuales
-- **Aprendizaje iterativo:** El feedback de los operadores sobre las sugerencias aceptadas/rechazadas servirá para mejorar el modelo en futuras iteraciones
+**Características del modelo:**
 
-Este enfoque permite:
+| Aspecto | Descripción |
+|---------|-------------|
+| **Sugerencias, no automatización** | El sistema analizará las órdenes de import/export y generará recomendaciones sobre movimientos óptimos de contenedores, pero serán los operadores quienes decidan ejecutarlas o no |
+| **Sin integración con sistemas de ejecución** | El MVP **NO se integrará** con ningún sistema externo que genere automáticamente órdenes de transporte |
+| **Flujo manual validado** | Los operadores revisarán las sugerencias del sistema y, si las aprueban, procederán a generar las órdenes de transporte a través de sus procesos actuales |
+| **Aprendizaje iterativo** | El feedback de los operadores sobre las sugerencias aceptadas/rechazadas servirá para mejorar el modelo en futuras iteraciones |
+
+**Beneficios de este enfoque:**
+
 1. Validar la precisión y utilidad de las recomendaciones antes de cualquier automatización
 2. Mantener el conocimiento y experiencia de los operadores en el proceso
 3. Minimizar riesgos operativos durante la fase de prueba
 4. Generar confianza en el sistema antes de escalar
 
-### 1.6. Capacidades de Análisis y Visualización
+### 1.6. Capacidades de análisis y visualización
 
 El MVP incorporará funcionalidades de análisis y visualización que permitan tanto a operadores como a la dirección de negocio evaluar el estado actual y la efectividad del sistema:
 
-#### 1.6.1. Visualización de Stock de Contenedores
+#### 1.6.1. Visualización de stock de contenedores
 
 El sistema proporcionará visibilidad completa del ciclo de vida de contenedores:
 
@@ -268,120 +334,182 @@ El sistema proporcionará visibilidad completa del ciclo de vida de contenedores
   - Estado (vacío en terminal, vacío en cliente, lleno en tránsito, etc.)
   - Disponibilidad y restricciones
 
-#### 1.6.2. Métricas de Efectividad del Sistema
+#### 1.6.2. Métricas de efectividad del sistema
+
 El sistema proporcionará indicadores clave (KPIs) para que el negocio pueda evaluar el retorno de la inversión:
-
-- **Métricas de optimización:**
-  - **% de matching import-export exitoso:** Porcentaje de contenedores de import reutilizados directamente para export (sin retorno a terminal)
-  - **Viajes evitados:** Número de viajes de retorno a terminal y recogidas desde terminal eliminados
-  - **Reducción de kilómetros:** Kilómetros totales ahorrados por matching directo vs. ruta tradicional
-  - **Reducción de kilómetros en vacío:** Kilómetros específicamente evitados de transporte de contenedores vacíos
-  - **Tiempo de inactividad:** Tiempo promedio que un contenedor permanece inactivo entre operaciones
-  - **Tasa de utilización:** Porcentaje de tiempo que contenedores están en uso activo vs. inactivos
-
-- **Métricas de adopción:**
-  - % de sugerencias aceptadas vs. rechazadas por operadores
-  - Tiempo medio de respuesta a las recomendaciones
-  - Motivos de rechazo de sugerencias (para mejora continua)
-
-- **Métricas de impacto económico y ambiental:**
-  - Ahorro estimado en costes de reposicionamiento
-  - Reducción estimada de emisiones de CO2
-  - ROI proyectado del sistema
-
-#### 1.6.3. Dashboard Analítico
-Interface visual que consolide toda la información relevante para la toma de decisiones y evaluación del sistema.
-
-### 1.7. Supuestos e Incógnitas del Proyecto
-
-Es importante reconocer que existen aspectos del proceso actual de Rhenus que aún deben ser definidos y que se resolverán durante la ejecución del proyecto:
-
-#### Incógnitas a Resolver
-- **Procedimiento actual de asignación:** Cómo gestiona actualmente Rhenus la asignación de contenedores a rutas (criterios, responsables, herramientas utilizadas)
-- **Reglas de negocio específicas:** Restricciones, prioridades de clientes, acuerdos comerciales que puedan afectar la asignación de contenedores
-- **Fuentes de datos existentes:** Qué datos están disponibles actualmente, en qué formato, y con qué nivel de calidad
-- **Procesos de coordinación:** Cómo se coordinan actualmente las diferentes delegaciones y modos de transporte
-
-#### Enfoque de Resolución
-Estas incógnitas se abordarán mediante:
-1. **Fase de descubrimiento inicial:** Sesiones de trabajo con operadores y responsables de Rhenus para mapear procesos actuales
-2. **Desarrollo iterativo:** El MVP se irá ajustando según el conocimiento adquirido durante el proyecto
-3. **Colaboración continua:** Comunicación frecuente con el equipo de Rhenus para validar supuestos y ajustar la solución
 
 ---
 
-## 2. Alcance de la Solución
+**Métricas de optimización:**
 
-### 2.1. Visión General del Sistema
+| KPI | Descripción |
+|-----|-------------|
+| **% de matching import-export exitoso** | Porcentaje de contenedores de import reutilizados directamente para export (sin retorno a terminal) |
+| **Viajes evitados** | Número de viajes de retorno a terminal y recogidas desde terminal eliminados |
+| **Reducción de kilómetros totales** | Kilómetros ahorrados por matching directo vs. ruta tradicional |
+| **Reducción de km en vacío** | Kilómetros específicamente evitados de transporte de contenedores vacíos |
+| **Tiempo de inactividad** | Tiempo promedio que un contenedor permanece inactivo entre operaciones |
+| **Tasa de utilización** | Porcentaje de tiempo que contenedores están en uso activo vs. inactivos |
+
+---
+
+**Métricas de adopción:**
+
+| KPI | Descripción |
+|-----|-------------|
+| **% de aceptación de sugerencias** | Porcentaje de recomendaciones aceptadas vs. rechazadas por operadores |
+| **Tiempo de respuesta** | Tiempo medio de respuesta a las recomendaciones |
+| **Motivos de rechazo** | Análisis de razones para mejora continua del algoritmo |
+
+---
+
+**Métricas de impacto económico y ambiental:**
+
+| KPI | Descripción |
+|-----|-------------|
+| **Ahorro de costes** | Ahorro estimado en costes de reposicionamiento |
+| **Reducción CO₂** | Reducción estimada de emisiones de carbono |
+| **ROI proyectado** | Retorno de inversión del sistema |
+
+#### 1.6.3. Dashboard analítico
+Interface visual que consolide toda la información relevante para la toma de decisiones y evaluación del sistema.
+
+### 1.7. Supuestos e incógnitas del proyecto
+
+> **⚠️ Importante:** Es importante reconocer que existen aspectos del proceso actual de Rhenus que aún deben ser definidos y que se resolverán durante la ejecución del proyecto.
+
+---
+
+#### Incógnitas a resolver
+
+| Área | Preguntas pendientes |
+|------|---------------------|
+| **Procedimiento actual de asignación** | • ¿Cómo gestiona actualmente Rhenus la asignación de contenedores a rutas?<br>• ¿Qué criterios se utilizan?<br>• ¿Quiénes son los responsables?<br>• ¿Qué herramientas se utilizan? |
+| **Reglas de negocio específicas** | • ¿Qué restricciones existen?<br>• ¿Hay prioridades de clientes?<br>• ¿Qué acuerdos comerciales afectan la asignación de contenedores? |
+| **Fuentes de datos existentes** | • ¿Qué datos están disponibles actualmente?<br>• ¿En qué formato están?<br>• ¿Cuál es el nivel de calidad de los datos? |
+| **Procesos de coordinación** | • ¿Cómo se coordinan las diferentes delegaciones?<br>• ¿Cómo se gestionan los modos de transporte? |
+
+---
+
+#### Enfoque de resolución
+
+Estas incógnitas se abordarán mediante:
+
+| Fase | Actividades |
+|------|-------------|
+| **Fase de descubrimiento inicial** | Sesiones de trabajo con operadores y responsables de Rhenus para mapear procesos actuales |
+| **Desarrollo iterativo** | El MVP se irá ajustando según el conocimiento adquirido durante el proyecto |
+| **Colaboración continua** | Comunicación frecuente con el equipo de Rhenus para validar supuestos y ajustar la solución |
+
+---
+
+## 2. Alcance de la solución
+
+### 2.1. Visión general del sistema
 
 El MVP consistirá en una **plataforma web de apoyo a la decisión** que permita a los operadores de Rhenus Logistics optimizar el uso de contenedores mediante recomendaciones inteligentes basadas en IA. El sistema incluirá capacidades de análisis, visualización y gestión de datos maestros.
 
-### 2.2. Componentes Principales
+### 2.2. Componentes principales
 
 El sistema estará compuesto por los siguientes módulos:
 
-1. **Motor de Ingesta de Datos**
-   - Monitorización automática de inbox de correo electrónico
-   - Extracción automática de datos de PDFs mediante **LLMs multimodales**:
-     - Análisis visual de documentos PDF
-     - Extracción y estructuración de datos en formato estándar (JSON)
-     - Procesamiento de órdenes de import/export
-     - Procesamiento de llegadas de contenedores (vacíos o llenos) vía tren a terminales ferroviarias (Noain, Agoncillo, Miranda)
-   - Procesamiento en tiempo real o near-real-time
-   - Sistema de validación para detección de inconsistencias y alucinaciones del modelo
-   - Alertas en caso de errores o baja confianza en la extracción
-   - Actualización automática de stock en depots con base en información de llegadas validada (diferenciando entre contenedores vacíos y llenos)
+---
 
-2. **Motor de Optimización y Recomendaciones**
-   - Algoritmos de matching inteligente import-export
-   - Optimización multiobjetivo (coste, tiempo, emisiones CO2, disponibilidad)
-   - Predicción de demanda futura de contenedores
-   - Cálculo de rutas multimodales óptimas (TRAIN + TRUCK)
-   - Generación de nivel de confianza para cada recomendación
+#### 1. Motor de ingesta de datos
 
-3. **Interface de Usuario Web Responsive**
-   - Accesible desde navegadores en desktop y tablets
-   - Gestión de recomendaciones (revisión, aceptación/rechazo)
-   - Visualización de órdenes activas y planificadas
-   - Gestión de datos maestros
+**Funcionalidades:**
+- Monitorización automática de inbox de correo electrónico
+- Extracción automática de datos de PDFs mediante **LLMs multimodales**:
+  - Análisis visual de documentos PDF
+  - Extracción y estructuración de datos en formato estándar (`JSON`)
+  - Procesamiento de órdenes de import/export
+  - Procesamiento de llegadas de contenedores (vacíos o llenos) vía tren a terminales ferroviarias
+- Procesamiento en tiempo real o near-real-time
+- ✅ Sistema de validación para detección de inconsistencias y alucinaciones del modelo
+- Alertas en caso de errores o baja confianza en la extracción
+- Actualización automática de stock en depots (diferenciando contenedores vacíos y llenos)
 
-4. **Dashboard Analítico**
-   - Visualización de KPIs en tiempo real
-   - Reportes de efectividad del sistema
-   - Análisis de tendencias y patrones
+---
 
-5. **Módulo de Gestión de Datos Maestros**
-   - Administración de contenedores, depots, rutas, clientes, navieras
-   - Configuración de parámetros de optimización
-   - Gestión de usuarios y permisos
+#### 2. Motor de optimización y recomendaciones
 
-### 2.3. Perfiles de Usuario
+**Capacidades:**
+- Algoritmos de matching inteligente import-export
+- Optimización multiobjetivo (coste, tiempo, emisiones CO₂, disponibilidad)
+- Predicción de demanda futura de contenedores
+- Cálculo de rutas multimodales óptimas (`TRAIN` + `TRUCK`)
+- Generación de nivel de confianza para cada recomendación
+
+---
+
+#### 3. Interface de usuario web responsive
+
+**Características:**
+- Accesible desde navegadores en desktop y tablets
+- ✅ Gestión de recomendaciones (revisión, aceptación/rechazo)
+- Visualización de órdenes activas y planificadas
+- Gestión de datos maestros
+
+---
+
+#### 4. Dashboard analítico
+
+**Funcionalidades:**
+- Visualización de KPIs en tiempo real
+- Reportes de efectividad del sistema
+- Análisis de tendencias y patrones
+
+---
+
+#### 5. Módulo de gestión de datos maestros
+
+**Administración de:**
+- Contenedores, terminales, rutas, clientes, navieras
+- Configuración de parámetros de optimización
+- Gestión de usuarios y permisos
+
+### 2.3. Perfiles de usuario
 
 El sistema contemplará diferentes niveles de acceso y funcionalidades según el rol del usuario:
 
-**Nota:** Los perfiles específicos de usuario se definirán con mayor detalle durante la fase de descubrimiento del proyecto.
+> **⚠️ Nota:** Los perfiles específicos de usuario se definirán con mayor detalle durante la fase de descubrimiento del proyecto.
 
-1. **Usuarios con Capacidad de Decisión**
-   - Visualización de recomendaciones de optimización
-   - Aceptación/rechazo de sugerencias con justificación
-   - Consulta de estado de contenedores y rutas
-   - Generación de órdenes de transporte (fuera del sistema, en sus procesos actuales)
+---
 
-2. **Usuarios de Visualización (Solo Lectura)**
-   - Consulta de estado de contenedores
-   - Visualización de rutas planificadas y en curso
-   - Acceso a reportes y dashboards
+#### 1. Usuarios con capacidad de decisión
 
-3. **Administradores del Sistema**
-   - Configuración del inbox de correo
-   - Ajuste de pesos y criterios de optimización
-   - Gestión de datos maestros (contenedores, depots, navieras, clientes, rutas, tarifas)
-   - Administración de usuarios y permisos
-   - Configuración de parámetros del sistema
+| Permiso | Descripción |
+|---------|-------------|
+| **Visualización** | Recomendaciones de optimización |
+| **Gestión** | Aceptación/rechazo de sugerencias con justificación |
+| **Consulta** | Estado de contenedores y rutas |
+| **Ejecución** | Generación de órdenes de transporte (fuera del sistema, en sus procesos actuales) |
 
-### 2.4. Funcionalidades Core
+---
 
-#### 2.4.1. Procesamiento Automático de Datos
+#### 2. Usuarios de visualización (solo lectura)
+
+| Permiso | Descripción |
+|---------|-------------|
+| **Consulta de estado** | Estado de contenedores |
+| **Visualización de rutas** | Rutas planificadas y en curso |
+| **Reportes** | Acceso a reportes y dashboards |
+
+---
+
+#### 3. Administradores del sistema
+
+| Función | Descripción |
+|---------|-------------|
+| **Configuración de inbox** | Setup del correo de ingesta de PDFs |
+| **Optimización** | Ajuste de pesos y criterios de optimización |
+| **Datos maestros** | Gestión de contenedores, terminales, navieras, clientes, rutas, tarifas |
+| **Usuarios** | Administración de usuarios y permisos |
+| **Parámetros** | Configuración de parámetros del sistema |
+
+### 2.4. Funcionalidades core
+
+#### 2.4.1. Procesamiento automático de datos
 
 El sistema procesará dos tipos de PDFs recibidos en el inbox utilizando **LLMs multimodales** para la extracción de información:
 
@@ -399,81 +527,115 @@ El sistema procesará dos tipos de PDFs recibidos en el inbox utilizando **LLMs 
 
 El sistema procesará dos tipos de órdenes con diferentes flujos:
 
-**Órdenes de IMPORT (Contenedor lleno → Cliente → Devolución vacío):**
-- **Extracción de datos mediante LLM multimodal:**
-  - Cliente (destinatario de la mercancía)
-  - Ubicación del cliente (destino de entrega)
-  - Tipo y cantidad de contenedores (22G1, 42G1, 45G1)
-  - Fecha/hora de recogida en Barcelona (terminal marítima)
-  - Fecha/hora estimada de entrega en cliente
-  - Requisitos especiales del contenedor o mercancía
-  - Naviera propietaria del contenedor (Maersk, Hapag-Lloyd, MSC, etc.)
-  - Terminal de devolución preferida (Barcelona, Noain, Agoncillo o Miranda)
-- **Flujo tradicional:** Barcelona (lleno) → TRUCK → Cliente (descarga, vacío) → TRUCK → Terminal (Barcelona o ferroviaria)
-- **Flujo optimizado (con matching):** Barcelona (lleno) → TRUCK → Cliente A (descarga, vacío) → TRUCK → Cliente B export (evita devolución a terminal)
-- **Estado relevante para matching:** Contenedor vacío disponible en ubicación del cliente después de descarga
+---
 
-**Órdenes de EXPORT (Cliente → Contenedor lleno → Barcelona):**
-- **Extracción de datos mediante LLM multimodal:**
-  - Cliente (origen de la mercancía)
-  - Ubicación del cliente (recogida de contenedor vacío)
-  - Tipo y cantidad de contenedores requeridos
-  - Fecha/hora de recogida en cliente
-  - Fecha/hora límite de entrega en Barcelona
-  - Requisitos especiales del contenedor o mercancía
-  - Naviera de destino
-  - Terminal de recogida preferida para contenedor vacío (Barcelona, Noain, Agoncillo o Miranda)
-- **Flujo tradicional:** Terminal (Barcelona o ferroviaria) → TRUCK → Cliente (carga, lleno) → TRUCK → Barcelona
-- **Flujo optimizado (con matching):** Usar contenedor vacío de import cercano en lugar de recoger de terminal
+##### Órdenes de IMPORT (Contenedor lleno → Cliente → Devolución vacío)
 
-**Salida común:**
-- Datos estructurados en formato JSON
-- **Validación:** Detección de inconsistencias y alucinaciones
+**Datos extraídos mediante LLM multimodal:**
+
+| Campo | Descripción |
+|-------|-------------|
+| Cliente | Destinatario de la mercancía |
+| Ubicación del cliente | Destino de entrega |
+| Tipo y cantidad de contenedores | `22G1`, `42G1`, `45G1` |
+| Fecha/hora recogida | En Barcelona (terminal marítima) |
+| Fecha/hora entrega | Estimada en ubicación del cliente |
+| Requisitos especiales | Condiciones del contenedor o mercancía |
+| Naviera propietaria | Maersk, Hapag-Lloyd, MSC, etc. |
+| Terminal de devolución preferida | Barcelona, Noain, Agoncillo o Miranda |
+
+**Flujos operativos:**
+
+```
+Flujo tradicional:
+Barcelona (lleno) → TRUCK → Cliente (descarga, vacío) → TRUCK → Terminal
+
+Flujo optimizado (con matching):
+Barcelona (lleno) → TRUCK → Cliente A (descarga, vacío) → TRUCK → Cliente B export
+```
+
+> **Estado relevante para matching:** Contenedor vacío disponible en ubicación del cliente después de descarga
+
+---
+
+##### Órdenes de EXPORT (Cliente → Contenedor lleno → Barcelona)
+
+**Datos extraídos mediante LLM multimodal:**
+
+| Campo | Descripción |
+|-------|-------------|
+| Cliente | Origen de la mercancía |
+| Ubicación del cliente | Punto de recogida de contenedor vacío |
+| Tipo y cantidad de contenedores | Contenedores requeridos |
+| Fecha/hora recogida | En ubicación del cliente |
+| Fecha/hora límite entrega | En Barcelona (terminal marítima) |
+| Requisitos especiales | Condiciones del contenedor o mercancía |
+| Naviera de destino | Compañía naviera para el envío |
+| Terminal de recogida preferida | Barcelona, Noain, Agoncillo o Miranda |
+
+**Flujos operativos:**
+
+```
+Flujo tradicional:
+Terminal (Barcelona o ferroviaria) → TRUCK → Cliente (carga, lleno) → TRUCK → Barcelona
+
+Flujo optimizado (con matching):
+Usar contenedor vacío de import cercano → TRUCK → Cliente → TRUCK → Barcelona
+```
+
+---
+
+**Salida común del procesamiento:**
+
+- ✅ Datos estructurados en formato `JSON`
+- **Validación:** Detección de inconsistencias y alucinaciones del modelo
 - **Notificaciones:** Alertas a usuarios cuando se requiere intervención manual o validación humana
 
-**B) PDFs de Llegadas de Contenedores Ferroviarios**
+**B) PDFs de llegadas de contenedores ferroviarios**
 
-Estos PDFs contienen información sobre contenedores (tanto **VACÍOS** como **LLENOS**) que llegan mediante TREN desde Barcelona a las terminales ferroviarias.
+Estos PDFs contienen información sobre contenedores (tanto **VACÍOS** como **LLENOS**) que llegan mediante `TREN` desde Barcelona a las terminales ferroviarias.
+
+---
 
 **Contexto de los flujos:**
 
-*Contenedores VACÍOS:*
-1. Contenedores export enviados por mar desde Barcelona
-2. Contenedores vacíos regresan a Barcelona (gestionados por navieras)
-3. Se envían con TREN desde Barcelona a terminales ferroviarias (Noain/Agoncillo/Miranda)
-4. PDF informa de la llegada de contenedores vacíos
-5. Quedan disponibles para nuevas órdenes de export
+| Tipo | Flujo del ciclo |
+|------|-----------------|
+| **Contenedores VACÍOS** | 1. Contenedores export enviados por mar desde Barcelona<br>2. Contenedores vacíos regresan a Barcelona (gestionados por navieras)<br>3. Se envían con `TREN` desde Barcelona a terminales ferroviarias<br>4. PDF informa de la llegada de contenedores vacíos<br>5. ✅ Quedan **disponibles para nuevas órdenes de export** |
+| **Contenedores LLENOS** | 1. Contenedores llenos llegan a Barcelona vía marítima (importación)<br>2. Se envían con `TREN` desde Barcelona a terminales ferroviarias<br>3. PDF informa de la llegada de contenedores llenos<br>4. ✅ **Disponibles para entrega a clientes en la zona** |
 
-*Contenedores LLENOS:*
-1. Contenedores llenos llegan a Barcelona vía marítima (importación)
-2. Se envían con TREN desde Barcelona a terminales ferroviarias (Noain/Agoncillo/Miranda)
-3. PDF informa de la llegada de contenedores llenos
-4. Disponibles para entrega a clientes en la zona
+---
 
-**Extracción de datos mediante LLM multimodal:**
-- Terminal ferroviaria de destino (Noain, Agoncillo o Miranda)
-- Identificación de contenedores
-- Tipo y características de contenedores (22G1, 42G1, 45G1)
-- Fecha y hora de llegada
-- **Estado del contenedor (VACÍO o LLENO)**
-- Naviera propietaria
-- Si está lleno: cliente destinatario o referencia de orden de import
+**Datos extraídos mediante LLM multimodal:**
 
-**Procesamiento:**
-- **Salida:** Datos estructurados en formato JSON
+| Campo | Descripción |
+|-------|-------------|
+| Terminal ferroviaria de destino | Noain, Agoncillo o Miranda |
+| Identificación de contenedores | IDs únicos de los contenedores |
+| Tipo y características | `22G1`, `42G1`, `45G1` |
+| Fecha y hora de llegada | Timestamp de llegada a terminal |
+| **Estado del contenedor** | **VACÍO** o **LLENO** |
+| Naviera propietaria | Compañía propietaria del contenedor |
+| Si está lleno | Cliente destinatario o referencia de orden de import |
+
+---
+
+**Procesamiento y actualización:**
+
+- ✅ **Salida:** Datos estructurados en formato `JSON`
 - **Validación:** Verificación de consistencia de datos extraídos
 - **Actualización de stock:** Actualización automática del inventario en el depot correspondiente según estado:
-  - Contenedores VACÍOS: Disponibles para órdenes de export
-  - Contenedores LLENOS: Pendientes de entrega a clientes
+  - **Contenedores VACÍOS:** Disponibles para órdenes de export
+  - **Contenedores LLENOS:** Pendientes de entrega a clientes
 - **Notificaciones:** Alertas sobre nuevas llegadas y disponibilidad de contenedores
 
-#### 2.4.2. Motor de Recomendaciones de Optimización
+#### 2.4.2. Motor de recomendaciones de optimización
 
 El sistema generará recomendaciones inteligentes de matching import-export para optimizar el uso de contenedores vacíos.
 
-**Tipos de Recomendaciones:**
+**Tipos de recomendaciones:**
 
-**1. Matching Directo Import → Export (Optimización principal):**
+**1. Matching directo import → export (optimización principal):**
 - **Situación detectada:**
   - Orden de IMPORT: Contenedor lleno entregado al Cliente A, después de descarga quedará vacío
   - Orden de EXPORT: Cliente B en ubicación cercana al Cliente A necesita contenedor vacío
@@ -500,7 +662,7 @@ El sistema generará recomendaciones inteligentes de matching import-export para
   - **Detalle:** Se eliminan los viajes Cliente A → Terminal + Terminal → Cliente B
   - **Se añade:** Solo el viaje directo Cliente A → Cliente B (típicamente distancia mucho menor)
 
-**2. Recogida de Contenedor Vacío Optimizada:**
+**2. Recogida de contenedor vacío optimizada:**
 - Cuando no hay matching directo import-export disponible
 - Seleccionar la terminal óptima para recoger contenedor vacío:
   - Barcelona (terminal marítima)
@@ -541,20 +703,20 @@ El sistema podrá operar en tiempo real al recibir nuevas órdenes, generando su
 - ¿Cómo gestionar recomendaciones ya aceptadas pero no ejecutadas cuando llega nueva información?
 - ¿Qué ventana temporal considerar para replanificación?
 
-#### 2.4.3. Gestión de Feedback de Recomendaciones
+#### 2.4.3. Gestión de feedback de recomendaciones
 
 - **Aceptación/Rechazo:** Interface para que usuarios indiquen si aceptan o rechazan cada sugerencia
 - **Motivos de rechazo:** Captura de razones para retroalimentar el modelo
 - **Tracking de ejecución:** Registro de qué recomendaciones aceptadas fueron realmente ejecutadas
 - **Aprendizaje continuo:** Uso del feedback para mejorar futuras recomendaciones
 
-#### 2.4.4. Visualización de Stock y Estado de Contenedores
+#### 2.4.4. Visualización de stock y estado de contenedores
 
 El sistema proporcionará múltiples vistas para entender el estado completo del inventario de contenedores:
 
-**Vista por Estados del Ciclo de Vida:**
+**Vista por estados del ciclo de vida:**
 
-1. **Contenedores en Terminales:**
+1. **Contenedores en terminales:**
    - **Terminales ferroviarias:** Noain, Agoncillo, Miranda
      - Stock actualizado automáticamente con PDFs de llegadas de tren
      - **VACÍOS:** Disponibles para órdenes de export
@@ -565,20 +727,20 @@ El sistema proporcionará múltiples vistas para entender el estado completo del
    - Cantidad por tipo de contenedor (22G1, 42G1, 45G1) y estado en cada ubicación
    - Tiempo de permanencia en terminal
 
-2. **Contenedores Post-Import (Vacíos en ubicaciones de clientes):**
+2. **Contenedores post-import (vacíos en ubicaciones de clientes):**
    - **Vista crítica para matching:** Contenedores que completaron entregas de import
    - Ubicación del cliente donde quedaron vacíos
    - Tiempo transcurrido desde que quedaron vacíos
    - Indicador de proximidad a órdenes de export pendientes
    - Destacado visual de oportunidades de matching
 
-3. **Contenedores en Tránsito:**
+3. **Contenedores en tránsito:**
    - **Import activo:** Llenos desde Barcelona hacia clientes
    - **Export activo:** Desde ubicación origen (terminal o cliente) hacia Barcelona
    - Modo de transporte actual (TRUCK)
    - Progreso estimado de la ruta
 
-**Mapa Geográfico Interactivo:**
+**Mapa geográfico interactivo:**
 - **Terminales con stock de vacíos:**
   - Terminales ferroviarias (Noain, Agoncillo, Miranda) con nivel de stock
   - Barcelona (terminal marítima) con nivel de stock de vacíos devueltos
@@ -587,7 +749,7 @@ El sistema proporcionará múltiples vistas para entender el estado completo del
 - **Visualización de oportunidades:** Líneas conectando contenedores vacíos en clientes con órdenes de export cercanas
 - Rutas activas en tiempo real
 
-**Filtros y Búsquedas:**
+**Filtros y búsquedas:**
 - Por tipo de contenedor (22G1=20'DV, 42G1=40'DV, 45G1=40'HC)
 - Por ubicación (Barcelona, Noain, Agoncillo, Miranda, ubicaciones de clientes)
 - Por estado (vacío en terminal, vacío en cliente, lleno en tránsito, etc.)
@@ -595,7 +757,7 @@ El sistema proporcionará múltiples vistas para entender el estado completo del
 - Por propietario/naviera
 - Por edad (tiempo desde última operación)
 
-#### 2.4.5. Dashboard y Métricas
+#### 2.4.5. Dashboard y métricas
 
 Paneles visuales con los KPIs definidos en la sección 1.6.2:
 - Métricas de optimización
@@ -604,219 +766,322 @@ Paneles visuales con los KPIs definidos en la sección 1.6.2:
 - Gráficos de tendencias temporales
 - Comparativas antes/después de usar el sistema
 
-### 2.5. Gestión de Datos Maestros
+### 2.5. Gestión de datos maestros
 
 El sistema permitirá administrar la siguiente información:
 
-**Nota:** Durante el proyecto se definirá qué datos son verdaderamente maestros (editables) y cuáles son paramétricos de solo lectura.
-
-1. **Contenedores**
-   - Inventario completo
-   - **Tipos de contenedores (códigos ISO):**
-     - **22G1:** 20'DV (20 pies Dry Van)
-     - **42G1:** 40'DV (40 pies Dry Van)
-     - **45G1:** 40'HC (40 pies High Cube)
-   - Capacidades y características por tipo
-   - Naviera dueña de cada contenedor (campo crítico para todas las operaciones)
-   - Estado actual:
-     - Vacío en terminal (Barcelona o ferroviarias: Noain/Agoncillo/Miranda) - disponible para export
-     - Vacío en ubicación de cliente post-import (candidato para matching)
-     - Lleno en tránsito import (Barcelona → Cliente)
-     - En tránsito export (Cliente/Terminal → Barcelona)
-     - En tránsito devolución (Cliente → Terminal con vacío)
-     - En mantenimiento
-   - Ubicación actual (terminal o cliente)
-   - Historial de operaciones (última import/export)
-
-2. **Depots/Terminales**
-   - **Barcelona:** Terminal marítima (puerto)
-     - Recepción de contenedores llenos de importación
-     - Almacenamiento de contenedores vacíos devueltos de operaciones import
-     - Envío de contenedores llenos de exportación
-   - **Noain, Agoncillo, Miranda:** Terminales ferroviarias
-     - Recepción de contenedores vía TREN desde Barcelona (vacíos o llenos)
-     - Almacenamiento de contenedores vacíos disponibles para export
-     - Almacenamiento de contenedores llenos pendientes de entrega a clientes (import)
-   - Capacidades de almacenamiento por ubicación
-   - Tipos de contenedores soportados en cada terminal
-   - Costes de almacenamiento
-   - Operadores y horarios de operación
-
-3. **Clientes**
-   - Información de clientes (nombre, identificación)
-   - **Ubicaciones geográficas** (crítico para cálculo de proximidad y matching)
-   - Coordenadas GPS o dirección completa
-   - Tipos de contenedores que manejan habitualmente
-   - Restricciones o requisitos especiales
-   - Historial de operaciones import/export
-
-4. **Rutas y Tarifas**
-   - Costes de transporte TRUCK:
-     - Entre terminales (Barcelona ↔ Noain/Agoncillo/Miranda)
-     - Entre terminales y ubicaciones de clientes
-     - Entre ubicaciones de clientes (para matching import-export)
-   - Tiempos estimados de tránsito por modo:
-     - **TRAIN:** Rutas ferroviarias entre Barcelona y terminales ferroviarias
-     - **TRUCK:** Rutas por carretera (terminales, clientes)
-   - Restricciones de capacidad por modo de transporte
-   - Frecuencias de servicio ferroviario
-   - Matriz de distancias para cálculo de proximidad
-
-5. **Navieras**
-   - Las navieras son las **ÚNICAS propietarias** de los contenedores
-   - Principales navieras: Maersk, Hapag-Lloyd, Mediterranean Shipping Company, etc.
-   - Acuerdos comerciales con Rhenus
-   - Condiciones de uso de contenedores
-   - Políticas de reposicionamiento de cada naviera
-   - Restricciones específicas por naviera
-   - Tarifas por uso de contenedores
-   - Tiempos de free time (tiempo gratuito de uso)
-
-6. **Parámetros de Optimización**
-   - Pesos para los diferentes criterios (coste, tiempo, CO2)
-   - **Radio máximo de matching:** Distancia máxima entre cliente import y cliente export para considerar matching directo
-   - **Ventana temporal de matching:** Tiempo máximo entre disponibilidad de contenedor vacío y necesidad de export
-   - Restricciones de negocio
-   - Umbrales de alertas
-   - Configuración del motor de IA
-
-### 2.6. Aspectos Técnicos Clave
-
-- **Arquitectura:** Cloud-native, escalable y modular
-- **Disponibilidad:** Alta disponibilidad durante horario laboral
-- **Rendimiento:** Procesamiento de órdenes en near-real-time (< 5 minutos desde recepción)
-- **Seguridad:** Autenticación, autorización basada en roles, cifrado de datos sensibles
-- **Trazabilidad:** Auditoría completa de acciones de usuarios y decisiones del sistema
-
-### 2.7. Funcionalidades Fuera de Alcance del MVP
-
-Para mantener el foco en la validación del concepto, las siguientes funcionalidades quedan **explícitamente fuera del alcance** de este MVP:
-
-- Integración automática con sistemas externos (ERP, TMS existente, sistemas de navieras)
-- Generación automática de órdenes de transporte
-- Aplicación móvil nativa
-- Tracking GPS en tiempo real de contenedores
-- Integración con IoT/sensores
-- Módulo de facturación
-- Portal de clientes externos
-- APIs públicas para terceros
+> **⚠️ Nota:** Durante el proyecto se definirá qué datos son verdaderamente maestros (editables) y cuáles son paramétricos de solo lectura.
 
 ---
 
-## 3. Arquitectura Técnica Propuesta
+#### 1. Contenedores
 
-### 3.1. Visión General de la Arquitectura
+**Tipos de contenedores (códigos ISO):**
+
+| Código ISO | Descripción | Dimensiones |
+|------------|-------------|-------------|
+| `22G1` | 20'DV | 20 pies Dry Van |
+| `42G1` | 40'DV | 40 pies Dry Van |
+| `45G1` | 40'HC | 40 pies High Cube |
+
+**Información del contenedor:**
+
+| Atributo | Descripción |
+|----------|-------------|
+| Inventario completo | Registro de todos los contenedores disponibles |
+| Capacidades y características | Especificaciones técnicas por tipo |
+| **Naviera dueña** | Campo **crítico** - propietario del contenedor (Maersk, Hapag-Lloyd, MSC, etc.) |
+| Ubicación actual | Terminal (Barcelona, Noain, Agoncillo, Miranda) o cliente |
+| Historial de operaciones | Última import/export realizada |
+
+**Estados posibles del contenedor:**
+
+| Estado | Descripción | Disponibilidad |
+|--------|-------------|----------------|
+| **Vacío en terminal** | Barcelona o ferroviarias (Noain/Agoncillo/Miranda) | ✅ Disponible para export |
+| **Vacío en cliente post-import** | En ubicación del cliente tras descarga | ✅ Candidato para matching |
+| **Lleno en tránsito import** | Barcelona → Cliente | En operación |
+| **En tránsito export** | Cliente/Terminal → Barcelona | En operación |
+| **En tránsito devolución** | Cliente → Terminal (vacío) | En retorno |
+| **En mantenimiento** | Fuera de servicio | ❌ No disponible |
+
+#### 2. Depots/terminales
+
+| Terminal | Tipo | Funcionalidades |
+|----------|------|-----------------|
+| **Barcelona** | Terminal marítima (puerto) | • Recepción de contenedores llenos de importación<br>• Almacenamiento de contenedores vacíos devueltos de operaciones import<br>• Envío de contenedores llenos de exportación |
+| **Noain, Agoncillo, Miranda** | Terminales ferroviarias | • Recepción de contenedores vía `TREN` desde Barcelona (vacíos o llenos)<br>• Almacenamiento de contenedores vacíos disponibles para export<br>• Almacenamiento de contenedores llenos pendientes de entrega a clientes (import) |
+
+**Información adicional por terminal:**
+- Capacidades de almacenamiento por ubicación
+- Tipos de contenedores soportados en cada terminal
+- Costes de almacenamiento
+- Operadores y horarios de operación
+
+---
+
+#### 3. Clientes
+
+| Atributo | Descripción | Criticidad |
+|----------|-------------|------------|
+| Información básica | Nombre, identificación | Obligatorio |
+| **Ubicaciones geográficas** | Coordenadas GPS o dirección completa | **Crítico** para cálculo de proximidad y matching |
+| Tipos de contenedores habituales | Contenedores que maneja regularmente | Recomendado |
+| Restricciones especiales | Requisitos específicos del cliente | Opcional |
+| Historial de operaciones | Registro de import/export previas | Analítica |
+
+---
+
+#### 4. Rutas y tarifas
+
+**Costes de transporte `TRUCK`:**
+
+| Ruta | Descripción |
+|------|-------------|
+| Entre terminales | Barcelona ↔ Noain/Agoncillo/Miranda |
+| Terminal → Cliente | Desde terminales a ubicaciones de clientes |
+| Cliente → Cliente | Para matching import-export directo |
+
+**Tiempos estimados de tránsito:**
+
+| Modo | Aplicación |
+|------|------------|
+| `TRAIN` | Rutas ferroviarias entre Barcelona y terminales ferroviarias |
+| `TRUCK` | Rutas por carretera (terminales, clientes) |
+
+**Información adicional:**
+- Restricciones de capacidad por modo de transporte
+- Frecuencias de servicio ferroviario
+- Matriz de distancias para cálculo de proximidad
+
+---
+
+#### 5. Navieras
+
+> **⚠️ Importante:** Las navieras son las **ÚNICAS propietarias** de los contenedores
+
+**Principales navieras:**
+- Maersk
+- Hapag-Lloyd
+- Mediterranean Shipping Company (MSC)
+- Otros operadores internacionales
+
+**Información gestionada:**
+
+| Aspecto | Descripción |
+|---------|-------------|
+| Acuerdos comerciales | Contratos con Rhenus |
+| Condiciones de uso | Políticas de uso de contenedores |
+| Políticas de reposicionamiento | Restricciones específicas por naviera |
+| Tarifas por uso | Costes de utilización de contenedores |
+| Free time | Tiempo gratuito de uso del contenedor |
+
+---
+
+#### 6. Parámetros de optimización
+
+**Pesos de criterios de optimización:**
+
+| Criterio | Propósito |
+|----------|-----------|
+| Coste | Minimizar costes operativos |
+| Tiempo | Optimizar tiempos de tránsito |
+| CO₂ | Reducir emisiones de carbono |
+
+**Parámetros de matching:**
+
+| Parámetro | Descripción |
+|-----------|-------------|
+| **Radio máximo de matching** | Distancia máxima entre cliente import y cliente export para considerar matching directo |
+| **Ventana temporal de matching** | Tiempo máximo entre disponibilidad de contenedor vacío y necesidad de export |
+
+**Otros parámetros:**
+- Restricciones de negocio específicas
+- Umbrales de alertas y notificaciones
+- Configuración del motor de IA (confidence threshold, etc.)
+
+### 2.6. Aspectos técnicos clave
+
+| Aspecto | Especificación |
+|---------|----------------|
+| **Arquitectura** | Cloud-native, escalable y modular |
+| **Disponibilidad** | Alta disponibilidad durante horario laboral |
+| **Rendimiento** | Procesamiento de órdenes en near-real-time (< 5 minutos desde recepción) |
+| **Seguridad** | Autenticación, autorización basada en roles (RBAC), cifrado de datos sensibles |
+| **Trazabilidad** | Auditoría completa de acciones de usuarios y decisiones del sistema |
+
+### 2.7. Funcionalidades fuera de alcance del MVP
+
+> Para mantener el foco en la validación del concepto, las siguientes funcionalidades quedan **explícitamente fuera del alcance** de este MVP:
+
+| Categoría | Funcionalidades excluidas |
+|-----------|---------------------------|
+| **Integraciones** | • Integración automática con sistemas externos (ERP, TMS existente, sistemas de navieras)<br>• Generación automática de órdenes de transporte<br>• APIs públicas para terceros |
+| **Aplicaciones móviles** | • Aplicación móvil nativa |
+| **Tracking y sensores** | • Tracking GPS en tiempo real de contenedores<br>• Integración con IoT/sensores |
+| **Funcionalidades adicionales** | • Módulo de facturación<br>• Portal de clientes externos |
+
+---
+
+## 3. Arquitectura técnica propuesta
+
+### 3.1. Visión general de la arquitectura
 
 El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Cloud Platform (GCP)**, combinando servicios de Firebase para desarrollo rápido con componentes especializados desplegados en GCP. El enfoque es **serverless-first** para minimizar overhead operativo y costes en la fase de MVP.
 
-### 3.2. Stack Tecnológico
+### 3.2. Stack tecnológico
 
-#### 3.2.1. Cloud Provider
-- **Google Cloud Platform (GCP)** como proveedor principal
-- Aprovechar el ecosistema integrado de servicios de Google
+#### 3.2.1. Cloud provider
+
+| Componente | Tecnología |
+|------------|------------|
+| **Proveedor principal** | `Google Cloud Platform (GCP)` |
+| **Ventaja clave** | Ecosistema integrado de servicios de Google |
+
+---
 
 #### 3.2.2. Frontend
-- **Framework:** Vite + React + TypeScript
-  - Vite para builds rápidos y desarrollo ágil
-  - React para UI componentes
-  - TypeScript para type safety y mejor mantenibilidad
-- **Hosting:** Firebase Hosting
-  - CDN global
-  - SSL automático
-  - Despliegue simple y rápido
+
+| Componente | Tecnología | Beneficio |
+|------------|------------|-----------|
+| **Framework** | `Vite` + `React` + `TypeScript` | Builds rápidos, componentes reutilizables, type safety |
+| **Hosting** | `Firebase Hosting` | CDN global, SSL automático, despliegue simple |
+
+**Stack detallado:**
+- **Vite:** Builds rápidos y desarrollo ágil con HMR optimizado
+- **React:** Framework UI maduro con ecosistema rico
+- **TypeScript:** Type safety y mejor mantenibilidad del código
+
+---
 
 #### 3.2.3. Backend
-- **Node.js Cloud Functions** para lógica de negocio ligera:
-  - Procesamiento de webhooks/eventos
-  - Orquestación de servicios
-  - APIs REST para frontend
-  - Integraciones con servicios externos
-- **Serverless:** Escala automáticamente según demanda
 
-#### 3.2.4. Motor de Optimización
-- **Lenguaje:** Java
-- **Framework:** Timefold (evolución de OptaPlanner)
-  - Constraint-based optimization
-  - Ideal para problemas de routing y scheduling
-  - Soporte para optimización multiobjetivo
-  - Algoritmos avanzados de búsqueda local
-- **Deployment:** Cloud Run
-  - Contenedor serverless
-  - Escala automáticamente
-  - Pago por uso (solo cuando se ejecutan optimizaciones)
-  - Aislamiento del motor de optimización
+**`Node.js Cloud Functions`** para lógica de negocio ligera
 
-#### 3.2.5. Machine Learning / Predicción (Si Necesario)
-- **Lenguaje:** Python
-- **Despliegue:** Cloud Functions o Cloud Run
-- **Uso:** Predicción de demanda de contenedores si se implementa
+**Funcionalidades:**
+- Procesamiento de webhooks/eventos
+- Orquestación de servicios
+- APIs REST para frontend
+- Integraciones con servicios externos
 
-#### 3.2.6. LLM Multimodal para Extracción de PDFs
-- **Modelo:** Google Gemini
-- **Plataforma:** Vertex AI
-- **Ventajas:**
-  - Nativo en GCP, integración perfecta
-  - Modelo multimodal (procesa imágenes de PDFs)
-  - Coste-efectivo para MVP
-  - Baja latencia al estar en mismo cloud provider
-- **Uso:** Análisis y extracción de datos de PDFs
+**Ventaja:** Serverless - Escala automáticamente según demanda
 
-#### 3.2.7. Base de Datos Relacional
-- **PostgreSQL con Firebase Data Connect**
-- **Ventajas:**
-  - Modelo relacional para datos estructurados
-  - Integridad referencial (foreign keys, constraints)
-  - Queries SQL complejas para analytics
-  - Integración con ecosistema Firebase
-  - ACID compliant
-- **Schema principal:**
-  - Contenedores, Terminales, Clientes, Navieras
-  - Órdenes (import/export)
-  - Llegadas ferroviarias
-  - Recomendaciones generadas
-  - Historial de feedback de usuarios
+---
 
-#### 3.2.8. Base de Datos NoSQL para UI
-- **Firebase Firestore**
-- **Uso:**
-  - Datos paramétricos de UI (configuración de interfaz)
-  - Preferencias de usuario
-  - Configuraciones de visualización
-  - Datos de sesión
-  - Cache de datos frecuentes para UI
-- **Ventajas:**
-  - Sincronización en tiempo real con frontend
-  - Flexibilidad de esquema para parámetros de UI
-  - Latencia muy baja para consultas de configuración
-  - Integración directa con React
+#### 3.2.4. Motor de optimización
 
-#### 3.2.9. Cloud Functions Adicionales para UI
-- **Node.js Cloud Functions** adicionales para soporte de interfaz:
-  - APIs de configuración de UI
-  - Endpoints para gestión de preferencias de usuario
-  - Servicios de transformación de datos para visualización
-  - Agregación de datos para dashboards
-  - Webhooks para notificaciones en tiempo real
+| Aspecto | Tecnología/Detalle |
+|---------|-------------------|
+| **Lenguaje** | `Java` |
+| **Framework** | `Timefold` (evolución de OptaPlanner) |
+| **Deployment** | `Cloud Run` (contenedor serverless) |
+| **Ventajas** | • Constraint-based optimization<br>• Ideal para problemas de routing y scheduling<br>• Optimización multiobjetivo<br>• Algoritmos avanzados de búsqueda local<br>• Pago por uso (solo cuando se ejecutan optimizaciones) |
 
-#### 3.2.10. Almacenamiento de Archivos
-- **Cloud Storage**
-- **Uso:**
-  - Almacenamiento de PDFs originales
-  - Archivos procesados
-  - Logs de procesamiento
-  - Backups
+---
 
-#### 3.2.11. Autenticación y Autorización
-- **Firebase Authentication**
-- **Soporte:**
-  - Email/password
-  - Integración SSO si Rhenus lo requiere
-  - Role-based access control (RBAC)
-  - Tokens JWT para APIs
+#### 3.2.5. Machine learning / predicción (si necesario)
 
-### 3.3. Flujos de Datos Principales
+| Aspecto | Tecnología |
+|---------|------------|
+| **Lenguaje** | `Python` |
+| **Despliegue** | `Cloud Functions` o `Cloud Run` |
+| **Uso** | Predicción de demanda de contenedores (si se implementa) |
 
-#### 3.3.1. Flujo de Ingesta de PDFs
+---
+
+#### 3.2.6. LLM multimodal para extracción de PDFs
+
+**`Google Gemini` vía `Vertex AI`**
+
+**Ventajas:**
+
+| Ventaja | Descripción |
+|---------|-------------|
+| ✅ Nativo en GCP | Integración perfecta con el ecosistema |
+| 👁️ Multimodal | Procesa imágenes de PDFs directamente |
+| 💰 Coste-efectivo | Optimizado para MVP |
+| ⚡ Baja latencia | Mismo cloud provider |
+
+**Uso:** Análisis visual y extracción de datos estructurados de PDFs
+
+---
+
+#### 3.2.7. Base de datos relacional
+
+**`PostgreSQL` con `Firebase Data Connect`**
+
+**Ventajas:**
+- ✅ Modelo relacional para datos estructurados
+- 🔒 Integridad referencial (foreign keys, constraints)
+- 📊 Queries SQL complejas para analytics
+- 🔗 Integración con ecosistema Firebase
+- ⚙️ ACID compliant
+
+**Schema principal:**
+- Contenedores, Terminales, Clientes, Navieras
+- Órdenes (import/export)
+- Llegadas ferroviarias
+- Recomendaciones generadas
+- Historial de feedback de usuarios
+
+---
+
+#### 3.2.8. Base de datos NoSQL para UI
+
+**`Firebase Firestore`**
+
+**Uso:**
+- Datos paramétricos de UI (configuración de interfaz)
+- Preferencias de usuario
+- Configuraciones de visualización
+- Datos de sesión
+- Cache de datos frecuentes para UI
+
+**Ventajas:**
+- ⚡ Sincronización en tiempo real con frontend
+- 🔄 Flexibilidad de esquema para parámetros de UI
+- ⏱️ Latencia muy baja para consultas de configuración
+- 🔗 Integración directa con React
+
+---
+
+#### 3.2.9. Cloud functions adicionales para UI
+
+**`Node.js Cloud Functions`** adicionales para soporte de interfaz:
+
+- APIs de configuración de UI
+- Endpoints para gestión de preferencias de usuario
+- Servicios de transformación de datos para visualización
+- Agregación de datos para dashboards
+- Webhooks para notificaciones en tiempo real
+
+---
+
+#### 3.2.10. Almacenamiento de archivos
+
+**`Cloud Storage`**
+
+**Uso:**
+- Almacenamiento de PDFs originales
+- ✅ Archivos procesados
+- Logs de procesamiento
+- Backups
+
+---
+
+#### 3.2.11. Autenticación y autorización
+
+**`Firebase Authentication`**
+
+**Soporte:**
+- Email/password
+- Integración SSO si Rhenus lo requiere
+- Role-based access control (RBAC)
+- Tokens JWT para APIs
+
+### 3.3. Flujos de datos principales
+
+#### 3.3.1. Flujo de ingesta de PDFs
 1. **Email llega al inbox** configurado por Rhenus
 2. **Trigger:** Pub/Sub (preferentemente, sujeto a configuración de inbox de Rhenus)
 3. **Cloud Function (Ingestion Service)** procesa evento:
@@ -837,7 +1102,7 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
    - Si la validación es exitosa, se dispara automáticamente el Flujo 3.3.2
    - Permite generar recomendaciones inmediatamente con los nuevos datos
 
-#### 3.3.2. Flujo de Generación de Recomendaciones
+#### 3.3.2. Flujo de generación de recomendaciones
 1. **Triggers posibles:**
    - **Automático:** Tras procesamiento exitoso de PDFs (Flujo 3.3.1)
    - **Manual:** Solicitud explícita de operador desde UI
@@ -854,7 +1119,7 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
 4. **Almacenamiento de recomendaciones** en PostgreSQL
 5. **Notificación a frontend** vía API
 
-#### 3.3.3. Flujo de Feedback de Usuario
+#### 3.3.3. Flujo de feedback de usuario
 1. Usuario acepta/rechaza recomendación en frontend
 2. API call a Cloud Function
 3. Actualización en PostgreSQL:
@@ -862,37 +1127,47 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
    - Motivo de rechazo (si aplica)
 4. (Futuro) Datos de feedback para reentrenamiento del modelo
 
-### 3.4. Escalabilidad y Rendimiento
+### 3.4. Escalabilidad y rendimiento
 
-- **Serverless-first:** Todos los componentes escalan automáticamente
-- **Cloud Run para Timefold:** Escala de 0 a N instancias según demanda
-- **Cloud Functions:** Concurrencia automática
-- **PostgreSQL:** Escalado vertical inicialmente, lectura réplicas si necesario
-- **Cloud Storage:** Escalado ilimitado
-- **CDN (Firebase Hosting):** Baja latencia global
+| Componente | Estrategia de escalabilidad |
+|------------|----------------------------|
+| **Arquitectura general** | Serverless-first - Todos los componentes escalan automáticamente |
+| **Motor de optimización** | Cloud Run para Timefold - Escala de 0 a N instancias según demanda |
+| **Backend** | Cloud Functions con concurrencia automática |
+| **Base de datos** | PostgreSQL - Escalado vertical inicialmente, réplicas de lectura si necesario |
+| **Almacenamiento** | Cloud Storage - Escalado ilimitado |
+| **Frontend** | CDN (Firebase Hosting) - Baja latencia global |
+
+---
 
 ### 3.5. Seguridad
 
-- **Autenticación:** Firebase Auth con JWT tokens
-- **Autorización:** RBAC implementado en backend
-- **Datos en tránsito:** HTTPS/TLS obligatorio
-- **Datos en reposo:** Cifrado automático en Cloud Storage y PostgreSQL
-- **Secrets:** Google Secret Manager para API keys, credentials
-- **Auditoría:** Logging de todas las acciones de usuarios
+| Aspecto | Implementación |
+|---------|----------------|
+| **Autenticación** | Firebase Auth con JWT tokens |
+| **Autorización** | RBAC implementado en backend |
+| **Datos en tránsito** | HTTPS/TLS obligatorio |
+| **Datos en reposo** | Cifrado automático en Cloud Storage y PostgreSQL |
+| **Secrets** | Google Secret Manager para API keys y credenciales |
+| **Auditoría** | Logging completo de todas las acciones de usuarios |
 
-### 3.6. Consideraciones de Implementación
+---
 
-- **Desarrollo iterativo:** Priorizar funcionalidades core del MVP
-- **Infraestructura como código:** Terraform o Firebase CLI para despliegues reproducibles
-- **CI/CD:** GitHub Actions o Cloud Build para automatizar despliegues
-- **Monitoring:** Cloud Monitoring + Cloud Logging para observabilidad
-- **Costes:** Modelo pay-per-use minimiza costes en fase MVP
+### 3.6. Consideraciones de implementación
 
-### 3.7. Diagramas de Arquitectura
+| Área | Enfoque |
+|------|---------|
+| **Desarrollo** | Iterativo - Priorizar funcionalidades core del MVP |
+| **Infraestructura** | IaC con Terraform o Firebase CLI para despliegues reproducibles |
+| **CI/CD** | GitHub Actions o Cloud Build para automatizar despliegues |
+| **Monitoring** | Cloud Monitoring + Cloud Logging para observabilidad completa |
+| **Costes** | Modelo pay-per-use minimiza costes en fase MVP |
+
+### 3.7. Diagramas de arquitectura
 
 Esta sección presenta diagramas técnicos que ilustran la arquitectura del sistema y los flujos de información principales.
 
-#### 3.7.1. Diagrama C4 de Contenedores
+#### 3.7.1. Diagrama C4 de contenedores
 
 El siguiente diagrama muestra los contenedores (componentes de alto nivel) del sistema, sus responsabilidades y relaciones:
 
@@ -920,11 +1195,11 @@ El siguiente diagrama muestra los contenedores (componentes de alto nivel) del s
 
 **Flujo de datos clave:** El Ingestion Service procesa PDFs y notifica al API Backend, que coordina la invocación del Motor de Optimización. Esto permite activación automática (tras ingesta), manual (desde UI) o periódica (Cloud Scheduler) de la generación de recomendaciones.
 
-#### 3.7.2. Diagramas de Secuencia - Flujos de Información
+#### 3.7.2. Diagramas de secuencia - flujos de información
 
 Los siguientes diagramas ilustran los tres flujos principales del sistema de forma independiente para facilitar su comprensión:
 
-##### Flujo 1: Ingesta de PDFs y Extracción de Datos
+##### Flujo 1: ingesta de PDFs y extracción de datos
 
 Este diagrama muestra el proceso completo desde que llega un email con PDF hasta que se dispara automáticamente la optimización:
 
@@ -939,7 +1214,7 @@ Este diagrama muestra el proceso completo desde que llega un email con PDF hasta
 - **Trigger automático:** Si la validación es exitosa, dispara automáticamente el Flujo 2 de optimización
 - **Revisión manual:** PDFs con validación fallida requieren intervención humana
 
-##### Flujo 2: Generación de Recomendaciones de Optimización
+##### Flujo 2: generación de recomendaciones de optimización
 
 Este diagrama detalla cómo el motor Timefold genera recomendaciones de matching import-export:
 
@@ -958,7 +1233,7 @@ Este diagrama detalla cómo el motor Timefold genera recomendaciones de matching
 - **Almacenamiento:** Guarda recomendaciones en PostgreSQL con estado "PENDING"
 - **Notificación:** Avisa a operadores conectados sobre nuevas recomendaciones disponibles
 
-##### Flujo 3: Operación de Operadores Rhenus
+##### Flujo 3: operación de operadores Rhenus
 
 Este diagrama ilustra la interacción de los operadores con el sistema:
 
@@ -974,11 +1249,11 @@ Este diagrama ilustra la interacción de los operadores con el sistema:
 
 ---
 
-## 4. Tecnologías y Herramientas
+## 4. Tecnologías y herramientas
 
 Esta sección consolida el stack tecnológico completo del proyecto, incluyendo herramientas de desarrollo, testing y gestión de proyecto.
 
-### 4.1. Plataforma Cloud y Servicios Core
+### 4.1. Plataforma cloud y servicios core
 
 | Categoría | Tecnología | Propósito |
 |-----------|-----------|-----------|
@@ -1013,7 +1288,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Testing Backend | Jest + Supertest | Unit tests y integration tests |
 | Linter/Format | ESLint + Prettier | Código consistente y de calidad |
 
-### 4.4. Motor de Optimización
+### 4.4. Motor de optimización
 
 | Categoría | Tecnología | Justificación |
 |-----------|-----------|---------------|
@@ -1023,7 +1298,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Containerización | Docker | Despliegue en Cloud Run |
 | Testing | JUnit 5 + Mockito | Unit tests para lógica de optimización |
 
-### 4.5. Bases de Datos
+### 4.5. Bases de datos
 
 | Categoría | Tecnología | Uso Principal |
 |-----------|-----------|---------------|
@@ -1031,7 +1306,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | BBDD NoSQL | Cloud Firestore | Datos paramétricos de UI, configuraciones, preferencias |
 | Cache (Futuro) | Cloud Memorystore (Redis) | Cache de resultados de optimización si necesario |
 
-### 4.6. Almacenamiento y Mensajería
+### 4.6. Almacenamiento y mensajería
 
 | Categoría | Tecnología | Uso |
 |-----------|-----------|-----|
@@ -1039,7 +1314,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Pub/Sub | Cloud Pub/Sub | Procesamiento asíncrono de emails con PDFs |
 | Email Processing | Pub/Sub + Cloud Functions | Ingesta automática desde inbox de Rhenus |
 
-### 4.7. Autenticación, Seguridad y Secrets
+### 4.7. Autenticación, seguridad y secrets
 
 | Categoría | Tecnología | Propósito |
 |-----------|-----------|-----------|
@@ -1049,7 +1324,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | SSL/TLS | Automático (Firebase Hosting + Cloud Run) | Cifrado en tránsito |
 | Cifrado en Reposo | Automático (GCP default encryption) | Protección de datos almacenados |
 
-### 4.8. Observabilidad y Monitoring
+### 4.8. Observabilidad y monitoring
 
 | Categoría | Tecnología | Uso |
 |-----------|-----------|-----|
@@ -1069,7 +1344,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Containerización | Docker | Empaquetado del motor de optimización |
 | Container Registry | Artifact Registry | Almacenamiento de imágenes Docker |
 
-### 4.10. Herramientas de Desarrollo
+### 4.10. Herramientas de desarrollo
 
 | Categoría | Tecnología | Propósito |
 |-----------|-----------|-----------|
@@ -1078,7 +1353,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | DB Management | DBeaver o pgAdmin | Gestión de PostgreSQL |
 | Colaboración | Slack o Microsoft Teams | Comunicación del equipo |
 
-### 4.11. Testing y Calidad
+### 4.11. Testing y calidad
 
 | Categoría | Frontend | Backend | Motor Optimización |
 |-----------|----------|---------|-------------------|
@@ -1088,7 +1363,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Formatting | Prettier | Prettier | Google Java Format |
 | Coverage | Vitest/Jest coverage | Jest coverage | JaCoCo |
 
-### 4.12. Gestión de Proyecto
+### 4.12. Gestión de proyecto
 
 | Categoría | Herramienta Propuesta | Uso |
 |-----------|----------------------|-----|
@@ -1097,7 +1372,7 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 | Diagramas | Miro o Lucidchart | Diagramas de arquitectura, flujos |
 | Design (UI/UX) | Figma | Diseño de interfaces y prototipos |
 
-### 4.13. Librerías y Frameworks Adicionales Clave
+### 4.13. Librerías y frameworks adicionales clave
 
 #### Frontend
 - **react-router-dom:** Navegación SPA
@@ -1113,13 +1388,13 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 - **zod:** Validación de schemas TypeScript-first
 - **winston o pino:** Logging estructurado
 
-#### Java (Motor Optimización)
+#### Java (motor optimización)
 - **Timefold Solver:** Core de optimización constraint-based
 - **Jackson:** Serialización/deserialización JSON
 - **Lombok:** Reducción de boilerplate
 - **SLF4J + Logback:** Logging
 
-### 4.14. Costes Estimados de Infraestructura Cloud (MVP)
+### 4.14. Costes estimados de infraestructura cloud (MVP)
 
 **Nota:** Los costes exactos dependerán del volumen de uso real. A continuación, estimaciones conservadoras para un MVP con carga moderada:
 
@@ -1144,9 +1419,9 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 
 ---
 
-## 5. Riesgos y Mitigación
+## 5. Riesgos y mitigación
 
-### 5.1. Metodología de Gestión de Riesgos
+### 5.1. Metodología de gestión de riesgos
 
 Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos:
 
@@ -1158,7 +1433,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 5.2. Riesgos Técnicos
+### 5.2. Riesgos técnicos
 
 | # | Riesgo | Probabilidad | Impacto | Mitigación | Plan de Contingencia |
 |---|--------|--------------|---------|------------|----------------------|
@@ -1171,7 +1446,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 5.3. Riesgos de Proyecto
+### 5.3. Riesgos de proyecto
 
 | # | Riesgo | Probabilidad | Impacto | Mitigación | Plan de Contingencia |
 |---|--------|--------------|---------|------------|----------------------|
@@ -1184,7 +1459,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 5.4. Riesgos de Negocio
+### 5.4. Riesgos de negocio
 
 | # | Riesgo | Probabilidad | Impacto | Mitigación | Plan de Contingencia |
 |---|--------|--------------|---------|------------|----------------------|
@@ -1195,7 +1470,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 5.5. Riesgos de Seguridad y Cumplimiento
+### 5.5. Riesgos de seguridad y cumplimiento
 
 | # | Riesgo | Probabilidad | Impacto | Mitigación | Plan de Contingencia |
 |---|--------|--------------|---------|------------|----------------------|
@@ -1205,9 +1480,9 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 5.6. Matriz de Riesgos (Probabilidad × Impacto)
+### 5.6. Matriz de riesgos (probabilidad × impacto)
 
-**Riesgos Críticos (Alta prioridad de atención):**
+**Riesgos críticos (alta prioridad de atención):**
 - **T1:** Precisión LLM insuficiente
 - **T5:** Integración inbox email
 - **P1:** Disponibilidad stakeholders
@@ -1216,19 +1491,19 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 - **N3:** Complejidad operativa
 - **S1:** Breach de datos
 
-**Riesgos Altos (Monitoreo continuo):**
+**Riesgos altos (monitoreo continuo):**
 - **T2:** Variabilidad formatos PDFs
 - **T3:** Performance Timefold
 - **P2:** Scope creep
 - **P4:** Rotación personal
 - **N2:** ROI no cumplido
 
-**Riesgos Medios (Seguimiento periódico):**
+**Riesgos medios (seguimiento periódico):**
 - **T4, T6, P5, P6, N4, S2, S3**
 
 ---
 
-### 5.7. Plan de Comunicación de Riesgos
+### 5.7. Plan de comunicación de riesgos
 
 **Frecuencia de revisión:**
 - **Semanal:** Revisión rápida de riesgos críticos en reunión con Rhenus
@@ -1247,7 +1522,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 
 ---
 
-### 5.8. Lecciones Aprendidas y Mejora Continua
+### 5.8. Lecciones aprendidas y mejora continua
 
 Al final de cada fase y del proyecto completo:
 
