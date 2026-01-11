@@ -66,7 +66,7 @@ Rel(api_functions, web_app, "Notifica eventos en tiempo real", "WebSocket/SSE")
 Rel(optimization_engine, postgres_db, "Lee contexto de órdenes y stock", "SQL")
 Rel(optimization_engine, postgres_db, "Almacena recomendaciones generadas", "SQL")
 
-Rel(gemini_ai, postgres_db, "Valida datos extraídos contra maestros", "SQL (via Cloud Function)")
+Rel(gemini_ai, cloud_storage, "Obtiene PDFs para extracción", "SDK")
 
 SHOW_LEGEND()
 
