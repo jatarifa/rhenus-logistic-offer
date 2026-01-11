@@ -186,7 +186,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - **Arquitecto/Tech Lead**: 264h asignadas, dedicación flexible con presencia en TODOS los sprints para code review y QA
 - **Senior Dev**: 348h usadas de 480h disponibles (40h/sem × 12 sem) = **+132h buffer (27.5%)**
 - **Developer**: 348h usadas de 480h disponibles (40h/sem × 12 sem) = **+132h buffer (27.5%)**
-- **Buffer total: 264h (27.5% del proyecto) **
+- **Buffer total: 264h (27.5% del proyecto)**
 
 ---
 
