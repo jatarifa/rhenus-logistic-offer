@@ -809,52 +809,73 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 
 **Arquitecto/Tech Lead (264h - flexible, pico 40h/semana en Sprint 3):**
 - **Liderazgo técnico en TODOS los sprints**: Code review continuo, control de calidad, gestión técnica del proyecto
+- Discovery y análisis (Sprint 0: 12h + 12h + 4h = 28h)
 - Arquitectura técnica y diseño del sistema (Sprint 0: 24h)
-- Setup de infraestructura GCP (Firebase, Vertex AI, Cloud Run - Sprint 0: 16h)
+- Setup de infraestructura GCP (Firebase, Vertex AI, Cloud Run - Sprint 0: 12h)
 - API Gateway y autenticación (Sprint 1: 16h)
+- Code review y Tech Lead (Sprint 1: 8h)
 - Integración con Google Gemini (Vertex AI) para extracción de PDFs (Sprint 2: 32h)
 - Sistema de validación anti-alucinaciones (Sprint 2: 16h)
-- **Motor de optimización Timefold (Java) - algoritmo core crítico (Sprint 3: 76h técnico + 4h Tech Lead)**
+- **Motor de optimización Timefold (Java) - algoritmo core crítico (Sprint 3: 80h total incluyendo Tech Lead)**
 - Algoritmo de matching import-export y cálculo de rutas
-- Testing del motor de optimización (Sprint 5: 24h)
-- Training a usuarios de Rhenus (Sprint 5)
-- **Code review y QA en TODOS los sprints**:
-  - Sprint 0: 64h (setup + arquitectura)
-  - Sprint 1: 24h (16h API Gateway + 8h Tech Lead)
+- Code review frontend + QA integración (Sprint 4: 24h)
+- Testing del motor de optimización (Sprint 5: 20h)
+- Training a usuarios de Rhenus (Sprint 5: 4h)
+- **Totales por sprint**:
+  - Sprint 0: 64h (discovery + arquitectura + setup)
+  - Sprint 1: 24h (API Gateway + code review)
   - Sprint 2: 48h (Gemini + validación)
-  - Sprint 3: 80h (Motor Timefold + Tech Lead)
+  - Sprint 3: 80h (Motor Timefold completo)
   - Sprint 4: 24h (Code review frontend + QA integración + validación performance)
-  - Sprint 5: 24h (Testing + QA final)
+  - Sprint 5: 24h (Testing + training)
 
 **Senior Developer Full-Stack (348h - dedicación completa 40h/semana):**
 - **Liderazgo técnico del equipo de desarrollo frontend**
-- Setup de repositorios y CI/CD (Sprint 0: 16h)
-- Prototipo UI/UX básico (Sprint 0: 8h)
+- Setup de repositorios y CI/CD (Sprint 0: 20h)
+- Ambiente de desarrollo local (Sprint 0: 12h)
+- Prototipo UI/UX básico (Sprint 0: 16h)
 - **Setup completo de proyecto frontend** (Sprint 1: 14h)
 - **Sistema de componentes base React/TypeScript** (Sprint 1: 24h)
-- Frontend principal: React + TypeScript + Vite, sistema de componentes, UI/UX
 - Pantallas de gestión de datos maestros (Sprint 1: 30h)
 - UI completa de ingesta de PDFs (Sprint 2: 56h - órdenes, revisión manual, dashboard)
-- UI de recomendaciones completa (Sprint 4: 62h - dashboard, detalle, aceptación/rechazo)
+- Frontend integration para optimización (Sprint 3: 18h + 14h + 8h = 40h)
+- UI de recomendaciones completa (Sprint 4: 68h - dashboard, detalle, aceptación/rechazo, filtros)
 - Dashboard analítico con KPIs (Sprint 5: 48h - optimización, adopción, impacto)
 - Testing E2E de frontend (Sprint 5: 16h)
 - Documentación de usuario (Sprint 5: 4h)
 - **Code reviews y pair programming con Developer**
 - Soporte backend cuando necesario (full-stack)
+- **Totales por sprint**:
+  - Sprint 0: 48h (setup completo)
+  - Sprint 1: 68h (frontend base)
+  - Sprint 2: 56h (UI ingesta)
+  - Sprint 3: 40h (integración frontend optimización)
+  - Sprint 4: 68h (UI recomendaciones)
+  - Sprint 5: 68h (dashboard + testing + docs)
 
 **Developer Full-Stack (348h - dedicación completa 40h/semana):**
-- Validación de datos maestros y modelo de datos
-- **APIs de datos maestros** (CRUD contenedores, terminales, clientes, navieras)
-- **APIs de órdenes** (import, export, ferrocarril)
-- Sistema de recepción de emails y procesamiento de PDFs
-- Almacenamiento y notificaciones
-- **APIs de orquestación de optimización**
-- APIs de gestión de recomendaciones
-- Visualización de stock y contenedores
-- Mapa geográfico interactivo (Google Maps) compartido
-- Testing de APIs backend e ingesta de PDFs
-- Documentación técnica
+- Validación de datos maestros (Sprint 0: 20h)
+- Modelo de datos inicial (Sprint 0: 28h)
+- **APIs de datos maestros** (Sprint 1: 30h - CRUD contenedores, terminales, clientes, navieras)
+- **APIs de órdenes** (Sprint 1: 30h - import, export, ferrocarril)
+- Integración con APIs backend (Sprint 1: 8h)
+- Sistema de recepción de emails y procesamiento de PDFs (Sprint 2: 24h)
+- Almacenamiento y notificaciones (Sprint 2: 24h)
+- APIs de soporte para UI de ingesta (Sprint 2: 8h)
+- **Backend de orquestación de optimización** (Sprint 3: 18h + 14h + 8h = 40h)
+- Visualización de stock y contenedores (Sprint 4: 20h + 14h + 28h = 62h)
+- Trigger manual de optimización (Sprint 4: 6h)
+- Testing de APIs backend (Sprint 5: 24h)
+- Testing de ingesta de PDFs (Sprint 5: 24h)
+- Documentación técnica (Sprint 5: 20h)
 - Soporte frontend cuando necesario (full-stack)
+- **Totales por sprint**:
+  - Sprint 0: 48h (validación + modelo datos)
+  - Sprint 1: 68h (APIs maestros + órdenes)
+  - Sprint 2: 56h (ingesta PDFs + almacenamiento)
+  - Sprint 3: 40h (backend optimización)
+  - Sprint 4: 68h (visualización stock)
+  - Sprint 5: 68h (testing + documentación)
 
 **Data Scientist (OPCIONAL - NO en MVP):**
 - Solo se involucraría en funcionalidades de forecasting/ML
