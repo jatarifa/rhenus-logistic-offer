@@ -177,30 +177,16 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 | **Sprint 0** | 1-2 | 64h (32h/sem) | 48h (24h/sem) | 48h (24h/sem) | 160h | Discovery, Arquitectura, Setup GCP, Modelo datos |
 | **Sprint 1** | 3-4 | 24h (12h/sem) | 68h (34h/sem) | 68h (34h/sem) | 160h | APIs backend, Frontend base, UI maestros + Tech Lead review |
 | **Sprint 2** | 5-6 | 48h (24h/sem) | 56h (28h/sem) | 56h (28h/sem) | 160h | Gemini LLM, Ingesta PDFs, UI ingesta + Tech Lead |
-| **Sprint 3** | 7-8 | 80h (40h/sem) ⚠️ | 40h (20h/sem) | 40h (20h/sem) | 160h | Motor Timefold crítico + Tech Lead/QA |
-| **Sprint 4** | 9-10 | 24h (12h/sem) ✅ | 68h (34h/sem) | 68h (34h/sem) | 160h | UI recomendaciones, Mapa + Tech Lead review crítico |
+| **Sprint 3** | 7-8 | 80h (40h/sem) | 40h (20h/sem) | 40h (20h/sem) | 160h | Motor Timefold crítico + Tech Lead/QA |
+| **Sprint 4** | 9-10 | 24h (12h/sem) | 68h (34h/sem) | 68h (34h/sem) | 160h | UI recomendaciones, Mapa + Tech Lead review crítico |
 | **Sprint 5** | 11-12 | 24h (12h/sem) | 68h (34h/sem) | 68h (34h/sem) | 160h | Dashboard KPIs, Testing, Docs, Launch + QA |
 | **TOTAL** | **12 sem** | **264h** | **348h** | **348h** | **960h** | **MVP Completo** |
-
-**Notas sobre distribución:**
-- **Sprint 0**: Arq 32h/sem (setup crítico, arquitectura, discovery) | Devs 24h/sem (setup, datos maestros)
-- **Sprint 1**: Arq 12h/sem (API Gateway + Tech Lead review continuo) | Devs 34h/sem (APIs backend + Frontend base + UI maestros)
-- **Sprint 2**: Arq 24h/sem (Gemini LLM + validación + Tech Lead) | Devs 28h/sem (APIs + UI ingesta)
-- **Sprint 3**: Arq 40h/sem ⚠️ (Motor Timefold crítico + Tech Lead/QA) | Devs 20h/sem (APIs orquestación)
-- **Sprint 4**: Arq 12h/sem ✅ (Tech Lead review crítico + QA integración) | Devs 34h/sem (UI recomendaciones + Mapa)
-- **Sprint 5**: Arq 12h/sem (Testing motor + docs + Tech Lead QA final) | Devs 34h/sem (Testing, documentación, launch)
-
-**Asignaciones que exceden 40h/semana:**
-- **Arquitecto/Tech Lead**: Sprint 3 con 40h/sem ⚠️ (límite exacto - Motor Timefold crítico requiere foco intenso + Tech Lead)
-- **Senior Dev**: Todos los sprints dentro del límite de 40h/sem ✅
-- **Developer**: Todos los sprints dentro del límite de 40h/sem ✅
-- **NINGÚN ROL EXCEDE 40h/semana** ✅
 
 **Disponibilidad y buffer:**
 - **Arquitecto/Tech Lead**: 264h asignadas, dedicación flexible con presencia en TODOS los sprints para code review y QA
 - **Senior Dev**: 348h usadas de 480h disponibles (40h/sem × 12 sem) = **+132h buffer (27.5%)**
 - **Developer**: 348h usadas de 480h disponibles (40h/sem × 12 sem) = **+132h buffer (27.5%)**
-- **Buffer total: 264h (27.5% del proyecto) - EXCELENTE MARGEN**
+- **Buffer total: 264h (27.5% del proyecto) **
 
 ---
 
