@@ -201,7 +201,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Mapeo de flujos operativos actuales (import, export, tren)
 - Identificación de roles y perfiles de usuario
 - Validación de supuestos de la oferta técnica
-- **Esfuerzo**: 24 horas-persona
+- **Esfuerzo**: 12 horas-persona
 - **Responsable**: Arquitecto + PO
 
 ##### 1.1.2 Análisis de PDFs de ejemplo
@@ -209,7 +209,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Recopilación de PDFs de llegadas ferroviarias
 - Análisis de estructura y variabilidad de formatos
 - Documentación de campos críticos a extraer
-- **Esfuerzo**: 16 horas-persona
+- **Esfuerzo**: 12 horas-persona
 - **Responsable**: Arquitecto
 
 ##### 1.1.3 Validación de datos maestros
@@ -218,7 +218,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Lista de clientes con ubicaciones GPS
 - Información de navieras y restricciones
 - Matriz de distancias y costes de transporte
-- **Esfuerzo**: 16 horas-persona
+- **Esfuerzo**: 20 horas-persona
 - **Responsable**: Developer
 
 ##### 1.1.4 Definición de reglas de negocio específicas
@@ -226,7 +226,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Políticas de free time y devolución
 - Prioridades de clientes
 - Criterios de matching (radio máximo, ventana temporal)
-- **Esfuerzo**: 8 horas-persona
+- **Esfuerzo**: 4 horas-persona
 - **Responsable**: Arquitecto + Rhenus stakeholders
 
 #### 1.2 Arquitectura y setup de proyecto
@@ -247,7 +247,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Configuración de Cloud Storage buckets
 - Setup de PostgreSQL (Firebase Data Connect)
 - Configuración de IAM y permisos
-- **Esfuerzo**: 16 horas-persona
+- **Esfuerzo**: 12 horas-persona
 - **Responsable**: Arquitecto
 
 ##### 1.2.3 Setup de repositorios y CI/CD
@@ -256,7 +256,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - GitHub Actions para CI/CD
 - Pipelines de build/test/deploy
 - Configuración de linters (ESLint, Prettier)
-- **Esfuerzo**: 16 horas-persona
+- **Esfuerzo**: 20 horas-persona
 - **Responsable**: Senior Dev
 
 ##### 1.2.4 Ambiente de desarrollo local
@@ -264,7 +264,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - PostgreSQL local para desarrollo
 - Configuración de variables de entorno
 - Documentación de setup para nuevos developers
-- **Esfuerzo**: 8 horas-persona
+- **Esfuerzo**: 12 horas-persona
 - **Responsable**: Senior Dev
 
 ##### 1.2.5 Modelo de datos inicial
@@ -273,7 +273,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Tablas para Recommendations, Feedback
 - Migraciones de base de datos (schema versioning)
 - Scripts de seed data para desarrollo
-- **Esfuerzo**: 24 horas-persona
+- **Esfuerzo**: 28 horas-persona
 - **Responsable**: Developer
 
 ##### 1.2.6 Prototipo de UI/UX básico
@@ -281,7 +281,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Flujos de navegación
 - Sistema de diseño básico (colores, tipografía, componentes)
 - Aprobación de diseño con Rhenus
-- **Esfuerzo**: 8 horas-persona
+- **Esfuerzo**: 16 horas-persona
 - **Responsable**: Senior Dev
 
 ---
@@ -406,8 +406,15 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - **Esfuerzo**: 24 horas-persona
 - **Responsable**: Developer
 
+##### 3.1.5 APIs de soporte para UI de ingesta
+- Endpoint para obtener métricas de procesamiento
+- Endpoint para historial de procesamiento
+- APIs de consulta de logs de ingesta
+- **Esfuerzo**: 8 horas-persona
+- **Responsable**: Developer
+
 #### 3.2 UI de gestión de ingesta
-**Esfuerzo: 64 horas-persona**
+**Esfuerzo: 56 horas-persona**
 
 ##### 3.2.1 Pantalla de órdenes procesadas
 - Lista de órdenes import/export
@@ -423,14 +430,14 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Comparación lado a lado: PDF vs datos extraídos
 - Interface para corrección manual
 - Aprobación/rechazo de datos extraídos
-- **Esfuerzo**: 24 horas-persona
+- **Esfuerzo**: 20 horas-persona
 - **Responsable**: Senior Dev
 
 ##### 3.2.3 Dashboard de ingesta
 - Métricas de procesamiento (PDFs/día, tasa de éxito)
 - Gráfico de evolución temporal
 - Alertas de errores de procesamiento
-- **Esfuerzo**: 16 horas-persona
+- **Esfuerzo**: 12 horas-persona
 - **Responsable**: Senior Dev
 
 ---
@@ -510,27 +517,39 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Recopilación de contexto (órdenes, stock, parámetros)
 - Invocación del motor Timefold (Cloud Run)
 - Almacenamiento de recomendaciones en PostgreSQL
-- **Esfuerzo**: 36 horas-persona
+- **Esfuerzo**: 18 horas-persona
 - **Responsable**: Developer
 
-##### 4.2.2 APIs de gestión de recomendaciones
+##### 4.2.2 Cloud Function de orquestación
+- Cliente HTTP para invocar APIs de orquestación
+- Manejo de respuestas y estados
+- Error handling y retry logic
+- **Esfuerzo**: 18 horas-persona
+- **Responsable**: Senior Dev
+
+##### 4.2.3 APIs de gestión de recomendaciones
 - Endpoint para listar recomendaciones (filtros, paginación)
 - Endpoint para aceptar recomendación
 - Endpoint para rechazar recomendación (con motivo)
 - Endpoint para obtener detalle de recomendación
-- Actualización de estado de órdenes según feedback
-- **Esfuerzo**: 28 horas-persona
+- **Esfuerzo**: 14 horas-persona
 - **Responsable**: Developer
 
-##### 4.2.3 Sistema de notificaciones
+##### 4.2.4 APIs de gestión de recomendaciones
+- Integración con APIs de backend
+- Actualización de estado de órdenes según feedback
+- Gestión de estado local de recomendaciones
+- **Esfuerzo**: 14 horas-persona
+- **Responsable**: Senior Dev
+
+##### 4.2.5 Sistema de notificaciones
 - Notificación a usuarios conectados sobre nuevas recomendaciones
 - Notificación de finalización de proceso de optimización
 - **Esfuerzo**: 8 horas-persona
 - **Responsable**: Developer
 
-##### 4.2.4 Soporte UI básico de recomendaciones
+##### 4.2.6 Soporte UI básico de recomendaciones
 - Componente React básico para listado de recomendaciones
-- Integración con APIs de 4.2.2
 - Manejo de estados de carga y errores
 - **Esfuerzo**: 8 horas-persona
 - **Responsable**: Senior Dev
@@ -682,7 +701,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Tests de cálculo de rutas
 - Tests de scoring
 - Validación con datos reales de Rhenus
-- **Esfuerzo**: 24 horas-persona
+- **Esfuerzo**: 20 horas-persona
 - **Responsable**: Arquitecto
 
 ##### 6.2.2 Testing de APIs backend
@@ -698,7 +717,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Tests de validación anti-alucinaciones
 - Tests de casos edge (PDFs malformados)
 - Tests de actualización de stock
-- **Esfuerzo**: 16 horas-persona
+- **Esfuerzo**: 24 horas-persona
 - **Responsable**: Developer
 
 ##### 6.2.4 Testing E2E de frontend
@@ -717,7 +736,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Documentación de APIs (Swagger/OpenAPI)
 - Guía de deployment
 - Guía de troubleshooting
-- **Esfuerzo**: 12 horas-persona
+- **Esfuerzo**: 20 horas-persona
 - **Responsable**: Developer
 
 ##### 6.3.2 Documentación de usuario
@@ -731,7 +750,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Sesión de training a operadores
 - Sesión de training a administradores
 - Q&A y feedback inicial
-- **Esfuerzo**: 8 horas-persona
+- **Esfuerzo**: 4 horas-persona
 - **Responsable**: Arquitecto + PO
 
 #### 6.4 Beta privada y launch
