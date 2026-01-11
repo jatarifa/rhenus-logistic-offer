@@ -439,7 +439,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 **Sprint 3 | Semanas 7-8 | Esfuerzo: 160 horas-persona**
 
 #### 4.1 Motor de optimización con Timefold
-**Esfuerzo: 112 horas-persona**
+**Esfuerzo: 80 horas-persona**
 
 ##### 4.1.1 Setup de proyecto Java + Timefold
 - Proyecto Maven/Gradle
@@ -455,7 +455,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Definición de Planning Variable (contenedor asignado)
 - Constraints hard (compatibilidad de contenedores, disponibilidad)
 - Constraints soft (coste, tiempo, CO2, distancia)
-- **Esfuerzo**: 32 horas-persona
+- **Esfuerzo**: 20 horas-persona
 - **Responsable**: Arquitecto
 
 ##### 4.1.3 Algoritmo de matching import-export
@@ -464,7 +464,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Validación de ventana temporal
 - Validación de compatibilidad de tipos de contenedores
 - Validación de restricciones de navieras
-- **Esfuerzo**: 32 horas-persona
+- **Esfuerzo**: 20 horas-persona
 - **Responsable**: Arquitecto
 
 ##### 4.1.4 Cálculo de rutas multimodales (TRUCK)
@@ -473,7 +473,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Cálculo de tiempos de tránsito
 - Cálculo de emisiones de CO2
 - Comparación ruta tradicional vs. optimizada
-- **Esfuerzo**: 16 horas-persona
+- **Esfuerzo**: 14 horas-persona
 - **Responsable**: Arquitecto
 
 ##### 4.1.5 Generación de recomendaciones con scoring
@@ -490,11 +490,19 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Push a Artifact Registry
 - Deployment a Cloud Run
 - Configuración de auto-scaling
-- **Esfuerzo**: 8 horas-persona
+- **Esfuerzo**: 6 horas-persona
+- **Responsable**: Arquitecto
+
+##### 4.1.7 Code review y Tech Lead QA
+- Code review del motor de optimización
+- Validación de constraints y algoritmos
+- Testing de performance del solver
+- Control de calidad del código Java
+- **Esfuerzo**: 4 horas-persona
 - **Responsable**: Arquitecto
 
 #### 4.2 API de orquestación de optimización
-**Esfuerzo: 72 horas-persona**
+**Esfuerzo: 80 horas-persona**
 
 ##### 4.2.1 Cloud Function de orquestación
 - Endpoint para trigger manual de optimización
@@ -502,7 +510,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Recopilación de contexto (órdenes, stock, parámetros)
 - Invocación del motor Timefold (Cloud Run)
 - Almacenamiento de recomendaciones en PostgreSQL
-- **Esfuerzo**: 32 horas-persona
+- **Esfuerzo**: 36 horas-persona
 - **Responsable**: Developer
 
 ##### 4.2.2 APIs de gestión de recomendaciones
@@ -511,7 +519,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Endpoint para rechazar recomendación (con motivo)
 - Endpoint para obtener detalle de recomendación
 - Actualización de estado de órdenes según feedback
-- **Esfuerzo**: 32 horas-persona
+- **Esfuerzo**: 28 horas-persona
 - **Responsable**: Developer
 
 ##### 4.2.3 Sistema de notificaciones
@@ -520,13 +528,20 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - **Esfuerzo**: 8 horas-persona
 - **Responsable**: Developer
 
+##### 4.2.4 Soporte UI básico de recomendaciones
+- Componente React básico para listado de recomendaciones
+- Integración con APIs de 4.2.2
+- Manejo de estados de carga y errores
+- **Esfuerzo**: 8 horas-persona
+- **Responsable**: Senior Dev
+
 ---
 
 ### 5.0 FASE 4: UI & Integration
 **Sprint 4 | Semanas 9-10 | Esfuerzo: 160 horas-persona**
 
 #### 5.1 Pantallas de recomendaciones
-**Esfuerzo: 80 horas-persona**
+**Esfuerzo: 68 horas-persona**
 
 ##### 5.1.1 Dashboard principal de recomendaciones
 - Lista de recomendaciones pendientes
@@ -534,7 +549,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Ahorro estimado (coste, km, CO2)
 - Filtros (tipo de matching, fecha, cliente, score)
 - Ordenamiento (por score, por ahorro, por fecha)
-- **Esfuerzo**: 24 horas-persona
+- **Esfuerzo**: 20 horas-persona
 - **Responsable**: Senior Dev
 
 ##### 5.1.2 Vista detalle de recomendación
@@ -543,7 +558,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Mapa con visualización de ruta propuesta
 - Detalles de contenedores involucrados
 - Justificación del algoritmo
-- **Esfuerzo**: 32 horas-persona
+- **Esfuerzo**: 28 horas-persona
 - **Responsable**: Senior Dev
 
 ##### 5.1.3 Interface de aceptación/rechazo
@@ -552,18 +567,18 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Motivos predefinidos (cliente no disponible, timing incompatible, etc.)
 - Campo de comentario adicional
 - Actualización inmediata de estado en UI
-- **Esfuerzo**: 16 horas-persona
+- **Esfuerzo**: 14 horas-persona
 - **Responsable**: Senior Dev
 
 ##### 5.1.4 Botón de trigger manual de optimización
 - Botón para solicitar nueva optimización
 - Loading state durante procesamiento
 - Feedback de finalización
-- **Esfuerzo**: 8 horas-persona
-- **Responsable**: Senior Dev
+- **Esfuerzo**: 6 horas-persona
+- **Responsable**: Developer
 
 #### 5.2 Visualización de stock y contenedores
-**Esfuerzo: 80 horas-persona**
+**Esfuerzo: 68 horas-persona**
 
 ##### 5.2.1 Vista de stock en terminales
 - Stock de contenedores en Barcelona (vacíos, llenos)
@@ -571,16 +586,16 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Clasificación por tipo de contenedor (22G1, 42G1, 45G1)
 - Clasificación por estado (vacío disponible, lleno pendiente)
 - Filtros por terminal, tipo, naviera
-- **Esfuerzo**: 24 horas-persona
-- **Responsable**: Senior Dev
+- **Esfuerzo**: 20 horas-persona
+- **Responsable**: Developer
 
 ##### 5.2.2 Vista de contenedores post-import
 - Lista de contenedores vacíos en ubicaciones de clientes
 - Tiempo desde que quedaron vacíos
 - Indicador de proximidad a órdenes export
 - Destacado de oportunidades de matching potenciales
-- **Esfuerzo**: 16 horas-persona
-- **Responsable**: Senior Dev
+- **Esfuerzo**: 14 horas-persona
+- **Responsable**: Developer
 
 ##### 5.2.3 Mapa geográfico interactivo
 - Integración de Google Maps API
@@ -589,15 +604,42 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Pins de clientes con órdenes export pendientes
 - Líneas conectando oportunidades de matching
 - Rutas activas en tiempo real (opcional, nice-to-have)
-- **Esfuerzo**: 32 horas-persona
-- **Responsable**: Senior Dev
+- **Esfuerzo**: 28 horas-persona
+- **Responsable**: Developer
 
 ##### 5.2.4 Filtros y búsqueda
 - Buscador de contenedores por ID
 - Filtros por tipo, estado, ubicación, naviera
 - Filtros por edad (tiempo inactivo)
-- **Esfuerzo**: 8 horas-persona
+- **Esfuerzo**: 6 horas-persona
 - **Responsable**: Senior Dev
+
+#### 5.3 Tech Lead review crítico + QA integración
+**Esfuerzo: 24 horas-persona**
+
+##### 5.3.1 Code review de frontend completo
+- Revisión exhaustiva del código React/TypeScript
+- Validación de componentes y arquitectura frontend
+- Verificación de mejores prácticas y patrones
+- Control de calidad del código
+- **Esfuerzo**: 12 horas-persona
+- **Responsable**: Arquitecto
+
+##### 5.3.2 QA de integración UI-backend
+- Testing de integración completa frontend-backend
+- Validación de flujos end-to-end
+- Verificación de manejo de errores
+- Testing de rendimiento de la aplicación
+- **Esfuerzo**: 8 horas-persona
+- **Responsable**: Arquitecto
+
+##### 5.3.3 Validación de arquitectura y performance
+- Revisión de arquitectura general del sistema
+- Análisis de performance y optimizaciones necesarias
+- Validación de escalabilidad
+- Recomendaciones de mejora
+- **Esfuerzo**: 4 horas-persona
+- **Responsable**: Arquitecto
 
 ---
 
