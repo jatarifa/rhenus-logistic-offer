@@ -32,9 +32,84 @@ El reposicionamiento de contenedores vacíos representa uno de los mayores desaf
 - **Tiempo inactivo:** El contenedor promedio pasa casi el 50% de su vida útil inactivo
 - **Origen:** Desequilibrio en el comercio exterior (mercados orientados a importación vs exportación)
 
-Rhenus Logistics actualmente dispone de un sistema TMS que no cubre adecuadamente la optimización del uso de contenedores vacíos, generando:
-- Costes innecesarios de reposicionamiento
-- Retornos a terminal de contenedores que podrían utilizarse directamente
+#### Flujos Operativos de Contenedores en Rhenus
+
+**Nota:** Los flujos descritos a continuación están sujetos a confirmación con el cliente durante la fase de descubrimiento.
+
+**Flujo IMPORT tradicional (Contenedor lleno → Cliente → Devolución vacío):**
+1. Contenedor **LLENO** llega a terminal marítima de Barcelona
+2. Se recibe orden de import en PDF
+3. TRUCK recoge contenedor lleno en Barcelona
+4. TRUCK transporta contenedor a ubicación del cliente
+5. Cliente descarga mercancía (contenedor queda **VACÍO**)
+6. TRUCK devuelve contenedor vacío a terminal (puede ser Barcelona o terminal ferroviaria: Noain, Agoncillo, Miranda)
+
+**Flujo EXPORT (Contenedor vacío → Cliente → Puerto):**
+1. Se recibe orden de export en PDF
+2. TRUCK recoge contenedor **VACÍO** de una terminal (Barcelona o terminales ferroviarias: Noain, Agoncillo, Miranda)
+3. TRUCK transporta contenedor vacío a ubicación del cliente
+4. Cliente carga mercancía (contenedor queda **LLENO**)
+5. TRUCK transporta contenedor lleno a terminal marítima de Barcelona
+6. Contenedor se entrega en Barcelona para su envío marítimo
+
+**Ciclo de Distribución de Contenedores vía TREN:**
+1. Contenedores llegan a Barcelona vía marítima (import o contenedores vacíos de retorno)
+2. Contenedores se envían mediante **TREN** desde Barcelona a terminales ferroviarias (Noain, Agoncillo, Miranda)
+3. Se recibe PDF con información de contenedores que llegan a terminales ferroviarias
+4. Actualización de stock según estado:
+   - **Contenedores VACÍOS:** Disponibles para nuevas órdenes de export
+   - **Contenedores LLENOS:** Pendientes de entrega a clientes en la zona (import)
+
+#### El Problema de Ineficiencia Actual y el Valor del Reposicionamiento Inteligente
+
+**Situación SIN optimización (flujo tradicional separado):**
+
+*Para una operación IMPORT + EXPORT de clientes cercanos:*
+
+**Import (Cliente A):**
+1. Barcelona → Cliente A con contenedor **lleno** (TRUCK)
+2. Cliente A descarga
+3. **Cliente A → Terminal con contenedor VACÍO** (TRUCK - viaje de devolución a Barcelona o terminal ferroviaria)
+
+**Export (Cliente B cercano al Cliente A):**
+4. **Terminal → Cliente B con contenedor VACÍO** (TRUCK - viaje de recogida desde Barcelona o terminal ferroviaria)
+5. Cliente B carga
+6. Cliente B → Barcelona con contenedor **lleno** (TRUCK)
+
+**Total: 6 viajes**, de los cuales:
+- 2 viajes útiles con carga (1 lleno import, 1 lleno export)
+- **4 viajes con contenedores vacíos o retornos**
+- **2 viajes completamente EVITABLES** (devolución vacío + recogida vacío)
+
+---
+
+**Situación CON optimización (matching import-export):**
+
+*Misma operación IMPORT + EXPORT con matching inteligente:*
+
+**Import + Export optimizado:**
+1. Barcelona → Cliente A con contenedor **lleno** (TRUCK)
+2. Cliente A descarga (contenedor queda vacío)
+3. **Cliente A → Cliente B con contenedor VACÍO** (TRUCK - reposicionamiento directo)
+4. Cliente B carga
+5. Cliente B → Barcelona con contenedor **lleno** (TRUCK)
+
+**Total: 5 viajes**, de los cuales:
+- 2 viajes útiles con carga (1 lleno import, 1 lleno export)
+- **3 viajes necesarios** (solo 1 vacío entre clientes cercanos)
+
+---
+
+**VALOR DEL REPOSICIONAMIENTO INTELIGENTE:**
+- **1 viaje ELIMINADO** (33% menos viajes que con matching vs sin matching para este ejemplo)
+- **Se elimina:** Viaje vacío Cliente A → Terminal + Viaje vacío Terminal → Cliente B
+- **Se añade:** Solo 1 viaje vacío Cliente A → Cliente B (distancia mucho menor)
+- **Ahorro real:** Kilómetros, combustible, tiempo, coste operativo, emisiones CO2
+- **Mejora utilización:** Contenedor pasa menos tiempo inactivo en terminal
+
+Rhenus Logistics actualmente dispone de un sistema TMS que no cubre adecuadamente esta optimización del uso de contenedores vacíos, generando:
+- Costes innecesarios de reposicionamiento de contenedores vacíos
+- Retornos a terminal de contenedores que podrían reutilizarse directamente
 - Falta de visibilidad sobre oportunidades de matching import-export
 - Emisiones evitables de CO2 por transporte de contenedores vacíos
 
@@ -69,8 +144,14 @@ El proyecto tiene como objetivo desarrollar un **MVP (Minimum Viable Product)** 
 El sistema deberá incorporar las siguientes capacidades de optimización e inteligencia artificial:
 
 1. **Matching Inteligente Import-Export**
-   - Identificar automáticamente oportunidades de conectar contenedores de importación con órdenes de exportación
-   - Evitar retornos a terminal cuando exista demanda cercana
+   - Identificar automáticamente oportunidades de reutilización directa de contenedores:
+     - Contenedor de **import** que queda vacío en ubicación del cliente
+     - Orden de **export** de un cliente cercano que necesita contenedor vacío
+     - Evitar retorno del contenedor vacío a terminal
+     - Evitar viaje de recogida de contenedor vacío desde terminal
+   - Considerar proximidad geográfica entre clientes
+   - Analizar compatibilidad de tipos de contenedores y requisitos
+   - Evaluar ventanas temporales de disponibilidad
 
 2. **Predicción de Demanda**
    - Anticipar necesidades futuras de contenedores por ruta, cliente y tipo
@@ -94,7 +175,7 @@ El sistema deberá incorporar las siguientes capacidades de optimización e inte
 - **Modos de transporte:** TRAIN (ferroviario) y TRUCK (carretera)
 - **Integración inicial:** Sistema de ingesta vía inbox de correo electrónico para procesar PDFs:
   - PDFs con órdenes de import/export
-  - PDFs con información de llegadas de contenedores vía tren a terminales ferroviarias (para gestión de stock en depots)
+  - PDFs con información de llegadas de contenedores (vacíos o llenos) vía tren a terminales ferroviarias (para gestión de stock en depots)
 - **Datos:** Stock de contenedores y datos maestros precargados en el sistema para validación inicial
 - **Enfoque:** Desarrollo iterativo para validar el concepto antes de escalar a otras zonas geográficas y modos de transporte
 
@@ -120,24 +201,52 @@ Este enfoque permite:
 El MVP incorporará funcionalidades de análisis y visualización que permitan tanto a operadores como a la dirección de negocio evaluar el estado actual y la efectividad del sistema:
 
 #### 3.6.1. Visualización de Stock de Contenedores
-- **Contenedores en depots:** Vista del inventario de contenedores disponibles en:
-  - Terminal marítima: Barcelona
-  - Terminales ferroviarias: Noain, Agoncillo y Miranda
-- **Contenedores en uso:** Tracking del estado de contenedores actualmente asignados a rutas
+
+El sistema proporcionará visibilidad completa del ciclo de vida de contenedores:
+
+- **Contenedores en terminales:**
+  - Stock de contenedores en:
+    - **Terminales ferroviarias:** Noain, Agoncillo y Miranda (actualizados con PDFs de llegadas de tren)
+      - Contenedores **VACÍOS**: Disponibles para órdenes de export
+      - Contenedores **LLENOS**: Pendientes de entrega a clientes (import)
+    - **Barcelona:** Terminal marítima
+      - Contenedores vacíos devueltos de operaciones import
+      - Contenedores llenos de importación marítima
+  - Disponibles para ser asignados según estado y operación
+
+- **Contenedores en tránsito (en rutas activas):**
+  - **Import en curso:** Contenedores llenos en ruta desde Barcelona hacia clientes
+  - **Export en curso:** Contenedores en ruta desde terminales/clientes hacia Barcelona
+
+- **Contenedores post-import (vacíos en ubicaciones de clientes):**
+  - Contenedores que han completado entregas de import y están vacíos en ubicación del cliente
+  - **Candidatos para matching:** Disponibles para ser reutilizados en órdenes de export cercanas
+  - Visualización de tiempo desde que quedaron vacíos
+  - Proximidad a órdenes de export pendientes
+
 - **Distribución geográfica:** Mapa de la zona norte mostrando:
-  - Ubicaciones de terminales y stock de contenedores (Barcelona, Noain, Agoncillo, Miranda)
+  - Terminales ferroviarias con stock de vacíos (Noain, Agoncillo, Miranda)
+  - Barcelona (terminal marítima)
+  - Ubicaciones de clientes con contenedores vacíos post-import
+  - Ubicaciones de clientes con órdenes de export pendientes
+  - Oportunidades de matching visualizadas geográficamente
   - Centro de gestión en Bilbao (sin stock físico de contenedores)
-  - Contenedores vacíos vs. necesidades de exportación
-- **Estados y tipos:** Clasificación por tipo de contenedor, condición, y disponibilidad
+
+- **Estados y tipos:** Clasificación por:
+  - Tipo de contenedor (22G1=20'DV, 42G1=40'DV, 45G1=40'HC)
+  - Estado (vacío en terminal, vacío en cliente, lleno en tránsito, etc.)
+  - Disponibilidad y restricciones
 
 #### 3.6.2. Métricas de Efectividad del Sistema
 El sistema proporcionará indicadores clave (KPIs) para que el negocio pueda evaluar el retorno de la inversión:
 
 - **Métricas de optimización:**
-  - % de contenedores de importación reutilizados directamente para exportación (sin retorno a depot)
-  - Reducción estimada de kilómetros en vacío
-  - Tiempo promedio de inactividad de contenedores
-  - Tasa de utilización de contenedores
+  - **% de matching import-export exitoso:** Porcentaje de contenedores de import reutilizados directamente para export (sin retorno a terminal)
+  - **Viajes evitados:** Número de viajes de retorno a terminal y recogidas desde terminal eliminados
+  - **Reducción de kilómetros:** Kilómetros totales ahorrados por matching directo vs. ruta tradicional
+  - **Reducción de kilómetros en vacío:** Kilómetros específicamente evitados de transporte de contenedores vacíos
+  - **Tiempo de inactividad:** Tiempo promedio que un contenedor permanece inactivo entre operaciones
+  - **Tasa de utilización:** Porcentaje de tiempo que contenedores están en uso activo vs. inactivos
 
 - **Métricas de adopción:**
   - % de sugerencias aceptadas vs. rechazadas por operadores
@@ -186,11 +295,11 @@ El sistema estará compuesto por los siguientes módulos:
      - Análisis visual de documentos PDF
      - Extracción y estructuración de datos en formato estándar (JSON)
      - Procesamiento de órdenes de import/export
-     - Procesamiento de llegadas de contenedores vía tren a terminales ferroviarias (Noain, Agoncillo, Miranda)
+     - Procesamiento de llegadas de contenedores (vacíos o llenos) vía tren a terminales ferroviarias (Noain, Agoncillo, Miranda)
    - Procesamiento en tiempo real o near-real-time
    - Sistema de validación para detección de inconsistencias y alucinaciones del modelo
    - Alertas en caso de errores o baja confianza en la extracción
-   - Actualización automática de stock en depots con base en información de llegadas validada
+   - Actualización automática de stock en depots con base en información de llegadas validada (diferenciando entre contenedores vacíos y llenos)
 
 2. **Motor de Optimización y Recomendaciones**
    - Algoritmos de matching inteligente import-export
@@ -256,46 +365,141 @@ El sistema procesará dos tipos de PDFs recibidos en el inbox utilizando **LLMs 
   - Valores fuera de rangos esperados
 
 **A) PDFs de Órdenes Import/Export**
-- **Ingesta automática:** Monitorización continua del inbox configurado
+
+El sistema procesará dos tipos de órdenes con diferentes flujos:
+
+**Órdenes de IMPORT (Contenedor lleno → Cliente → Devolución vacío):**
 - **Extracción de datos mediante LLM multimodal:**
-  - Tipo de operación (import/export)
-  - Cliente/naviera
-  - Origen y destino (terminales: Barcelona, Noain, Agoncillo, Miranda)
+  - Cliente (destinatario de la mercancía)
+  - Ubicación del cliente (destino de entrega)
   - Tipo y cantidad de contenedores
-  - Fechas de operación
-  - Requisitos especiales
-- **Salida:** Datos estructurados en formato JSON
+  - Fecha/hora de recogida en Barcelona (terminal marítima)
+  - Fecha/hora estimada de entrega en cliente
+  - Requisitos especiales del contenedor o mercancía
+  - Naviera propietaria del contenedor
+  - Terminal de devolución preferida (Barcelona, Noain, Agoncillo o Miranda)
+- **Flujo tradicional:** Barcelona (lleno) → TRUCK → Cliente (descarga, vacío) → TRUCK → Terminal (Barcelona o ferroviaria)
+- **Flujo optimizado (con matching):** Barcelona (lleno) → TRUCK → Cliente A (descarga, vacío) → TRUCK → Cliente B export (evita devolución a terminal)
+- **Estado relevante para matching:** Contenedor vacío disponible en ubicación del cliente después de descarga
+
+**Órdenes de EXPORT (Cliente → Contenedor lleno → Barcelona):**
+- **Extracción de datos mediante LLM multimodal:**
+  - Cliente (origen de la mercancía)
+  - Ubicación del cliente (recogida de contenedor vacío)
+  - Tipo y cantidad de contenedores requeridos
+  - Fecha/hora de recogida en cliente
+  - Fecha/hora límite de entrega en Barcelona
+  - Requisitos especiales del contenedor o mercancía
+  - Naviera de destino
+  - Terminal de recogida preferida para contenedor vacío (Barcelona, Noain, Agoncillo o Miranda)
+- **Flujo tradicional:** Terminal (Barcelona o ferroviaria) → TRUCK → Cliente (carga, lleno) → TRUCK → Barcelona
+- **Flujo optimizado (con matching):** Usar contenedor vacío de import cercano en lugar de recoger de terminal
+
+**Salida común:**
+- Datos estructurados en formato JSON
 - **Validación:** Detección de inconsistencias y alucinaciones
 - **Notificaciones:** Alertas a usuarios cuando se requiere intervención manual o validación humana
 
 **B) PDFs de Llegadas de Contenedores Ferroviarios**
-- **Ingesta automática:** Monitorización de PDFs con información de llegadas de contenedores vía tren
-- **Extracción de datos mediante LLM multimodal:**
-  - Terminal ferroviaria de destino (Noain, Agoncillo o Miranda)
-  - Identificación de contenedores
-  - Tipo y características de contenedores
-  - Fecha y hora de llegada
-  - Estado del contenedor (vacío/lleno)
+
+Estos PDFs contienen información sobre contenedores (tanto **VACÍOS** como **LLENOS**) que llegan mediante TREN desde Barcelona a las terminales ferroviarias.
+
+**Contexto de los flujos:**
+
+*Contenedores VACÍOS:*
+1. Contenedores export enviados por mar desde Barcelona
+2. Contenedores vacíos regresan a Barcelona (gestionados por navieras)
+3. Se envían con TREN desde Barcelona a terminales ferroviarias (Noain/Agoncillo/Miranda)
+4. PDF informa de la llegada de contenedores vacíos
+5. Quedan disponibles para nuevas órdenes de export
+
+*Contenedores LLENOS:*
+1. Contenedores llenos llegan a Barcelona vía marítima (importación)
+2. Se envían con TREN desde Barcelona a terminales ferroviarias (Noain/Agoncillo/Miranda)
+3. PDF informa de la llegada de contenedores llenos
+4. Disponibles para entrega a clientes en la zona
+
+**Extracción de datos mediante LLM multimodal:**
+- Terminal ferroviaria de destino (Noain, Agoncillo o Miranda)
+- Identificación de contenedores
+- Tipo y características de contenedores (22G1, 42G1, 45G1)
+- Fecha y hora de llegada
+- **Estado del contenedor (VACÍO o LLENO)**
+- Naviera propietaria
+- Si está lleno: cliente destinatario o referencia de orden de import
+
+**Procesamiento:**
 - **Salida:** Datos estructurados en formato JSON
 - **Validación:** Verificación de consistencia de datos extraídos
-- **Actualización de stock:** Actualización automática del inventario en el depot correspondiente tras validación exitosa
+- **Actualización de stock:** Actualización automática del inventario en el depot correspondiente según estado:
+  - Contenedores VACÍOS: Disponibles para órdenes de export
+  - Contenedores LLENOS: Pendientes de entrega a clientes
 - **Notificaciones:** Alertas sobre nuevas llegadas y disponibilidad de contenedores
 
 #### 4.4.2. Motor de Recomendaciones de Optimización
 
-El sistema generará recomendaciones que incluirán:
+El sistema generará recomendaciones inteligentes de matching import-export para optimizar el uso de contenedores vacíos.
 
-- **Matching específico:** Identificación concreta de contenedor de importación → orden de exportación
-- **Ruta propuesta:** Secuencia detallada de movimientos y modos de transporte sugeridos:
-  - **TRAIN:** Transporte ferroviario entre terminales (Barcelona ↔ Noain/Agoncillo/Miranda)
-  - **TRUCK:** Transporte por carretera para primero/último tramo o trayectos completos
-  - Combinaciones multimodales óptimas TRAIN + TRUCK
-- **Impacto estimado:**
-  - Ahorro económico estimado
+**Tipos de Recomendaciones:**
+
+**1. Matching Directo Import → Export (Optimización principal):**
+- **Situación detectada:**
+  - Orden de IMPORT: Contenedor lleno entregado al Cliente A, después de descarga quedará vacío
+  - Orden de EXPORT: Cliente B en ubicación cercana al Cliente A necesita contenedor vacío
+- **Recomendación:**
+  - Usar el contenedor vacío del import del Cliente A directamente para el export del Cliente B
+  - Evitar devolución del vacío a terminal (Barcelona o terminal ferroviaria)
+  - Evitar recogida de vacío desde terminal (Barcelona o terminal ferroviaria)
+
+- **Comparación de rutas:**
+  - **SIN optimización (tradicional):**
+    1. Barcelona → Cliente A (lleno) - Import
+    2. Cliente A → Terminal (vacío) - Devolución
+    3. Terminal → Cliente B (vacío) - Recogida export
+    4. Cliente B → Barcelona (lleno) - Export
+    - **Total:** 4 viajes
+
+  - **CON optimización (matching):**
+    1. Barcelona → Cliente A (lleno) - Import
+    2. Cliente A → Cliente B (vacío) - Reposicionamiento directo
+    3. Cliente B → Barcelona (lleno) - Export
+    - **Total:** 3 viajes
+
+  - **Ahorro:** 1 viaje eliminado (25% reducción)
+  - **Detalle:** Se eliminan los viajes Cliente A → Terminal + Terminal → Cliente B
+  - **Se añade:** Solo el viaje directo Cliente A → Cliente B (típicamente distancia mucho menor)
+
+**2. Recogida de Contenedor Vacío Optimizada:**
+- Cuando no hay matching directo import-export disponible
+- Seleccionar la terminal óptima para recoger contenedor vacío:
+  - Barcelona (terminal marítima)
+  - Noain, Agoncillo o Miranda (terminales ferroviarias)
+- Considerar proximidad al cliente export, disponibilidad de stock en cada terminal, y costes de transporte
+
+**Información incluida en cada recomendación:**
+
+- **Matching específico:**
+  - ID de orden de import (contenedor que quedará vacío)
+  - ID de orden de export (que necesita contenedor vacío)
+  - Ubicaciones de clientes y distancia entre ellos
+  - Compatibilidad de tipos de contenedores
+
+- **Ruta propuesta detallada:**
+  - Secuencia de movimientos paso a paso
+  - Modo de transporte en cada tramo (**TRUCK**)
+  - Puntos de origen, intermedios y destino
+  - Tiempos estimados por tramo
+
+- **Impacto estimado vs. ruta tradicional:**
+  - Ahorro económico (coste de transporte evitado)
   - Kilómetros evitados
   - Reducción de emisiones de CO2
-  - Tiempo de operación
-- **Nivel de confianza:** Score que indica la fiabilidad de la recomendación
+  - Tiempo total de operación
+  - Número de viajes/tramos eliminados
+
+- **Nivel de confianza:**
+  - Score (0-100%) que indica la fiabilidad de la recomendación
+  - Factores considerados: proximidad geográfica, compatibilidad de contenedores, ventanas temporales, restricciones
 
 **Estrategia de generación de recomendaciones:**
 
@@ -315,13 +519,50 @@ El sistema podrá operar en tiempo real al recibir nuevas órdenes, generando su
 
 #### 4.4.4. Visualización de Stock y Estado de Contenedores
 
-- **Vista de depots:** Inventario de contenedores disponibles por ubicación:
-  - **Barcelona:** Terminal marítima
-  - **Noain, Agoncillo, Miranda:** Terminales ferroviarias
-  - Stock actualizado automáticamente con PDFs de llegadas de tren
-- **Contenedores en uso:** Estado de contenedores asignados a rutas activas (TRAIN/TRUCK)
-- **Mapa de distribución:** Visualización geográfica de la zona norte con ubicaciones de contenedores vacíos vs. necesidades de exportación
-- **Filtros y búsquedas:** Por tipo de contenedor, ubicación (Barcelona/Noain/Agoncillo/Miranda), estado, disponibilidad, propietario
+El sistema proporcionará múltiples vistas para entender el estado completo del inventario de contenedores:
+
+**Vista por Estados del Ciclo de Vida:**
+
+1. **Contenedores en Terminales:**
+   - **Terminales ferroviarias:** Noain, Agoncillo, Miranda
+     - Stock actualizado automáticamente con PDFs de llegadas de tren
+     - **VACÍOS:** Disponibles para órdenes de export
+     - **LLENOS:** Pendientes de entrega a clientes (import)
+   - **Barcelona:** Terminal marítima
+     - Contenedores vacíos devueltos de operaciones import
+     - Contenedores llenos de importación marítima
+   - Cantidad por tipo de contenedor (22G1, 42G1, 45G1) y estado en cada ubicación
+   - Tiempo de permanencia en terminal
+
+2. **Contenedores Post-Import (Vacíos en ubicaciones de clientes):**
+   - **Vista crítica para matching:** Contenedores que completaron entregas de import
+   - Ubicación del cliente donde quedaron vacíos
+   - Tiempo transcurrido desde que quedaron vacíos
+   - Indicador de proximidad a órdenes de export pendientes
+   - Destacado visual de oportunidades de matching
+
+3. **Contenedores en Tránsito:**
+   - **Import activo:** Llenos desde Barcelona hacia clientes
+   - **Export activo:** Desde ubicación origen (terminal o cliente) hacia Barcelona
+   - Modo de transporte actual (TRUCK)
+   - Progreso estimado de la ruta
+
+**Mapa Geográfico Interactivo:**
+- **Terminales con stock de vacíos:**
+  - Terminales ferroviarias (Noain, Agoncillo, Miranda) con nivel de stock
+  - Barcelona (terminal marítima) con nivel de stock de vacíos devueltos
+- Clientes con contenedores vacíos post-import (pins en mapa)
+- Clientes con órdenes de export pendientes (pins en mapa)
+- **Visualización de oportunidades:** Líneas conectando contenedores vacíos en clientes con órdenes de export cercanas
+- Rutas activas en tiempo real
+
+**Filtros y Búsquedas:**
+- Por tipo de contenedor (22G1=20'DV, 42G1=40'DV, 45G1=40'HC)
+- Por ubicación (Barcelona, Noain, Agoncillo, Miranda, ubicaciones de clientes)
+- Por estado (vacío en terminal, vacío en cliente, lleno en tránsito, etc.)
+- Por disponibilidad temporal
+- Por propietario/naviera
+- Por edad (tiempo desde última operación)
 
 #### 4.4.5. Dashboard y Métricas
 
@@ -340,36 +581,66 @@ El sistema permitirá administrar la siguiente información:
 
 1. **Contenedores**
    - Inventario completo
-   - Tipos (20', 40', High Cube, Reefer, etc.)
-   - Capacidades y características
+   - **Tipos de contenedores (códigos ISO):**
+     - **22G1:** 20'DV (20 pies Dry Van)
+     - **42G1:** 40'DV (40 pies Dry Van)
+     - **45G1:** 40'HC (40 pies High Cube)
+   - Capacidades y características por tipo
    - Propietarios (Rhenus, navieras, terceros)
-   - Estado actual (disponible, en uso, en mantenimiento)
-   - Ubicación actual
+   - Estado actual:
+     - Vacío en terminal (Barcelona o ferroviarias: Noain/Agoncillo/Miranda) - disponible para export
+     - Vacío en ubicación de cliente post-import (candidato para matching)
+     - Lleno en tránsito import (Barcelona → Cliente)
+     - En tránsito export (Cliente/Terminal → Barcelona)
+     - En tránsito devolución (Cliente → Terminal con vacío)
+     - En mantenimiento
+   - Ubicación actual (terminal o cliente)
+   - Historial de operaciones (última import/export)
 
 2. **Depots/Terminales**
    - **Barcelona:** Terminal marítima (puerto)
+     - Recepción de contenedores llenos de importación
+     - Almacenamiento de contenedores vacíos devueltos de operaciones import
+     - Envío de contenedores llenos de exportación
    - **Noain, Agoncillo, Miranda:** Terminales ferroviarias
+     - Recepción de contenedores vía TREN desde Barcelona (vacíos o llenos)
+     - Almacenamiento de contenedores vacíos disponibles para export
+     - Almacenamiento de contenedores llenos pendientes de entrega a clientes (import)
    - Capacidades de almacenamiento por ubicación
    - Tipos de contenedores soportados en cada terminal
    - Costes de almacenamiento
    - Operadores y horarios de operación
 
-3. **Rutas y Tarifas**
-   - Costes de transporte entre terminales (Barcelona ↔ Noain/Agoncillo/Miranda)
+3. **Clientes**
+   - Información de clientes (nombre, identificación)
+   - **Ubicaciones geográficas** (crítico para cálculo de proximidad y matching)
+   - Coordenadas GPS o dirección completa
+   - Tipos de contenedores que manejan habitualmente
+   - Restricciones o requisitos especiales
+   - Historial de operaciones import/export
+
+4. **Rutas y Tarifas**
+   - Costes de transporte TRUCK:
+     - Entre terminales (Barcelona ↔ Noain/Agoncillo/Miranda)
+     - Entre terminales y ubicaciones de clientes
+     - Entre ubicaciones de clientes (para matching import-export)
    - Tiempos estimados de tránsito por modo:
      - **TRAIN:** Rutas ferroviarias entre Barcelona y terminales ferroviarias
-     - **TRUCK:** Rutas por carretera entre terminales
+     - **TRUCK:** Rutas por carretera (terminales, clientes)
    - Restricciones de capacidad por modo de transporte
    - Frecuencias de servicio ferroviario
+   - Matriz de distancias para cálculo de proximidad
 
-4. **Clientes y Navieras**
-   - Información de clientes
+5. **Navieras**
    - Navieras colaboradoras
    - Acuerdos comerciales relevantes
    - Prioridades o restricciones específicas
+   - Propietarios de contenedores
 
-5. **Parámetros de Optimización**
+6. **Parámetros de Optimización**
    - Pesos para los diferentes criterios (coste, tiempo, CO2)
+   - **Radio máximo de matching:** Distancia máxima entre cliente import y cliente export para considerar matching directo
+   - **Ventana temporal de matching:** Tiempo máximo entre disponibilidad de contenedor vacío y necesidad de export
    - Restricciones de negocio
    - Umbrales de alertas
    - Configuración del motor de IA
