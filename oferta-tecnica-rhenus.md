@@ -1158,8 +1158,8 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
 | Área | Enfoque |
 |------|---------|
 | **Desarrollo** | Iterativo - Priorizar funcionalidades core del MVP |
-| **Infraestructura** | IaC con Terraform o Firebase CLI para despliegues reproducibles |
-| **CI/CD** | GitHub Actions o Cloud Build para automatizar despliegues |
+| **Infraestructura** | Firebase provisionará automáticamente recursos. Recursos adicionales de GCP se gestionarán con gcloud CLI |
+| **CI/CD** | GitHub Actions para automatizar despliegues |
 | **Monitoring** | Cloud Monitoring + Cloud Logging para observabilidad completa |
 | **Costes** | Modelo pay-per-use minimiza costes en fase MVP |
 
@@ -1338,9 +1338,9 @@ Esta sección consolida el stack tecnológico completo del proyecto, incluyendo 
 
 | Categoría | Tecnología | Justificación |
 |-----------|-----------|---------------|
-| Control de Versiones | Git + GitHub/GitLab | Repositorios de código |
-| CI/CD | GitHub Actions o Cloud Build | Pipelines automatizados de build/test/deploy |
-| IaC | Terraform o Firebase CLI | Infraestructura como código, despliegues reproducibles |
+| Control de Versiones | GitHub | Repositorios de código y colaboración |
+| CI/CD | GitHub Actions | Pipelines automatizados de build/test/deploy |
+| Gestión de Infraestructura | Firebase CLI + gcloud CLI | Firebase provisionará automáticamente recursos. gcloud CLI para recursos adicionales de GCP |
 | Containerización | Docker | Empaquetado del motor de optimización |
 | Container Registry | Artifact Registry | Almacenamiento de imágenes Docker |
 
@@ -1442,7 +1442,7 @@ Durante todo el proyecto se seguirá un enfoque proactivo de gestión de riesgos
 | **T3** | **Performance del motor de optimización (Timefold)**<br>Tiempos de cálculo excesivos (>30 seg) para generar recomendaciones | Media | Medio | - Benchmarking temprano con datasets realistas<br>- Optimización de constraints<br>- Limitar alcance temporal de optimización (ej: próximas 48h)<br>- Tuning de solver parameters | - Implementar límites de tiempo de ejecución<br>- Generar recomendaciones en batch asíncrono<br>- Cachear resultados de optimización<br>- Simplificar función objetivo si necesario |
 | **T4** | **Escalabilidad de PostgreSQL con Firebase Data Connect**<br>Limitaciones de rendimiento con grandes volúmenes de datos | Baja | Medio | - Diseño de schema optimizado desde inicio<br>- Índices apropiados en queries frecuentes<br>- Particionamiento de tablas históricas<br>- Monitoring de performance desde día 1 | - Migrar a PostgreSQL estándar en Cloud SQL<br>- Implementar caching con Memorystore<br>- Optimizar queries más lentas<br>- Archivado de datos históricos |
 | **T5** | **Integraciones con inbox de email de Rhenus**<br>Complejidad técnica para conectar Pub/Sub con inbox corporativo | Media | Alto | - Discovery temprana de infraestructura email de Rhenus<br>- Involucrar IT de Rhenus desde Fase 0<br>- Validar permisos y posibilidades técnicas<br>- Considerar alternativas (email forwarding, API si disponible) | - Implementar polling de email vía IMAP/POP3 como alternativa<br>- Upload manual de PDFs vía UI como fallback temporal<br>- Integración via FTP/SFTP si email no viable |
-| **T6** | **Complejidad de despliegue y configuración en GCP**<br>Problemas en setup de infraestructura serverless | Baja | Medio | - Equipo DevOps experto en GCP<br>- IaC con Terraform desde inicio<br>- Entornos de staging réplica de producción<br>- Documentación exhaustiva de despliegues | - Soporte de Google Cloud Professional Services<br>- Revisión de arquitectura con GCP Solutions Architect<br>- Rollback plans para cada despliegue |
+| **T6** | **Complejidad de despliegue y configuración en GCP**<br>Problemas en setup de infraestructura serverless | Baja | Medio | - Equipo DevOps experto en GCP y Firebase<br>- Uso de Firebase CLI para provisión automática<br>- gcloud CLI para recursos adicionales de GCP<br>- Entornos de staging réplica de producción<br>- Documentación exhaustiva de despliegues | - Soporte de Google Cloud Professional Services<br>- Revisión de arquitectura con GCP Solutions Architect<br>- Rollback plans para cada despliegue |
 
 ---
 
