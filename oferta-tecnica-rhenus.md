@@ -33,6 +33,7 @@
    - 5.4. [Escalabilidad y Rendimiento](#54-escalabilidad-y-rendimiento)
    - 5.5. [Seguridad](#55-seguridad)
    - 5.6. [Consideraciones de Implementación](#56-consideraciones-de-implementación)
+   - 5.7. [Diagramas de Arquitectura](#57-diagramas-de-arquitectura)
 6. [Tecnologías y Herramientas](#6-tecnologías-y-herramientas)
    - 6.1. [Plataforma Cloud y Servicios Core](#61-plataforma-cloud-y-servicios-core)
    - 6.2. [Frontend](#62-frontend)
@@ -984,6 +985,42 @@ El MVP se desarrollará utilizando una arquitectura **cloud-native en Google Clo
 - **CI/CD:** GitHub Actions o Cloud Build para automatizar despliegues
 - **Monitoring:** Cloud Monitoring + Cloud Logging para observabilidad
 - **Costes:** Modelo pay-per-use minimiza costes en fase MVP
+
+### 5.7. Diagramas de Arquitectura
+
+Esta sección presenta diagramas técnicos que ilustran la arquitectura del sistema y los flujos de información principales.
+
+#### 5.7.1. Diagrama C4 de Contenedores
+
+El siguiente diagrama muestra los contenedores (componentes de alto nivel) del sistema, sus responsabilidades y relaciones:
+
+![Diagrama C4 - Contenedores del Sistema](diagrams/c4-containers.svg)
+
+**Componentes principales:**
+
+- **Web Application (Frontend):** Interface de usuario desarrollada con Vite, React y TypeScript, alojada en Firebase Hosting
+- **API Backend:** Cloud Functions en Node.js que exponen APIs REST para el frontend
+- **Ingestion Service:** Cloud Functions que procesan emails con PDFs y coordinan la extracción de datos
+- **Motor de Optimización:** Servicio en Cloud Run (Java + Timefold) que ejecuta algoritmos de matching y optimización
+- **LLM Extractor:** Google Gemini (Vertex AI) para extracción multimodal de datos de PDFs
+- **PostgreSQL:** Base de datos transaccional para órdenes, contenedores, recomendaciones y datos maestros
+- **Cloud Firestore:** Base de datos NoSQL para datos paramétricos de UI y configuraciones
+- **Cloud Storage:** Almacenamiento de PDFs originales y archivos procesados
+- **Cloud Pub/Sub:** Cola de mensajes para procesamiento asíncrono de emails
+
+#### 5.7.2. Diagrama de Secuencia - Flujos Principales
+
+El siguiente diagrama ilustra los tres flujos de información principales del sistema:
+
+![Diagrama de Secuencia - Flujos Principales](diagrams/sequence-main-flows.svg)
+
+**Flujos representados:**
+
+1. **Flujo de Ingesta de PDFs:** Procesamiento automático de emails con PDFs de órdenes y llegadas ferroviarias, incluyendo extracción con Gemini y validación anti-alucinaciones
+
+2. **Flujo de Generación de Recomendaciones:** Activación del motor de optimización Timefold para generar recomendaciones de matching import-export basadas en órdenes pendientes y stock de contenedores
+
+3. **Flujo de Operación de Operadores:** Interacción de usuarios con el sistema para visualizar, aceptar o rechazar recomendaciones, capturando feedback para mejora continua
 
 ---
 

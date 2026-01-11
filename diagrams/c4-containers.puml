@@ -1,0 +1,71 @@
+@startuml c4-containers
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include DEVICONS/react.puml
+!include DEVICONS/nodejs.puml
+!include DEVICONS/java.puml
+!include DEVICONS/postgresql.puml
+!include FONTAWESOME/envelope.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Diagrama C4 - Contenedores: Sistema TMS Rhenus Logistics
+
+Person(operator, "Operador Rhenus", "Usuario con capacidad de decisión sobre recomendaciones")
+Person(admin, "Administrador", "Gestiona datos maestros y configuración del sistema")
+Person(viewer, "Usuario Lectura", "Consulta estado y reportes")
+
+System_Ext(email_inbox, "Email Inbox Rhenus", "Bandeja de entrada corporativa que recibe PDFs de órdenes y llegadas")
+
+System_Boundary(rhenus_tms, "Sistema TMS Rhenus") {
+    Container(web_app, "Web Application", "Vite, React, TypeScript", "Proporciona interfaz para gestión de recomendaciones, visualización de stock y analytics", $sprite="react")
+
+    Container(firebase_auth, "Firebase Authentication", "Firebase Auth", "Gestiona autenticación y autorización basada en roles (RBAC)")
+
+    Container(api_functions, "API Backend", "Node.js Cloud Functions", "Expone APIs REST para frontend, orquestación de servicios", $sprite="nodejs")
+
+    Container(ingestion_functions, "Ingestion Service", "Node.js Cloud Functions", "Procesa eventos de email, descarga PDFs y coordina extracción", $sprite="nodejs")
+
+    Container(optimization_engine, "Motor de Optimización", "Java, Timefold, Cloud Run", "Ejecuta algoritmos de matching import-export y optimización de rutas", $sprite="java")
+
+    Container(gemini_ai, "LLM Extractor", "Google Gemini (Vertex AI)", "Extracción multimodal de datos de PDFs con validación anti-alucinaciones")
+
+    ContainerDb(postgres_db, "Base de Datos Transaccional", "PostgreSQL (Firebase Data Connect)", "Almacena órdenes, contenedores, recomendaciones, feedback, datos maestros", $sprite="postgresql")
+
+    ContainerDb(firestore_db, "Base de Datos Paramétrica", "Cloud Firestore", "Almacena datos de UI, configuraciones, preferencias de usuario")
+
+    Container(cloud_storage, "Almacenamiento de Archivos", "Cloud Storage", "Almacena PDFs originales, archivos procesados, logs y backups")
+
+    Container(pubsub, "Message Queue", "Cloud Pub/Sub", "Cola de mensajes para procesamiento asíncrono de emails con PDFs", $sprite="envelope")
+}
+
+Rel(operator, web_app, "Visualiza recomendaciones, acepta/rechaza sugerencias", "HTTPS")
+Rel(admin, web_app, "Gestiona datos maestros, configura parámetros", "HTTPS")
+Rel(viewer, web_app, "Consulta dashboards y reportes", "HTTPS")
+
+Rel(email_inbox, pubsub, "Envía notificaciones de nuevos emails", "Push/Pull")
+
+Rel(web_app, firebase_auth, "Autentica usuarios", "SDK")
+Rel(web_app, api_functions, "Consume APIs REST", "HTTPS/JSON")
+Rel(web_app, firestore_db, "Sincroniza datos de UI en tiempo real", "SDK")
+
+Rel(pubsub, ingestion_functions, "Trigger de procesamiento", "Event")
+Rel(ingestion_functions, cloud_storage, "Almacena PDFs", "SDK")
+Rel(ingestion_functions, gemini_ai, "Solicita extracción de datos", "Vertex AI API")
+Rel(ingestion_functions, postgres_db, "Almacena órdenes y actualiza stock", "SQL")
+
+Rel(api_functions, postgres_db, "Lee/escribe datos transaccionales", "SQL")
+Rel(api_functions, firestore_db, "Lee/escribe configuraciones", "SDK")
+Rel(api_functions, optimization_engine, "Solicita generación de recomendaciones", "HTTP/JSON")
+Rel(api_functions, cloud_storage, "Accede a PDFs si necesario", "SDK")
+
+Rel(optimization_engine, postgres_db, "Lee contexto de órdenes y stock", "SQL")
+Rel(optimization_engine, postgres_db, "Almacena recomendaciones generadas", "SQL")
+
+Rel(gemini_ai, postgres_db, "Valida datos extraídos contra maestros", "SQL (via Cloud Function)")
+
+SHOW_LEGEND()
+
+@enduml
