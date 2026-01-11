@@ -1,11 +1,5 @@
 # Oferta Técnica - Rhenus Logistics
 
-**Cliente:** Rhenus Logistics
-**Fecha:** 11 de Enero de 2026
-**Preparado por:** José - Arquitecto de Sistemas y Software
-
----
-
 ## Tabla de Contenidos
 
 1. [Información del Cliente](#1-información-del-cliente)
