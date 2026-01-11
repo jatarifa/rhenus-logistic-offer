@@ -1,0 +1,121 @@
+@startuml sequence-ingestion-flow
+!theme blueprint
+skinparam responseMessageBelowArrow true
+skinparam sequenceMessageAlign center
+
+title Flujo 1: Ingesta de PDFs y Extracción de Datos
+
+actor "Email Inbox\nRhenus" as Inbox
+participant "Cloud\nPub/Sub" as PubSub
+participant "Ingestion\nFunction" as Ingestion
+participant "Cloud\nStorage" as Storage
+participant "Gemini\n(Vertex AI)" as Gemini
+database "PostgreSQL" as DB
+participant "API\nFunction" as API
+
+== Recepción y Descarga de PDF ==
+
+Inbox -> PubSub: Nuevo email con PDF\n(orden import/export o\nllegada ferroviaria)
+activate PubSub
+PubSub -> Ingestion: Trigger evento
+activate Ingestion
+deactivate PubSub
+
+Ingestion -> Inbox: Descarga PDF del email
+Inbox --> Ingestion: PDF bytes
+
+Ingestion -> Storage: Almacena PDF original
+activate Storage
+Storage --> Ingestion: URL almacenamiento
+deactivate Storage
+
+== Extracción de Datos con LLM ==
+
+Ingestion -> Gemini: Solicita extracción de datos\n(análisis visual multimodal del PDF)
+activate Gemini
+note right of Gemini
+  El LLM multimodal analiza
+  visualmente el PDF completo
+  sin necesidad de OCR tradicional
+end note
+
+Gemini --> Gemini: Procesa PDF\nExtrae datos estructurados
+
+Gemini --> Ingestion: JSON con datos extraídos\n+ confidence scores
+deactivate Gemini
+
+== Validación Anti-Alucinaciones ==
+
+Ingestion -> Ingestion: Validación anti-alucinaciones:\n- Consistencia de datos\n- Campos obligatorios presentes\n- Valores en rangos esperados\n- Confidence scores > threshold
+
+alt Validación EXITOSA
+
+    Ingestion -> DB: INSERT orden (import/export)\nO INSERT llegada ferroviaria
+    activate DB
+    DB --> Ingestion: Orden/llegada almacenada
+
+    alt Es llegada ferroviaria
+        Ingestion -> DB: UPDATE stock de contenedores\nen terminal correspondiente
+        DB --> Ingestion: Stock actualizado
+        note right of DB
+          Contenedores VACÍOS:
+          Disponibles para export
+
+          Contenedores LLENOS:
+          Pendientes de entrega
+        end note
+    end
+    deactivate DB
+
+    note over Ingestion
+      Datos procesados exitosamente
+      Trigger automático de optimización
+    end note
+
+    Ingestion -> API: POST /trigger-optimization\n{"reason": "new_data_ingested"}
+    activate API
+    note right of API
+      Dispara automáticamente
+      Flujo 2: Generación de
+      Recomendaciones
+    end note
+    API --> Ingestion: Optimización iniciada
+    deactivate API
+
+    Ingestion -> Ingestion: Log: Procesamiento exitoso
+
+else Validación FALLIDA o baja confianza
+
+    note over Ingestion
+      Datos extraídos con errores
+      o confidence score < threshold
+    end note
+
+    Ingestion -> DB: INSERT orden/llegada con estado\n"PENDING_REVIEW"
+    activate DB
+    DB --> Ingestion: Guardada para revisión manual
+    deactivate DB
+
+    Ingestion -> API: POST /notifications/manual-review
+    activate API
+    API --> Ingestion: Notificación creada
+    deactivate API
+
+    note right of API
+      Notificación enviada a
+      operadores para validación
+      manual del PDF
+    end note
+
+    Ingestion -> Ingestion: Log: Requiere revisión manual
+
+end
+
+deactivate Ingestion
+
+note over Inbox, DB
+  El sistema garantiza que solo datos validados
+  entran al flujo de optimización automática
+end note
+
+@enduml

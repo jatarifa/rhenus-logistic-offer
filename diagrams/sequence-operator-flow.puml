@@ -1,0 +1,165 @@
+@startuml sequence-operator-flow
+!theme blueprint
+skinparam responseMessageBelowArrow true
+skinparam sequenceMessageAlign center
+
+title Flujo 3: Operación de Operadores Rhenus
+
+actor "Operador\nRhenus" as Operator
+participant "Web\nApplication" as WebApp
+participant "API\nFunction" as API
+database "PostgreSQL" as DB
+
+== Visualización del Dashboard ==
+
+Operator -> WebApp: Accede al dashboard
+activate WebApp
+
+WebApp -> API: GET /recommendations?status=PENDING
+activate API
+API -> DB: SELECT recomendaciones pendientes\ncon detalles completos de órdenes
+activate DB
+DB --> API: Lista de recomendaciones:\n[\n  {\n    id, import_order, export_order,\n    ruta_propuesta, ahorro_estimado,\n    confidence_score, ...\n  }\n]
+deactivate DB
+API --> WebApp: JSON recomendaciones
+deactivate API
+
+WebApp -> API: GET /containers/map-data
+activate API
+API -> DB: SELECT ubicaciones y estado de contenedores
+activate DB
+DB --> API: Datos para mapa geográfico
+deactivate DB
+API --> WebApp: JSON datos de mapa
+deactivate API
+
+WebApp --> Operator: Muestra dashboard:\n- Lista de recomendaciones\n- Mapa geográfico interactivo\n- Matching import-export visualizado\n- Ahorro estimado (€, km, CO2)\n- Confidence scores
+
+== Opciones del Operador ==
+
+alt Operador solicita NUEVA OPTIMIZACIÓN
+
+    note over Operator
+      El operador decide que quiere
+      recalcular las recomendaciones
+      (ej: datos actualizados, nuevas
+      restricciones consideradas)
+    end note
+
+    Operator -> WebApp: Click en "Recalcular recomendaciones"
+    WebApp -> API: POST /trigger-optimization\n{"reason": "manual", "operator_id": "..."}
+    activate API
+
+    note right of API
+      Se ejecuta completo el
+      **Flujo 2: Generación de
+      Recomendaciones**
+    end note
+
+    API -> API: Trigger de motor Timefold\n(ver Flujo 2)
+
+    API --> WebApp: Optimización iniciada\n{"job_id": "...", "status": "running"}
+    deactivate API
+
+    WebApp --> Operator: Mensaje: "Generando nuevas recomendaciones...\nRecibirá notificación al completar"
+
+    note over WebApp
+      Cuando la optimización termina,
+      el operador recibe notificación
+      y puede ver las nuevas recomendaciones
+    end note
+
+else Operador revisa RECOMENDACIÓN EXISTENTE
+
+    Operator -> Operator: Analiza recomendación:\n- Revisa matching propuesto\n- Valida viabilidad operativa\n- Considera restricciones del día\n- Evalúa impacto estimado
+
+    alt Operador ACEPTA recomendación
+
+        note over Operator
+          El operador valida que:
+          - Clientes están disponibles
+          - No hay restricciones especiales
+          - Timing es compatible
+          - Naviera permite el matching
+        end note
+
+        Operator -> WebApp: Click en "Aceptar recomendación"\n+ Comentarios opcionales
+        WebApp -> API: PUT /recommendations/{id}\n{\n  status: "ACCEPTED",\n  operator_id: "...",\n  comments: "...",\n  timestamp: "..."\n}
+        activate API
+        API -> DB: UPDATE recommendation\nSET status = 'ACCEPTED',\n    accepted_by = operator_id,\n    accepted_at = NOW()
+        activate DB
+        DB --> API: Recomendación actualizada
+        deactivate DB
+
+        API -> DB: INSERT en historial de feedback\n(para métricas de adopción)
+        activate DB
+        DB --> API: Feedback registrado
+        deactivate DB
+
+        API --> WebApp: Confirmación exitosa
+        deactivate API
+
+        WebApp --> Operator: ✓ Recomendación aceptada\n\nPróximo paso:\nGenere la orden de transporte\nen su sistema TMS actual
+
+        note right of Operator
+          El operador procede a crear
+          la orden de transporte usando
+          sus herramientas actuales
+
+          El MVP NO genera órdenes
+          automáticamente
+        end note
+
+    else Operador RECHAZA recomendación
+
+        note over Operator
+          Motivos posibles de rechazo:
+          - Cliente no disponible en esa fecha
+          - Restricción de naviera
+          - Timing no compatible
+          - Preferencia del cliente
+          - Otro motivo operativo
+        end note
+
+        Operator -> WebApp: Click en "Rechazar"\nSelecciona motivo del rechazo
+
+        WebApp --> Operator: Formulario de rechazo:\n- Motivo (lista predefinida + texto libre)\n- Comentarios adicionales
+
+        Operator -> WebApp: Envía motivo de rechazo
+
+        WebApp -> API: PUT /recommendations/{id}\n{\n  status: "REJECTED",\n  operator_id: "...",\n  rejection_reason: "...",\n  rejection_comments: "...",\n  timestamp: "..."\n}
+        activate API
+        API -> DB: UPDATE recommendation\nSET status = 'REJECTED',\n    rejected_by = operator_id,\n    rejection_reason = '...',\n    rejected_at = NOW()
+        activate DB
+        DB --> API: Recomendación actualizada
+        deactivate DB
+
+        API -> DB: INSERT en historial de feedback\n(captura motivo para aprendizaje)
+        activate DB
+        note right of DB
+          El feedback se usará para:
+          - Métricas de adopción
+          - Análisis de patrones de rechazo
+          - Mejora del algoritmo
+          - Ajuste de parámetros
+        end note
+        DB --> API: Feedback registrado
+        deactivate DB
+
+        API --> WebApp: Confirmación exitosa
+        deactivate API
+
+        WebApp --> Operator: ✓ Recomendación rechazada\nMotivo registrado para análisis
+
+    end
+
+end
+
+deactivate WebApp
+
+note over Operator, DB
+  El sistema captura todas las decisiones de los operadores
+  para medir adopción y mejorar continuamente el algoritmo
+end note
+
+@enduml

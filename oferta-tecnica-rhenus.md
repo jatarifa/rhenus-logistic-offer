@@ -1014,30 +1014,57 @@ El siguiente diagrama muestra los contenedores (componentes de alto nivel) del s
 - **Cloud Storage:** Almacenamiento de PDFs originales y archivos procesados
 - **Cloud Pub/Sub:** Cola de mensajes para procesamiento asíncrono de emails
 
-#### 5.7.2. Diagrama de Secuencia - Flujos Principales
+#### 5.7.2. Diagramas de Secuencia - Flujos de Información
 
-El siguiente diagrama ilustra los tres flujos de información principales del sistema:
+Los siguientes diagramas ilustran los tres flujos principales del sistema de forma independiente para facilitar su comprensión:
 
-![Diagrama de Secuencia - Flujos Principales](diagrams/sequence-main-flows.svg)
+##### Flujo 1: Ingesta de PDFs y Extracción de Datos
 
-**Flujos representados:**
+Este diagrama muestra el proceso completo desde que llega un email con PDF hasta que se dispara automáticamente la optimización:
 
-1. **Flujo de Ingesta de PDFs:** Procesamiento automático de emails con PDFs de órdenes y llegadas ferroviarias, incluyendo:
-   - Extracción de datos mediante Gemini (LLM multimodal)
-   - Validación anti-alucinaciones
-   - Almacenamiento en base de datos y actualización de stock
-   - **Trigger automático del motor de optimización** tras procesamiento exitoso
+![Flujo de Ingesta de PDFs](diagrams/sequence-ingestion-flow.svg)
 
-2. **Flujo de Generación de Recomendaciones:** Motor de optimización Timefold que genera recomendaciones de matching import-export. Este flujo puede activarse de tres formas:
-   - **Automáticamente:** Tras ingesta exitosa de PDFs (Flujo 1)
-   - **Manualmente:** Cuando un operador solicita recálculo de recomendaciones
-   - **Periódicamente:** Mediante actualización programada del sistema
+**Componentes clave del flujo:**
+- **Recepción:** Cloud Pub/Sub procesa eventos de emails entrantes
+- **Almacenamiento:** PDFs originales se guardan en Cloud Storage
+- **Extracción:** Google Gemini (LLM multimodal) analiza visualmente el PDF y extrae datos estructurados
+- **Validación anti-alucinaciones:** Sistema de verificación que detecta inconsistencias y campos con baja confianza
+- **Actualización de datos:** Órdenes y stock de contenedores se almacenan en PostgreSQL
+- **Trigger automático:** Si la validación es exitosa, dispara automáticamente el Flujo 2 de optimización
+- **Revisión manual:** PDFs con validación fallida requieren intervención humana
 
-3. **Flujo de Operación de Operadores:** Interacción de usuarios con el sistema que incluye:
-   - Visualización de recomendaciones en dashboard y mapa geográfico
-   - Solicitud manual de nueva optimización (trigger manual del Flujo 2)
-   - Aceptación o rechazo de recomendaciones con motivos
-   - Captura de feedback para mejora continua del algoritmo
+##### Flujo 2: Generación de Recomendaciones de Optimización
+
+Este diagrama detalla cómo el motor Timefold genera recomendaciones de matching import-export:
+
+![Flujo de Generación de Recomendaciones](diagrams/sequence-optimization-flow.svg)
+
+**Activación del flujo:**
+- **Automática:** Tras procesamiento exitoso de PDFs (Flujo 1)
+- **Manual:** Solicitud explícita de operador desde la UI (Flujo 3)
+- **Periódica:** Ejecución programada mediante Cloud Scheduler
+
+**Proceso de optimización:**
+- **Recopilación de contexto:** Órdenes export pendientes, contenedores vacíos disponibles, ubicaciones de clientes, parámetros de optimización
+- **Algoritmo de matching:** Identifica oportunidades de reutilización directa de contenedores (import → export)
+- **Optimización multiobjetivo:** Minimiza coste, tiempo y CO2; maximiza utilización de contenedores
+- **Generación de solución:** Crea recomendaciones con confidence scores y ahorro estimado
+- **Almacenamiento:** Guarda recomendaciones en PostgreSQL con estado "PENDING"
+- **Notificación:** Avisa a operadores conectados sobre nuevas recomendaciones disponibles
+
+##### Flujo 3: Operación de Operadores Rhenus
+
+Este diagrama ilustra la interacción de los operadores con el sistema:
+
+![Flujo de Operación de Operadores](diagrams/sequence-operator-flow.svg)
+
+**Acciones del operador:**
+- **Visualización de dashboard:** Consulta recomendaciones pendientes, mapa geográfico con stock y oportunidades de matching
+- **Solicitud de nueva optimización:** Puede disparar manualmente el Flujo 2 para recalcular recomendaciones
+- **Revisión de recomendaciones:** Analiza viabilidad operativa de cada sugerencia
+- **Aceptación:** Marca recomendación como aceptada y procede a generar orden de transporte en su sistema TMS actual
+- **Rechazo con motivo:** Rechaza recomendación indicando el motivo (cliente no disponible, restricción de naviera, timing incompatible, etc.)
+- **Captura de feedback:** Sistema registra todas las decisiones para métricas de adopción y mejora continua del algoritmo
 
 ---
 

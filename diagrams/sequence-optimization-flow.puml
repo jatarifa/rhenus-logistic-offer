@@ -1,0 +1,112 @@
+@startuml sequence-optimization-flow
+!theme blueprint
+skinparam responseMessageBelowArrow true
+skinparam sequenceMessageAlign center
+
+title Flujo 2: Generación de Recomendaciones de Optimización
+
+participant "Trigger\nSource" as Trigger
+participant "API\nFunction" as API
+database "PostgreSQL" as DB
+participant "Timefold\nEngine\n(Cloud Run)" as Timefold
+participant "Web\nApplication" as WebApp
+
+== Activación del Motor de Optimización ==
+
+note over Trigger
+  El motor puede activarse de 3 formas:
+  1. **Automático**: Tras ingesta de PDFs (Flujo 1)
+  2. **Manual**: Solicitud de operador (Flujo 3)
+  3. **Periódico**: Cloud Scheduler (programado)
+end note
+
+Trigger -> API: POST /trigger-optimization\n{"reason": "auto|manual|scheduled"}
+activate API
+
+note over API
+  API Backend coordina el
+  proceso de optimización
+end note
+
+== Recopilación de Contexto ==
+
+API -> DB: SELECT órdenes export pendientes
+activate DB
+DB --> API: Lista órdenes export\n[{id, cliente, ubicación, tipo_contenedor, fecha_límite, ...}]
+
+API -> DB: SELECT contenedores vacíos disponibles:\n- En terminales (Barcelona, Noain, Agoncillo, Miranda)\n- Post-import en ubicaciones de clientes
+DB --> API: Stock de contenedores vacíos\n[{id, tipo, ubicación, estado, naviera, ...}]
+
+API -> DB: SELECT ubicaciones de clientes\ncon coordenadas GPS
+DB --> API: Coordenadas geográficas\n[{cliente_id, lat, lon, dirección, ...}]
+
+API -> DB: SELECT parámetros de optimización\n(pesos, restricciones, umbrales)
+DB --> API: Configuración de optimización\n{peso_coste, peso_tiempo, peso_co2, radio_matching_max, ...}
+
+deactivate DB
+
+== Invocación del Motor Timefold ==
+
+API -> Timefold: POST /optimize\n{\n  ordenes_export: [...],\n  contenedores_vacios: [...],\n  ubicaciones: {...},\n  parametros: {...}\n}
+activate Timefold
+
+note right of Timefold
+  Motor de optimización
+  constraint-based
+  con Timefold Solver
+end note
+
+Timefold -> Timefold: Construcción del problema:\n- Variables de decisión\n- Hard constraints\n- Soft constraints
+
+Timefold -> Timefold: **Algoritmo de Matching:**\n- Identifica contenedores vacíos post-import\n- Busca órdenes export cercanas\n- Calcula proximidad geográfica\n- Verifica compatibilidad de tipos\n- Valida ventanas temporales\n- Aplica restricciones de navieras
+
+Timefold -> Timefold: **Optimización Multiobjetivo:**\n- Minimizar coste de transporte\n- Minimizar tiempo de operación\n- Minimizar emisiones CO2\n- Maximizar tasa de utilización
+
+note right of Timefold
+  Algoritmos de búsqueda local:
+  - Tabu Search
+  - Simulated Annealing
+  - Late Acceptance
+  Hasta convergencia o timeout
+end note
+
+Timefold -> Timefold: Genera solución optimizada\ncon scoring por recomendación
+
+Timefold --> API: JSON recomendaciones:\n[\n  {\n    recommendation_id,\n    import_order_id,\n    export_order_id,\n    container_id,\n    ruta_propuesta: [...],\n    ahorro_estimado: {coste, km, co2},\n    confidence_score: 0-100,\n    motivo: "matching directo import-export"\n  },\n  ...\n]
+deactivate Timefold
+
+== Almacenamiento y Notificación ==
+
+API -> DB: INSERT recomendaciones\ncon estado "PENDING"
+activate DB
+note right of DB
+  Cada recomendación incluye:
+  - Matching específico
+  - Ruta detallada
+  - Impacto estimado
+  - Confidence score
+  - Timestamp de generación
+end note
+DB --> API: Recomendaciones almacenadas\n[{recommendation_id, ...}]
+deactivate DB
+
+API -> WebApp: Notificación en tiempo real:\nNuevas recomendaciones disponibles\n{"count": N, "timestamp": "..."}
+activate WebApp
+note right of WebApp
+  Notificación push a
+  operadores conectados
+  en el dashboard
+end note
+WebApp --> API: ACK
+deactivate WebApp
+
+API -> API: Log: Optimización completada exitosamente
+
+deactivate API
+
+note over Trigger, WebApp
+  Las recomendaciones están listas para ser
+  revisadas por los operadores (Flujo 3)
+end note
+
+@enduml
