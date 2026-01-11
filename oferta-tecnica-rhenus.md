@@ -182,12 +182,15 @@ El sistema estará compuesto por los siguientes módulos:
 
 1. **Motor de Ingesta de Datos**
    - Monitorización automática de inbox de correo electrónico
-   - Extracción automática de datos de PDFs:
-     - Órdenes de import/export
-     - Llegadas de contenedores vía tren a terminales ferroviarias (Noain, Agoncillo, Miranda)
+   - Extracción automática de datos de PDFs mediante **LLMs multimodales**:
+     - Análisis visual de documentos PDF
+     - Extracción y estructuración de datos en formato estándar (JSON)
+     - Procesamiento de órdenes de import/export
+     - Procesamiento de llegadas de contenedores vía tren a terminales ferroviarias (Noain, Agoncillo, Miranda)
    - Procesamiento en tiempo real o near-real-time
-   - Sistema de validación y alertas en caso de errores o baja confianza en la extracción
-   - Actualización automática de stock en depots con base en información de llegadas
+   - Sistema de validación para detección de inconsistencias y alucinaciones del modelo
+   - Alertas en caso de errores o baja confianza en la extracción
+   - Actualización automática de stock en depots con base en información de llegadas validada
 
 2. **Motor de Optimización y Recomendaciones**
    - Algoritmos de matching inteligente import-export
@@ -240,29 +243,42 @@ El sistema contemplará diferentes niveles de acceso y funcionalidades según el
 
 #### 4.4.1. Procesamiento Automático de Datos
 
-El sistema procesará dos tipos de PDFs recibidos en el inbox:
+El sistema procesará dos tipos de PDFs recibidos en el inbox utilizando **LLMs multimodales** para la extracción de información:
+
+**Tecnología de Extracción:**
+- **LLMs multimodales:** Modelos de lenguaje con capacidad de análisis visual de documentos
+- **Análisis visual:** Lectura e interpretación del contenido del PDF sin necesidad de OCR tradicional
+- **Estructuración en JSON:** Extracción de datos y conversión automática a formato estándar JSON
+- **Validación anti-alucinaciones:** Sistema de validación para detectar:
+  - Inconsistencias en los datos extraídos
+  - Posibles alucinaciones del modelo LLM
+  - Campos extraídos con baja confianza
+  - Valores fuera de rangos esperados
 
 **A) PDFs de Órdenes Import/Export**
 - **Ingesta automática:** Monitorización continua del inbox configurado
-- **Extracción de datos:** OCR y procesamiento inteligente de PDFs para extraer:
+- **Extracción de datos mediante LLM multimodal:**
   - Tipo de operación (import/export)
   - Cliente/naviera
   - Origen y destino (terminales: Barcelona, Noain, Agoncillo, Miranda)
   - Tipo y cantidad de contenedores
   - Fechas de operación
   - Requisitos especiales
-- **Validación:** Detección de inconsistencias o campos con baja confianza
-- **Notificaciones:** Alertas a usuarios cuando se requiere intervención manual
+- **Salida:** Datos estructurados en formato JSON
+- **Validación:** Detección de inconsistencias y alucinaciones
+- **Notificaciones:** Alertas a usuarios cuando se requiere intervención manual o validación humana
 
 **B) PDFs de Llegadas de Contenedores Ferroviarios**
 - **Ingesta automática:** Monitorización de PDFs con información de llegadas de contenedores vía tren
-- **Extracción de datos:** Procesamiento inteligente para extraer:
+- **Extracción de datos mediante LLM multimodal:**
   - Terminal ferroviaria de destino (Noain, Agoncillo o Miranda)
   - Identificación de contenedores
   - Tipo y características de contenedores
   - Fecha y hora de llegada
   - Estado del contenedor (vacío/lleno)
-- **Actualización de stock:** Actualización automática del inventario en el depot correspondiente
+- **Salida:** Datos estructurados en formato JSON
+- **Validación:** Verificación de consistencia de datos extraídos
+- **Actualización de stock:** Actualización automática del inventario en el depot correspondiente tras validación exitosa
 - **Notificaciones:** Alertas sobre nuevas llegadas y disponibilidad de contenedores
 
 #### 4.4.2. Motor de Recomendaciones de Optimización
