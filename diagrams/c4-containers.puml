@@ -47,7 +47,7 @@ Rel(viewer, web_app, "Consulta dashboards y reportes", "HTTPS")
 
 Rel(email_inbox, pubsub, "Envía notificaciones de nuevos emails", "Push/Pull")
 
-Rel(web_app, firebase_auth, "Autentica usuarios", "SDK")
+Rel_U(web_app, firebase_auth, "Autentica usuarios", "SDK")
 Rel(web_app, api_functions, "Consume APIs REST", "HTTPS/JSON")
 Rel(web_app, firestore_db, "Sincroniza datos de UI en tiempo real", "SDK")
 
