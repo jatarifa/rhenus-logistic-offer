@@ -58,9 +58,11 @@ El proyecto tiene como objetivo desarrollar un **MVP (Minimum Viable Product)** 
 - Contribuir a objetivos de sostenibilidad corporativa
 
 #### 3.2.4. Optimización Multimodal
-- Planificación inteligente de rutas considerando múltiples modos de transporte (marítimo, carretera, ferroviario)
+- Planificación inteligente de rutas considerando dos modos de transporte:
+  - **TRAIN (ferroviario):** Para trayectos entre Barcelona y terminales ferroviarias (Noain, Agoncillo, Miranda)
+  - **TRUCK (carretera):** Para primeros/últimos tramos y trayectos completos
 - Optimización multiobjetivo: coste, tiempo, emisiones y disponibilidad
-- Coordinación eficiente entre diferentes medios de transporte
+- Coordinación eficiente entre ambos medios de transporte
 
 ### 3.3. Capacidades Clave del Sistema
 
@@ -76,7 +78,8 @@ El sistema deberá incorporar las siguientes capacidades de optimización e inte
 
 3. **Optimización de Rutas Multiobjetivo**
    - Algoritmos que consideren simultáneamente: coste, tiempo de tránsito, emisiones de CO2 y disponibilidad de recursos
-   - Soporte para rutas multimodales (combinación de transporte marítimo, terrestre y ferroviario)
+   - Soporte para rutas multimodales (combinación de TRAIN y TRUCK)
+   - Consideración de restricciones geográficas (terminales: Barcelona, Noain, Agoncillo, Miranda)
 
 4. **Alertas y Recomendaciones Proactivas**
    - Notificaciones automáticas de oportunidades de optimización
@@ -84,10 +87,16 @@ El sistema deberá incorporar las siguientes capacidades de optimización e inte
 
 ### 3.4. Alcance del MVP
 
-- **Geográfico:** Operaciones de Rhenus Logistics en España (37 delegaciones: Península, Canarias y Baleares)
-- **Integración inicial:** Sistema de ingesta vía inbox de correo electrónico para procesar PDFs con órdenes de import/export
+- **Geográfico:** Operaciones de Rhenus Logistics en la zona norte de España:
+  - **Bilbao:** Centro de gestión de órdenes
+  - **Barcelona:** Puerto marítimo
+  - **Depots/Estaciones ferroviarias:** Noain, Agoncillo y Miranda
+- **Modos de transporte:** TRAIN (ferroviario) y TRUCK (carretera)
+- **Integración inicial:** Sistema de ingesta vía inbox de correo electrónico para procesar PDFs:
+  - PDFs con órdenes de import/export
+  - PDFs con información de llegadas de contenedores vía tren a terminales ferroviarias (para gestión de stock en depots)
 - **Datos:** Stock de contenedores y datos maestros precargados en el sistema para validación inicial
-- **Enfoque:** Desarrollo iterativo para validar el concepto antes de escalar a integraciones más complejas
+- **Enfoque:** Desarrollo iterativo para validar el concepto antes de escalar a otras zonas geográficas y modos de transporte
 
 ### 3.5. Modelo de Operación del MVP
 
@@ -111,9 +120,14 @@ Este enfoque permite:
 El MVP incorporará funcionalidades de análisis y visualización que permitan tanto a operadores como a la dirección de negocio evaluar el estado actual y la efectividad del sistema:
 
 #### 3.6.1. Visualización de Stock de Contenedores
-- **Contenedores en depots:** Vista del inventario de contenedores disponibles en terminales portuarias y ferroviarias
+- **Contenedores en depots:** Vista del inventario de contenedores disponibles en:
+  - Terminal marítima: Barcelona
+  - Terminales ferroviarias: Noain, Agoncillo y Miranda
 - **Contenedores en uso:** Tracking del estado de contenedores actualmente asignados a rutas
-- **Distribución geográfica:** Mapa de ubicaciones de contenedores vacíos vs. necesidades de exportación
+- **Distribución geográfica:** Mapa de la zona norte mostrando:
+  - Ubicaciones de terminales y stock de contenedores (Barcelona, Noain, Agoncillo, Miranda)
+  - Centro de gestión en Bilbao (sin stock físico de contenedores)
+  - Contenedores vacíos vs. necesidades de exportación
 - **Estados y tipos:** Clasificación por tipo de contenedor, condición, y disponibilidad
 
 #### 3.6.2. Métricas de Efectividad del Sistema
@@ -166,17 +180,20 @@ El MVP consistirá en una **plataforma web de apoyo a la decisión** que permita
 
 El sistema estará compuesto por los siguientes módulos:
 
-1. **Motor de Ingesta de Órdenes**
+1. **Motor de Ingesta de Datos**
    - Monitorización automática de inbox de correo electrónico
-   - Extracción automática de datos de PDFs (órdenes import/export)
+   - Extracción automática de datos de PDFs:
+     - Órdenes de import/export
+     - Llegadas de contenedores vía tren a terminales ferroviarias (Noain, Agoncillo, Miranda)
    - Procesamiento en tiempo real o near-real-time
    - Sistema de validación y alertas en caso de errores o baja confianza en la extracción
+   - Actualización automática de stock en depots con base en información de llegadas
 
 2. **Motor de Optimización y Recomendaciones**
    - Algoritmos de matching inteligente import-export
    - Optimización multiobjetivo (coste, tiempo, emisiones CO2, disponibilidad)
    - Predicción de demanda futura de contenedores
-   - Cálculo de rutas multimodales óptimas
+   - Cálculo de rutas multimodales óptimas (TRAIN + TRUCK)
    - Generación de nivel de confianza para cada recomendación
 
 3. **Interface de Usuario Web Responsive**
@@ -221,24 +238,42 @@ El sistema contemplará diferentes niveles de acceso y funcionalidades según el
 
 ### 4.4. Funcionalidades Core
 
-#### 4.4.1. Procesamiento Automático de Órdenes
+#### 4.4.1. Procesamiento Automático de Datos
+
+El sistema procesará dos tipos de PDFs recibidos en el inbox:
+
+**A) PDFs de Órdenes Import/Export**
 - **Ingesta automática:** Monitorización continua del inbox configurado
 - **Extracción de datos:** OCR y procesamiento inteligente de PDFs para extraer:
   - Tipo de operación (import/export)
   - Cliente/naviera
-  - Origen y destino
+  - Origen y destino (terminales: Barcelona, Noain, Agoncillo, Miranda)
   - Tipo y cantidad de contenedores
   - Fechas de operación
   - Requisitos especiales
 - **Validación:** Detección de inconsistencias o campos con baja confianza
 - **Notificaciones:** Alertas a usuarios cuando se requiere intervención manual
 
+**B) PDFs de Llegadas de Contenedores Ferroviarios**
+- **Ingesta automática:** Monitorización de PDFs con información de llegadas de contenedores vía tren
+- **Extracción de datos:** Procesamiento inteligente para extraer:
+  - Terminal ferroviaria de destino (Noain, Agoncillo o Miranda)
+  - Identificación de contenedores
+  - Tipo y características de contenedores
+  - Fecha y hora de llegada
+  - Estado del contenedor (vacío/lleno)
+- **Actualización de stock:** Actualización automática del inventario en el depot correspondiente
+- **Notificaciones:** Alertas sobre nuevas llegadas y disponibilidad de contenedores
+
 #### 4.4.2. Motor de Recomendaciones de Optimización
 
 El sistema generará recomendaciones que incluirán:
 
 - **Matching específico:** Identificación concreta de contenedor de importación → orden de exportación
-- **Ruta propuesta:** Secuencia detallada de movimientos y modos de transporte sugeridos (marítimo, carretera, ferroviario)
+- **Ruta propuesta:** Secuencia detallada de movimientos y modos de transporte sugeridos:
+  - **TRAIN:** Transporte ferroviario entre terminales (Barcelona ↔ Noain/Agoncillo/Miranda)
+  - **TRUCK:** Transporte por carretera para primero/último tramo o trayectos completos
+  - Combinaciones multimodales óptimas TRAIN + TRUCK
 - **Impacto estimado:**
   - Ahorro económico estimado
   - Kilómetros evitados
@@ -264,10 +299,13 @@ El sistema podrá operar en tiempo real al recibir nuevas órdenes, generando su
 
 #### 4.4.4. Visualización de Stock y Estado de Contenedores
 
-- **Vista de depots:** Inventario de contenedores disponibles por terminal (portuarias, ferroviarias)
-- **Contenedores en uso:** Estado de contenedores asignados a rutas activas
-- **Mapa de distribución:** Visualización geográfica de ubicaciones de contenedores vacíos vs. necesidades de exportación
-- **Filtros y búsquedas:** Por tipo de contenedor, ubicación, estado, disponibilidad, propietario
+- **Vista de depots:** Inventario de contenedores disponibles por ubicación:
+  - **Barcelona:** Terminal marítima
+  - **Noain, Agoncillo, Miranda:** Terminales ferroviarias
+  - Stock actualizado automáticamente con PDFs de llegadas de tren
+- **Contenedores en uso:** Estado de contenedores asignados a rutas activas (TRAIN/TRUCK)
+- **Mapa de distribución:** Visualización geográfica de la zona norte con ubicaciones de contenedores vacíos vs. necesidades de exportación
+- **Filtros y búsquedas:** Por tipo de contenedor, ubicación (Barcelona/Noain/Agoncillo/Miranda), estado, disponibilidad, propietario
 
 #### 4.4.5. Dashboard y Métricas
 
@@ -293,17 +331,20 @@ El sistema permitirá administrar la siguiente información:
    - Ubicación actual
 
 2. **Depots/Terminales**
-   - Ubicaciones geográficas
-   - Capacidades de almacenamiento
-   - Tipos de contenedores soportados
+   - **Barcelona:** Terminal marítima (puerto)
+   - **Noain, Agoncillo, Miranda:** Terminales ferroviarias
+   - Capacidades de almacenamiento por ubicación
+   - Tipos de contenedores soportados en cada terminal
    - Costes de almacenamiento
-   - Operadores y horarios
+   - Operadores y horarios de operación
 
 3. **Rutas y Tarifas**
-   - Costes de transporte entre puntos
-   - Tiempos estimados de tránsito
-   - Modos de transporte disponibles
-   - Restricciones de capacidad
+   - Costes de transporte entre terminales (Barcelona ↔ Noain/Agoncillo/Miranda)
+   - Tiempos estimados de tránsito por modo:
+     - **TRAIN:** Rutas ferroviarias entre Barcelona y terminales ferroviarias
+     - **TRUCK:** Rutas por carretera entre terminales
+   - Restricciones de capacidad por modo de transporte
+   - Frecuencias de servicio ferroviario
 
 4. **Clientes y Navieras**
    - Información de clientes
