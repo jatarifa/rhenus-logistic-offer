@@ -40,7 +40,6 @@
     - 11.2. [No Funcionales](#no-funcionales)
     - 11.3. [Validación de Negocio](#validación-de-negocio)
 12. [Próximos Pasos Post-MVP](#próximos-pasos-post-mvp)
-13. [Fuentes y Referencias](#fuentes-y-referencias)
 
 ---
 
@@ -738,8 +737,6 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 | **Developer Full-Stack** | 348 horas-persona | 36.25% | 480h (40h/sem × 12) | 29h/sem | 34h/sem | ✅ +132h (27.5%) |
 | **TOTAL** | **960 horas-persona** | **100%** | **960h + buffers** | - | - | **+264h (27.5%)** |
 
-**✅ PROYECTO BIEN BALANCEADO - Buffer del 27.5% + Arquitecto presente en TODOS los sprints**
-
 **Distribución de responsabilidades:**
 
 **Arquitecto/Tech Lead (264h - flexible, pico 40h/semana en Sprint 3):**
@@ -796,7 +793,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Predicción de demanda con ML (funcionalidad post-MVP)
 - NO asignado a tareas actuales del MVP
 
-**Conclusión**: Con un equipo técnico de **3 personas** (1 Arquitecto/Tech Lead flexible + 2 developers full-stack a dedicación completa), el proyecto es **VIABLE Y BIEN BALANCEADO**:
+**Conclusión**: Con un equipo técnico de **3 personas** (1 Arquitecto/Tech Lead flexible + 2 developers full-stack a dedicación completa):
 - **Arquitecto/Tech Lead**: 264h, pico de 40h/semana en Sprint 3 (motor Timefold crítico + Tech Lead)
 - **Senior Developer**: 348h necesarias vs 480h disponibles (**+132h buffer, 27.5%**)
 - **Developer**: 348h necesarias vs 480h disponibles (**+132h buffer, 27.5%**)
@@ -805,9 +802,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - **Arquitecto máximo 40h/semana** en Sprint 3 (NO excede - Timefold + Tech Lead)
 - **Buffer total**: 264 horas (27.5% del proyecto)
 
-**✅ PROYECTO BIEN DIMENSIONADO:**
-
-Con **264 horas de buffer total** (27.5% del proyecto), developers a dedicación completa y **Arquitecto/Tech Lead presente en todos los sprints**:
+**DIMENSIONAMIENTO DE PROYECTO:**
 
 1. **Dedicación completa garantizada**: Developers disponibles 40h/semana todo el proyecto
 2. **Flexibilidad full-stack**: Ambos developers pueden hacer frontend y backend
@@ -863,8 +858,6 @@ Con **264 horas de buffer total** (27.5% del proyecto), developers a dedicación
 
 ### Gestión de Riesgos con Buffer del 25%
 
-**✅ PROYECTO VIABLE: Equipo de 3 personas con buffer saludable**
-
 Con 240 horas de buffer (25% del proyecto), el equipo puede absorber imprevistos comunes:
 
 **Estrategias de mitigación:**
@@ -876,8 +869,8 @@ Con 240 horas de buffer (25% del proyecto), el equipo puede absorber imprevistos
    - **Won't Have (en MVP)**: Integración TMS existente, tracking GPS, app móvil
 
 2. **Buffer por rol estratégicamente distribuido**:
-   - Backend Dev: 168h buffer (35%) - Puede absorber complejidad en APIs o integraciones
-   - Frontend Dev: 72h buffer (15%) - Margen para refinamiento UI/UX y testing
+   - Senior Dev: 168h buffer (35%) - Puede absorber complejidad en APIs o integraciones
+   - Mid Dev: 72h buffer (15%) - Margen para refinamiento UI/UX y testing
    - Arquitecto: 0h buffer pero medio tiempo - Puede aumentar a 30-40h/semana puntualmente si crítico
 
 3. **Identificación temprana de bloqueos**:
@@ -891,8 +884,8 @@ Con 240 horas de buffer (25% del proyecto), el equipo puede absorber imprevistos
    - Documentación técnica y de usuario incluida
 
 5. **Flexibilidad del equipo**:
-   - Backend Dev puede apoyar en tareas de deployment o Cloud Functions si necesario
-   - Frontend Dev con 34h/semana promedio puede aumentar puntualmente a 40h
+   - Senior Dev puede apoyar en tareas de deployment o Cloud Functions si necesario
+   - Mid Dev con 34h/semana promedio puede aumentar puntualmente a 40h
    - Arquitecto en 20h/semana puede escalar si Sprint 3 (Timefold) requiere más tiempo
 
 ---
@@ -906,7 +899,7 @@ Las siguientes funcionalidades quedan **fuera del alcance** de este MVP de 12 se
 | **Integraciones** | • Integración con TMS existente de Rhenus<br>• APIs públicas para terceros<br>• Integración con sistemas de navieras |
 | **Aplicaciones móviles** | • App nativa iOS/Android |
 | **Tracking GPS** | • Tracking en tiempo real de contenedores<br>• Integración con IoT/sensores |
-| **Funcionalidades avanzadas** | • Predicción de demanda con ML<br>• Módulo de facturación<br>• Portal de clientes externos<br>• Rutas multimodales con TREN (solo TRUCK en MVP) |
+| **Funcionalidades avanzadas** | • Predicción de demanda con ML<br>• Rutas multimodales con TREN (solo TRUCK en MVP) |
 | **Analytics avanzados** | • Reportes personalizables<br>• Exportación de datos<br>• BI integrado |
 
 **Nota**: Estas funcionalidades se pueden incorporar en fases post-MVP según validación y ROI del sistema inicial.
@@ -919,8 +912,8 @@ Para considerar el MVP completo y listo para lanzamiento:
 
 ### Funcionales
 
-- ✅ Sistema procesa PDFs de órdenes import/export con tasa de éxito ≥ 80%
-- ✅ Sistema procesa PDFs de llegadas ferroviarias con tasa de éxito ≥ 80%
+- ✅ Sistema procesa PDFs de órdenes import/export con tasa de éxito ≥ 90%
+- ✅ Sistema procesa PDFs de llegadas ferroviarias con tasa de éxito ≥ 90%
 - ✅ Motor de optimización genera recomendaciones de matching válidas
 - ✅ Operadores pueden aceptar/rechazar recomendaciones y proporcionar feedback
 - ✅ Dashboard muestra KPIs básicos de optimización y adopción
@@ -929,11 +922,11 @@ Para considerar el MVP completo y listo para lanzamiento:
 
 ### No Funcionales
 
-- ✅ Procesamiento de PDFs en < 5 minutos desde recepción
+- ✅ Procesamiento de PDFs en < 2 minutos desde recepción
 - ✅ Generación de recomendaciones en < 2 minutos
 - ✅ UI responsive en desktop y tablet
 - ✅ Disponibilidad ≥ 99% durante horario laboral
-- ✅ Tests unitarios y de integración con coverage ≥ 70%
+- ✅ Tests unitarios y de integración con coverage ≥ 80%
 - ✅ Documentación técnica y de usuario completa
 - ✅ Training realizado a usuarios piloto
 
@@ -955,25 +948,4 @@ Funcionalidades candidatas para iteraciones posteriores (priorizadas):
 4. **Integración con TMS existente**: Generación automática de órdenes de transporte
 5. **Tracking GPS**: Visibilidad en tiempo real de contenedores
 6. **Aplicación móvil**: App nativa para operadores en campo
-7. **Portal de clientes**: Visibilidad para clientes de Rhenus sobre sus órdenes
-8. **Optimización por naviera**: Algoritmos especializados por shipping line
-9. **APIs públicas**: Integración con sistemas de terceros
-10. **Expansión geográfica**: Otras zonas de Rhenus (más allá del norte de España)
-
----
-
-## Fuentes y Referencias
-
-Este WBS se ha elaborado siguiendo las mejores prácticas del PMI (Project Management Institute) y considerando los estándares de la industria para 2026:
-
-- [Work Breakdown Structure - PMI Basic Principles](https://www.pmi.org/learning/library/work-breakdown-structure-basic-principles-4883)
-- [WBS Ultimate Guide - Project Manager](https://www.projectmanager.com/guides/work-breakdown-structure)
-- [WBS Detailed Guide for 2026 - ProofHub](https://www.proofhub.com/articles/work-breakdown-structure)
-- [WBS Elements, Formats, Best Practices - Hexagon](https://aliresources.hexagon.com/enterprise-project-performance/work-breakdown-structure-wbs-elements-formats-best-practices)
-
----
-
-**Documento generado**: 2026-01-11
-**Versión**: 1.0
-**Autor**: Equipo Glintt
-**Cliente**: Rhenus Logistics
+7. **Expansión geográfica**: Otras zonas de Rhenus (más allá del norte de España)
