@@ -119,17 +119,22 @@ Todos los diagramas están disponibles en formato PlantUML (`.puml`) y SVG rende
 ## 🔒 Criterios de Aceptación del MVP
 
 ### Funcionales
-- ✅ Sistema procesa PDFs de órdenes import/export con tasa de éxito ≥ 80%
+- ✅ Sistema procesa PDFs de órdenes import/export con tasa de éxito ≥ 90%
+- ✅ Sistema procesa PDFs de llegadas ferroviarias con tasa de éxito ≥ 90%
 - ✅ Motor de optimización genera recomendaciones de matching válidas
 - ✅ Operadores pueden aceptar/rechazar recomendaciones y proporcionar feedback
 - ✅ Dashboard muestra KPIs básicos de optimización y adopción
+- ✅ Mapa geográfico visualiza stock y oportunidades de matching
+- ✅ Sistema de autenticación y autorización RBAC funcional
 
 ### No Funcionales
-- ✅ Procesamiento de PDFs en < 5 minutos
+- ✅ Procesamiento de PDFs en < 2 minutos desde recepción
 - ✅ Generación de recomendaciones en < 2 minutos
 - ✅ UI responsive en desktop y tablet
 - ✅ Disponibilidad ≥ 99% durante horario laboral
-- ✅ Tests unitarios y de integración con coverage ≥ 70%
+- ✅ Tests unitarios y de integración con coverage ≥ 80%
+- ✅ Documentación técnica y de usuario completa
+- ✅ Training realizado a usuarios piloto
 
 ---
 
@@ -141,15 +146,6 @@ Todos los diagramas están disponibles en formato PlantUML (`.puml`) y SVG rende
 - Rutas multimodales con TREN (solo TRUCK en MVP)
 - Predicción de demanda con ML
 - APIs públicas para terceros
-
----
-
-## 📞 Contacto
-
-**Cliente:** Rhenus Logistics
-**Proveedor:** Glintt
-**Fecha de Inicio:** Enero 2026
-**Versión Documento:** 1.0 (2026-01-11)
 
 ---
 

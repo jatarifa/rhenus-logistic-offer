@@ -210,7 +210,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Análisis de estructura y variabilidad de formatos
 - Documentación de campos críticos a extraer
 - **Esfuerzo**: 16 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Arquitecto
 
 ##### 1.1.3 Validación de datos maestros
 - Obtención de inventario de contenedores
@@ -219,7 +219,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Información de navieras y restricciones
 - Matriz de distancias y costes de transporte
 - **Esfuerzo**: 16 horas-persona
-- **Responsable**: Backend Dev
+- **Responsable**: Developer
 
 ##### 1.1.4 Definición de reglas de negocio específicas
 - Restricciones de navieras sobre reutilización de contenedores
@@ -257,7 +257,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Pipelines de build/test/deploy
 - Configuración de linters (ESLint, Prettier)
 - **Esfuerzo**: 16 horas-persona
-- **Responsable**: Arquitecto
+- **Responsable**: Senior Dev
 
 ##### 1.2.4 Ambiente de desarrollo local
 - Docker Compose para desarrollo local
@@ -265,7 +265,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Configuración de variables de entorno
 - Documentación de setup para nuevos developers
 - **Esfuerzo**: 8 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ##### 1.2.5 Modelo de datos inicial
 - Diseño del esquema de PostgreSQL
@@ -274,7 +274,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Migraciones de base de datos (schema versioning)
 - Scripts de seed data para desarrollo
 - **Esfuerzo**: 24 horas-persona
-- **Responsable**: Backend Dev
+- **Responsable**: Developer
 
 ##### 1.2.6 Prototipo de UI/UX básico
 - Wireframes de pantallas principales
@@ -282,7 +282,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Sistema de diseño básico (colores, tipografía, componentes)
 - Aprobación de diseño con Rhenus
 - **Esfuerzo**: 8 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ---
 
@@ -290,44 +290,51 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 **Sprint 1 | Semanas 3-4 | Esfuerzo: 160 horas-persona**
 
 #### 2.1 Backend core y APIs base
-**Esfuerzo: 80 horas-persona**
+**Esfuerzo: 84 horas-persona**
 
 ##### 2.1.1 API Gateway y autenticación
 - Setup de Cloud Functions con Express.js
 - Integración de Firebase Authentication
 - Middleware de autenticación (JWT validation)
 - RBAC implementation (roles: Operator, Viewer, Admin)
-- **Esfuerzo**: 24 horas-persona
+- **Esfuerzo**: 16 horas-persona
 - **Responsable**: Arquitecto
 
-##### 2.1.2 APIs de datos maestros
+##### 2.1.2 Code review y Tech Lead
+- Code review del backend core
+- Validación de arquitectura de APIs
+- Control de calidad del código
+- **Esfuerzo**: 8 horas-persona
+- **Responsable**: Arquitecto
+
+##### 2.1.3 APIs de datos maestros
 - CRUD para Contenedores
 - CRUD para Terminales
 - CRUD para Clientes (con ubicaciones GPS)
 - CRUD para Navieras
 - Validaciones de negocio
-- **Esfuerzo**: 32 horas-persona
-- **Responsable**: Backend Dev
+- **Esfuerzo**: 30 horas-persona
+- **Responsable**: Developer
 
-##### 2.1.3 APIs de órdenes
+##### 2.1.4 APIs de órdenes
 - Endpoint para crear órdenes de import
 - Endpoint para crear órdenes de export
 - Endpoint para crear llegadas ferroviarias
 - Query endpoints (filtros, búsquedas)
 - Actualización automática de stock de contenedores
-- **Esfuerzo**: 32 horas-persona
-- **Responsable**: Backend Dev
+- **Esfuerzo**: 30 horas-persona
+- **Responsable**: Developer
 
 #### 2.2 Frontend base y sistema de componentes
-**Esfuerzo: 80 horas-persona**
+**Esfuerzo: 76 horas-persona**
 
 ##### 2.2.1 Setup de proyecto frontend
 - Vite + React + TypeScript setup
 - Routing (React Router)
 - State management (Context API + Hooks)
 - Configuración de build y deployment a Firebase Hosting
-- **Esfuerzo**: 8 horas-persona
-- **Responsable**: Frontend Dev
+- **Esfuerzo**: 14 horas-persona
+- **Responsable**: Senior Dev
 
 ##### 2.2.2 Sistema de componentes base
 - Layout principal (navbar, sidebar, content area)
@@ -335,7 +342,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Librería de componentes UI (integración)
 - Theme y estilos globales
 - **Esfuerzo**: 24 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ##### 2.2.3 Pantallas de gestión de datos maestros
 - Pantalla de gestión de Contenedores
@@ -343,16 +350,16 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Pantalla de gestión de Terminales
 - Formularios de creación/edición
 - Validaciones en frontend
-- **Esfuerzo**: 32 horas-persona
-- **Responsable**: Frontend Dev
+- **Esfuerzo**: 30 horas-persona
+- **Responsable**: Senior Dev
 
 ##### 2.2.4 Integración con APIs backend
 - HTTP client setup (Axios o Fetch)
 - Manejo de autenticación (tokens)
 - Error handling y feedback al usuario
 - Loading states
-- **Esfuerzo**: 16 horas-persona
-- **Responsable**: Frontend Dev
+- **Esfuerzo**: 8 horas-persona
+- **Responsable**: Developer
 
 ---
 
@@ -369,7 +376,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Descarga de attachments (PDFs)
 - Almacenamiento en Cloud Storage
 - **Esfuerzo**: 24 horas-persona
-- **Responsable**: Backend Dev
+- **Responsable**: Developer
 
 ##### 3.1.2 Integración con Google Gemini (Vertex AI)
 - Setup de Vertex AI API
@@ -397,7 +404,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Queue para revisión manual de PDFs problemáticos
 - Logging completo del proceso de ingesta
 - **Esfuerzo**: 24 horas-persona
-- **Responsable**: Backend Dev
+- **Responsable**: Developer
 
 #### 3.2 UI de gestión de ingesta
 **Esfuerzo: 64 horas-persona**
@@ -408,7 +415,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Vista detalle de orden individual
 - Indicador de confianza de extracción
 - **Esfuerzo**: 24 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ##### 3.2.2 Pantalla de revisión manual de PDFs
 - Queue de PDFs con validación fallida
@@ -417,14 +424,14 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Interface para corrección manual
 - Aprobación/rechazo de datos extraídos
 - **Esfuerzo**: 24 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ##### 3.2.3 Dashboard de ingesta
 - Métricas de procesamiento (PDFs/día, tasa de éxito)
 - Gráfico de evolución temporal
 - Alertas de errores de procesamiento
 - **Esfuerzo**: 16 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ---
 
@@ -496,7 +503,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Invocación del motor Timefold (Cloud Run)
 - Almacenamiento de recomendaciones en PostgreSQL
 - **Esfuerzo**: 32 horas-persona
-- **Responsable**: Backend Dev
+- **Responsable**: Developer
 
 ##### 4.2.2 APIs de gestión de recomendaciones
 - Endpoint para listar recomendaciones (filtros, paginación)
@@ -505,13 +512,13 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Endpoint para obtener detalle de recomendación
 - Actualización de estado de órdenes según feedback
 - **Esfuerzo**: 32 horas-persona
-- **Responsable**: Backend Dev
+- **Responsable**: Developer
 
 ##### 4.2.3 Sistema de notificaciones
 - Notificación a usuarios conectados sobre nuevas recomendaciones
 - Notificación de finalización de proceso de optimización
 - **Esfuerzo**: 8 horas-persona
-- **Responsable**: Backend Dev
+- **Responsable**: Developer
 
 ---
 
@@ -528,7 +535,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Filtros (tipo de matching, fecha, cliente, score)
 - Ordenamiento (por score, por ahorro, por fecha)
 - **Esfuerzo**: 24 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ##### 5.1.2 Vista detalle de recomendación
 - Información completa del matching import-export
@@ -537,7 +544,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Detalles de contenedores involucrados
 - Justificación del algoritmo
 - **Esfuerzo**: 32 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ##### 5.1.3 Interface de aceptación/rechazo
 - Modal de confirmación de aceptación
@@ -546,14 +553,14 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Campo de comentario adicional
 - Actualización inmediata de estado en UI
 - **Esfuerzo**: 16 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ##### 5.1.4 Botón de trigger manual de optimización
 - Botón para solicitar nueva optimización
 - Loading state durante procesamiento
 - Feedback de finalización
 - **Esfuerzo**: 8 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 #### 5.2 Visualización de stock y contenedores
 **Esfuerzo: 80 horas-persona**
@@ -565,7 +572,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Clasificación por estado (vacío disponible, lleno pendiente)
 - Filtros por terminal, tipo, naviera
 - **Esfuerzo**: 24 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ##### 5.2.2 Vista de contenedores post-import
 - Lista de contenedores vacíos en ubicaciones de clientes
@@ -573,7 +580,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Indicador de proximidad a órdenes export
 - Destacado de oportunidades de matching potenciales
 - **Esfuerzo**: 16 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ##### 5.2.3 Mapa geográfico interactivo
 - Integración de Google Maps API
@@ -583,14 +590,14 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Líneas conectando oportunidades de matching
 - Rutas activas en tiempo real (opcional, nice-to-have)
 - **Esfuerzo**: 32 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ##### 5.2.4 Filtros y búsqueda
 - Buscador de contenedores por ID
 - Filtros por tipo, estado, ubicación, naviera
 - Filtros por edad (tiempo inactivo)
 - **Esfuerzo**: 8 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ---
 
@@ -607,7 +614,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Reducción de km en vacío
 - Gráficos de tendencias temporales
 - **Esfuerzo**: 24 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ##### 6.1.2 KPIs de adopción
 - % de aceptación de sugerencias
@@ -615,14 +622,14 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Distribución de motivos de rechazo
 - Tiempo medio de respuesta a recomendaciones
 - **Esfuerzo**: 16 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ##### 6.1.3 Métricas de impacto
 - Ahorro de costes estimado (acumulado)
 - Reducción de CO2 estimada (acumulado)
 - Gráficos de evolución mensual
 - **Esfuerzo**: 8 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 #### 6.2 Testing y QA
 **Esfuerzo: 80 horas-persona**
@@ -642,7 +649,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Tests de autenticación y autorización
 - Tests de validaciones de negocio
 - **Esfuerzo**: 24 horas-persona
-- **Responsable**: Backend Dev
+- **Responsable**: Developer
 
 ##### 6.2.3 Testing de ingesta de PDFs
 - Tests con PDFs reales de Rhenus
@@ -650,7 +657,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Tests de casos edge (PDFs malformados)
 - Tests de actualización de stock
 - **Esfuerzo**: 16 horas-persona
-- **Responsable**: Backend Dev
+- **Responsable**: Developer
 
 ##### 6.2.4 Testing E2E de frontend
 - Tests de flujos críticos (login, ver recomendaciones, aceptar/rechazar)
@@ -658,7 +665,7 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Tests de accesibilidad básica
 - Cross-browser testing
 - **Esfuerzo**: 16 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 #### 6.3 Documentación y training
 **Esfuerzo: 24 horas-persona**
@@ -669,14 +676,14 @@ Este WBS sigue las mejores prácticas del PMI (Project Management Institute):
 - Guía de deployment
 - Guía de troubleshooting
 - **Esfuerzo**: 12 horas-persona
-- **Responsable**: Backend Dev
+- **Responsable**: Developer
 
 ##### 6.3.2 Documentación de usuario
 - Manual de usuario del sistema
 - Guías de uso de cada funcionalidad
 - FAQs
 - **Esfuerzo**: 4 horas-persona
-- **Responsable**: Frontend Dev
+- **Responsable**: Senior Dev
 
 ##### 6.3.3 Training a usuarios de Rhenus
 - Sesión de training a operadores
