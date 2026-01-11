@@ -372,11 +372,11 @@ El sistema procesará dos tipos de órdenes con diferentes flujos:
 - **Extracción de datos mediante LLM multimodal:**
   - Cliente (destinatario de la mercancía)
   - Ubicación del cliente (destino de entrega)
-  - Tipo y cantidad de contenedores
+  - Tipo y cantidad de contenedores (22G1, 42G1, 45G1)
   - Fecha/hora de recogida en Barcelona (terminal marítima)
   - Fecha/hora estimada de entrega en cliente
   - Requisitos especiales del contenedor o mercancía
-  - Naviera propietaria del contenedor
+  - Naviera propietaria del contenedor (Maersk, Hapag-Lloyd, MSC, etc.)
   - Terminal de devolución preferida (Barcelona, Noain, Agoncillo o Miranda)
 - **Flujo tradicional:** Barcelona (lleno) → TRUCK → Cliente (descarga, vacío) → TRUCK → Terminal (Barcelona o ferroviaria)
 - **Flujo optimizado (con matching):** Barcelona (lleno) → TRUCK → Cliente A (descarga, vacío) → TRUCK → Cliente B export (evita devolución a terminal)
@@ -586,7 +586,7 @@ El sistema permitirá administrar la siguiente información:
      - **42G1:** 40'DV (40 pies Dry Van)
      - **45G1:** 40'HC (40 pies High Cube)
    - Capacidades y características por tipo
-   - Propietarios (Rhenus, navieras, terceros)
+   - Naviera dueña de cada contenedor (campo crítico para todas las operaciones)
    - Estado actual:
      - Vacío en terminal (Barcelona o ferroviarias: Noain/Agoncillo/Miranda) - disponible para export
      - Vacío en ubicación de cliente post-import (candidato para matching)
@@ -632,10 +632,14 @@ El sistema permitirá administrar la siguiente información:
    - Matriz de distancias para cálculo de proximidad
 
 5. **Navieras**
-   - Navieras colaboradoras
-   - Acuerdos comerciales relevantes
-   - Prioridades o restricciones específicas
-   - Propietarios de contenedores
+   - Las navieras son las **ÚNICAS propietarias** de los contenedores
+   - Principales navieras: Maersk, Hapag-Lloyd, Mediterranean Shipping Company, etc.
+   - Acuerdos comerciales con Rhenus
+   - Condiciones de uso de contenedores
+   - Políticas de reposicionamiento de cada naviera
+   - Restricciones específicas por naviera
+   - Tarifas por uso de contenedores
+   - Tiempos de free time (tiempo gratuito de uso)
 
 6. **Parámetros de Optimización**
    - Pesos para los diferentes criterios (coste, tiempo, CO2)
